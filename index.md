@@ -10,6 +10,5 @@ Starting with our PM software, we will be releasing our own edits and running en
 
 #### Security & Privacy
 Client data, metrics, and private/corporate information will be stored in a closed-software environment, as our one exception. 
-**_The Security and Privacy of our clients and their information, is our first priority, it always will be._*
 
-
+**The Security and Privacy of our clients and their information, is our first priority, it always will be.**
