@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+## We're moving!
 
-You can use the [editor on GitHub](https://github.com/clearmoonllc/clearmoon.llc/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### Hey there!
+We've begun rebuilding our internal PM software to a fully-loaded Ruby-on-Rails environment, powered by [Redmine](https://www.redmine.org/).
+And as you can see, we're also rebuilding our web front-end. The two will be seamlessly combined into a refined, responsive UI.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+As a collective, we're now pushing for a more Open Internet, starting with our own back-end stack and platform.
+Starting with our PM software, we will be releasing our own edits and running environments as [Open Source](https://en.wikipedia.org/wiki/Open_source) repositories.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### Security & Privacy
+Client data, metrics, and private/corporate information will be stored in a closed-software environment, as our one exception. 
+**_The Security and Privacy of our clients and their information, is our first priority, it always will be._*
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/clearmoonllc/clearmoon.llc/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
