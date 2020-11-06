@@ -11,7 +11,7 @@ We'll be releasing our own edits and running environments as [Open Source](https
 ### Security & Privacy
 Client data, metrics, and private/corporate information will be stored in a closed-software environment, as our one exception. 
 
-**The security and privacy of our clients and their information is our first priority, it always will be.**
+**The security and privacy of our clients and their information is our first priority.**
 
 
 ### Current Status
