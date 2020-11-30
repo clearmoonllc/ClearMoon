@@ -16,6 +16,9 @@ Client data, metrics, and private/corporate information will be stored in a clos
 
 ### Current Status
 **Update 11/04:** *Our in-progress upgrade will enable our full lab & hosting environments, and a few new ESXi and Kubernetes deployments.*
+
 **Update 11/13:** *Rack has been deployed into our new hosting company! Two of our hypervisors will be assembled and deployed by end of Jan 2021. Until then, our lab environment will not be publicly accessible.*
+
 **Update 11/24:** *We've gotten our Microsoft Partnership and have begun development of our Azure Cloud deployment, we can now directly license our 365 clients.*
+
 **Update 11/30:** *Our AWS Partnership has been established, and we're moving our data storage systems onto an S3 block-enabled system throughout this week! DRaaS clients will now have 3 datacenter location backups.*
