@@ -25,6 +25,6 @@ Client data, metrics, and private/corporate information will be stored in a clos
 
 **Update 12/22:** *Initial Cloud deplyoments are beginning next month!*
 
-**Update 1/13:** *Redmine should be back online by 1/27. We're also looking into using *
+**Update 1/13:** *Redmine should be back online by 1/27. We're also looking into using full CI software package delivery systems.*
 
 
