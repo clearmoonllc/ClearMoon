@@ -22,3 +22,9 @@ Client data, metrics, and private/corporate information will be stored in a clos
 **Update 11/24:** *We've gotten our Microsoft Partnership and have begun development of our Azure Cloud deployment, we can now directly license our 365 clients.*
 
 **Update 11/30:** *Our AWS Partnership has been established, and we're moving our data storage systems onto an S3 block-enabled system throughout this week! DRaaS clients will now have 3 datacenter location backups.*
+
+**Update 12/22:** *Initial Cloud deplyoments are beginning next month!*
+
+**Update 1/13:** *Redmine should be back online by 1/27. We're also looking into using *
+
+
