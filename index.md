@@ -1,8 +1,9 @@
 ## We're moving!
 
 ### Hey there!
-We've begun rebuilding our internal PM software to a fully-loaded Ruby-on-Rails environment, powered by [Redmine](https://www.redmine.org/).
-And as you can see, we're also rebuilding our web front-end. The two will be seamlessly combined into a refined, responsive UI.
+We've rebuilt our internal PM software to a fully-loaded Ruby-on-Rails environment, powered by a customized instance of [Redmine](https://www.redmine.org/).
+Now we're rebuilding our web front-end. The two will be seamlessly combined into a refined, responsive UI.
+If you are a current customer, you can access your project front at your supplied subdomain URL.
 
 As a collective, we're now pushing for a more Open Internet, starting with our own back-end stack and platform.
 We'll be releasing our own edits and running environments as [Open Source](https://en.wikipedia.org/wiki/Open_source) repositories.
@@ -14,7 +15,7 @@ Client data, metrics, and private/corporate information will be stored in a clos
 **The security and privacy of our clients and their information is our first priority.**
 
 
-### Current Status
+### Status
 **Update 11/04:** *Our in-progress upgrade will enable our full lab & hosting environments, and a few new ESXi and Kubernetes deployments.*
 
 **Update 11/13:** *Rack has been deployed into our new hosting company! Two of our hypervisors will be assembled and deployed by end of Jan 2021. Until then, our lab environment will not be publicly accessible.*
@@ -27,4 +28,13 @@ Client data, metrics, and private/corporate information will be stored in a clos
 
 **Update 1/13:** *Redmine should be back online by 1/27. We're also looking into using full CI software package delivery systems.*
 
+**Update 1/20:** *Redmine back online, please access using your unique supplied subdomain registered to your company/project URL.*
 
+**Update 2/2:** *We will be setting up a new webfront for sales access and future customers to view by mid-March.*
+
+**Update 3/6:** *This page will be replaced with a "Coming Soon" notice by 3/15.*
+
+
+
+
+You can still reach your representative as before, or HQ by [email](help@clearmoon.llc)
