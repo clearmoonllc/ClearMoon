@@ -37,4 +37,4 @@ Client data, metrics, and private/corporate information will be stored in a clos
 
 
 
-You can still reach your representative as before, or HQ by [email](help@clearmoon.llc)
+You can still reach your representative as before, or HQ by [email](mailto:help@clearmoon.llc)
