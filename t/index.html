@@ -15,14 +15,37 @@
      <svg class="deco-corner top-right" width="30" height="30" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 0 H5 V1 H9 V5 H10 V0 Z M4 0 H0 V1 H1 V2 H2 V3 H3 V4 H4 V0 Z" fill="var(--accent-color1)"/>
     </svg>
+    <svg class="deco-star blinking-star" width="15" height="15" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+       <path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" fill="var(--accent-color2)"/>
+    </svg>
+
 
     <header class="main-header">
         <nav class="navbar">
-            <div class="logo">ClearMoon LLC</div>
+            <div class="logo">
+                 <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <mask id="starMask">
+                             <path fill="white" d="M0 0 H100 V100 H0z"/>
+                             <circle cx="58" cy="40" r="5" fill="black"/>
+                              <circle cx="65" cy="55" r="5" fill="black"/>
+                              <circle cx="55" cy="70" r="5" fill="black"/>
+                        </mask>
+                         <g id="stars">
+                            <path d="M58 37 l 1.17 3.6 h 3.78 l -3.06 2.23 l 1.17 3.6 l -3.06 -2.23 l -3.06 2.23 l 1.17 -3.6 l -3.06 -2.23 h 3.78 Z" fill="var(--secondary-bg)" />
+                            <path d="M65 52 l 1.17 3.6 h 3.78 l -3.06 2.23 l 1.17 3.6 l -3.06 -2.23 l -3.06 2.23 l 1.17 -3.6 l -3.06 -2.23 h 3.78 Z" fill="var(--secondary-bg)" />
+                            <path d="M55 67 l 1.17 3.6 h 3.78 l -3.06 2.23 l 1.17 3.6 l -3.06 -2.23 l -3.06 2.23 l 1.17 -3.6 l -3.06 -2.23 h 3.78 Z" fill="var(--secondary-bg)" />
+                         </g>
+                    </defs>
+                    <path d="M50 0 A50 50 0 1 0 50 100 A35 35 0 1 1 50 0 Z" fill="var(--accent-color1)"/>
+                    <use href="#stars"/>
+                    </svg>
+                </div>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
+                 <li><a href="#clients">Clients</a></li>
+                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#industries">Industries</a></li>
-                <li><a href="#compliance">Compliance</a></li>
                 <li><a href="#consultancy">Consultancy</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -31,113 +54,166 @@
             <svg class="hero-bg-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                 <defs>
                     <pattern id="circuitPattern" patternUnits="userSpaceOnUse" width="50" height="50" patternTransform="scale(1)">
-                        <path d="M0 10 h10 v10 h-10 z M10 0 v10 M0 20 h10 M10 20 v10 M20 10 h10 M30 10 v10 M 20 30 h10 v10 h-10 z M30 20 v10 M40 30 h10 M40 0 v10 M 15 15 L 35 35 M 15 35 L 35 15" stroke="rgba(0, 240, 255, 0.1)" stroke-width="0.5" fill="none"/>
+                         <path d="M0 10 h10 v10 h-10 z M10 0 v10 M0 20 h10 M10 20 v10 M20 10 h10 M30 10 v10 M 20 30 h10 v10 h-10 z M30 20 v10 M40 30 h10 M40 0 v10 M 15 15 L 35 35 M 15 35 L 35 15" stroke="rgba(0, 240, 255, 0.1)" stroke-width="0.5" fill="none"/>
                      </pattern>
                 </defs>
                 <rect width="100%" height="100%" fill="url(#circuitPattern)" />
             </svg>
             <h1>Navigate Your Digital Future with ClearMoon</h1>
-            <p>Your friendly, expert partner in IT innovation, seamless service management, and accelerated business growth.</p>
-            <a href="#contact" class="cta-button">Let's Build Together</a>
+            <p>Your friendly, expert partner for reduced downtime, enhanced security, and accelerated growth through innovative IT solutions.</p>
+            <a href="#contact" class="cta-button">Request Consultation</a>
         </div>
     </header>
 
     <main>
         <section id="services" class="content-section">
             <h2>Our Integrated Services // Powering Your Potential</h2>
-             <p class="section-intro">We provide a comprehensive suite of solutions, blending technical expertise with a positive, results-driven approach.</p>
+             <p class="section-intro">From foundational IT support to cutting-edge development and strategic guidance, we offer the solutions you need to succeed.</p>
             <div class="service-grid">
-                <div class="service-item">
-                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1h-2v-2c0-.55-.45-1-1-1h-2V8h2c.55 0 1-.45 1-1V6h1c.81 0 1.5-.5 1.8-1.21C16.88 6.55 19 9.06 19 12c0 3.35-1.94 6.21-4.72 7.56l-.18-.17z" fill="var(--accent-color2)"/><path d="M11 16v1.93c0 .02 0 .04.01.06 0 .02.01.03.01.05.01.02.02.03.03.05 .01.02.03.03.04.04.02.01.03.03.05.04.02.01.04.02.06.03.02.01.04.02.07.03.02.01.05.01.07.02.02.01.05.01.07.02.07.01.14.02.21.02.07 0 .14-.01.21-.02.03 0 .05-.01.07-.02.02 0 .05-.01.07-.02.03 0 .05-.01.07-.03.02-.01.04-.02.06-.03.02-.01.03-.02.05-.04.01-.01.03-.02.04-.04.01-.02.02-.03.03-.05.01-.02.01-.03.01-.05 0-.02.01-.04.01-.06V16h-1z" fill="var(--accent-color2)"/></svg>
-                    <h3>Global IT & Helpdesk</h3>
-                    <p>Experience seamless, friendly support! Our global team ensures your operations run smoothly 24/7, wherever you are.</p>
-                </div>
-                <div class="service-item">
-                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="var(--accent-color2)"/><path d="M5 12h7v8.94c-3.72-1.15-6.47-4.82-7-8.94z" fill="var(--accent-color2)"/></svg>
-                    <h3>NOC & SOC</h3>
-                    <p>Rest easy with our vigilant Network and Security Operations Centers. We proactively monitor, protect, and optimize for peak performance and ironclad security.</p>
-                </div>
-                <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 14l5-5 5 5H7z" fill="var(--accent-color2)"/><path d="M7 10l5 5 5-5H7z" fill="var(--accent-color2)" transform="rotate(180 12 12.5)"/><path d="M20.41 18.41l-4.83-4.83-4.83 4.83L6 13.58l6-6 6 6-1.59 1.83zM4 18h16v2H4v-2z" fill="var(--accent-color2)"/></svg>
-                    <h3>Full Stack Development</h3>
-                    <p>Bring your vision to life! Our skilled developers craft custom web applications, from intuitive front-ends to robust back-ends, using modern technologies.</p>
-                </div>
-                <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4h4v4h-4zM4 10h4v4H4zM16 10h4v4h-4zM10 16h4v4h-4z" fill="var(--accent-color2)"/><path d="M12 6v4h4v2h-4v4H8v-4H4v-2h4V6h4z" fill="var(--accent-color2)" opacity="0.6"/></svg>
-                    <h3>Enterprise Application Architecture</h3>
-                    <p>Build for the future. We design scalable, resilient, and efficient application ecosystems that empower large organizations to thrive.</p>
-                </div>
-                <div class="service-item">
-                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 7v10h-2v-4h-2v4H5V7h14m2-2H3v14h18V5z" fill="var(--accent-color2)"/><path d="M10 9h4v6h-4V9z" fill="var(--accent-color2)"/></svg>
-                    <h3>Installation Services</h3>
-                     <p>Get set up right, the first time. Our experts provide professional, efficient deployment of hardware and software infrastructure, minimizing disruption.</p>
-                </div>
                  <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" fill="var(--accent-color2)"/><path d="M10 18l4-4-4-4v3H8v2h2z" fill="var(--accent-color2)" opacity="0.7"/></svg>
-                    <h3>IT Equipment Recycling</h3>
-                    <p>Go green securely. We handle your outdated IT assets with environmentally responsible and data-secure disposal and recycling practices.</p>
-                </div>
+                      <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1h-2v-2c0-.55-.45-1-1-1h-2V8h2c.55 0 1-.45 1-1V6h1c.81 0 1.5-.5 1.8-1.21C16.88 6.55 19 9.06 19 12c0 3.35-1.94 6.21-4.72 7.56l-.18-.17z" fill="var(--accent-color2)"/><path d="M11 16v1.93c0 .02 0 .04.01.06 0 .02.01.03.01.05.01.02.02.03.03.05 .01.02.03.03.04.04.02.01.03.03.05.04.02.01.04.02.06.03.02.01.04.02.07.03.02.01.05.01.07.02.02.01.05.01.07.02.07.01.14.02.21.02.07 0 .14-.01.21-.02.03 0 .05-.01.07-.02.02 0 .05-.01.07-.02.03 0 .05-.01.07-.03.02-.01.04-.02.06-.03.02-.01.03-.02.05-.04.01-.01.03-.02.04-.04.01-.02.02-.03.03-.05.01-.02.01-.03.01-.05 0-.02.01-.04.01-.06V16h-1z" fill="var(--accent-color2)"/></svg>
+                     <h3>Global IT & Helpdesk</h3>
+                     <p>Experience seamless, friendly support! Our global team ensures your operations run smoothly 24/7, wherever you are.</p>
+                 </div>
                  <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="var(--accent-color2)"/><path d="M19.23 14.77c.13-.31.27-.61.27-.94 0-1.21-.87-2.21-2-2.46v-.86c1.31-.41 2.26-1.66 2.26-3.08 0-.32-.05-.62-.14-.91-.46 1.13-1.5 1.91-2.72 2.08v-1.08c.51-.28.86-.8.86-1.41 0-.94-.76-1.7-1.7-1.7s-1.7.76-1.7 1.7c0 .61.35 1.13.86 1.41v1.08C15.6 8.4 14.65 7.62 14.19 6.5c-.09.29-.14.59-.14.91 0 1.42.95 2.67 2.26 3.08v.86c-1.13.25-2 1.25-2 2.46 0 .33.14.63.27.94-.59.34-1.11.77-1.53 1.26 1.06.46 1.77 1.47 1.77 2.67v2.3h4v-2.3c0-1.2 1.03-2.21 2.23-2.67-.42-.49-.94-.92-1.53-1.26z" fill="var(--accent-color2)" opacity="0.6"/></svg>
-                    <h3>HR & Marketing Services</h3>
-                    <p>Fuel your growth from within. We provide dedicated HR and marketing expertise to build your team and amplify your brand message effectively.</p>
-                </div>
+                      <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="var(--accent-color2)"/><path d="M5 12h7v8.94c-3.72-1.15-6.47-4.82-7-8.94z" fill="var(--accent-color2)"/></svg>
+                     <h3>NOC & SOC</h3>
+                     <p>Rest easy with our vigilant Network and Security Operations Centers. We proactively monitor, protect, and optimize for peak performance and ironclad security.</p>
+                 </div>
                  <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.75-2.7 1.75-2.11 0-2.8-.91-2.85-2.09H5.1c.06 2.17 1.41 3.75 3.9 4.22V21h3v-2.14c1.89-.41 3.3-1.55 3.3-3.57 0-2.11-1.4-3.47-4-4.14z" fill="var(--accent-color2)"/></svg>
-                    <h3>Payroll Management</h3>
-                    <p>Simplify payday. Our reliable and compliant payroll management solutions ensure accuracy and timeliness, freeing up your valuable time.</p>
-                </div>
+                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 14l5-5 5 5H7z" fill="var(--accent-color2)"/><path d="M7 10l5 5 5-5H7z" fill="var(--accent-color2)" transform="rotate(180 12 12.5)"/><path d="M20.41 18.41l-4.83-4.83-4.83 4.83L6 13.58l6-6 6 6-1.59 1.83zM4 18h16v2H4v-2z" fill="var(--accent-color2)"/></svg>
+                     <h3>Full Stack Development</h3>
+                     <p>Bring your vision to life! Our skilled developers craft custom web applications, from intuitive front-ends to robust back-ends, using modern technologies.</p>
+                 </div>
                  <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="var(--accent-color2)"/><path d="M13 17h-2v-6h2v6zm0-8h-2V7h2v2z" fill="var(--accent-color2)" opacity="0.6"/></svg>
-                    <h3>UI/UX Development</h3>
-                    <p>Create delightful digital experiences. We design intuitive, engaging, and user-centered interfaces that drive adoption and satisfaction.</p>
-                </div>
-                <div class="service-item">
-                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" fill="var(--accent-color2)"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="var(--accent-color2)" opacity="0.6"/></svg>
-                    <h3>Electronic Development</h3>
-                    <p>Innovate with hardware. Our team excels in designing, developing, and testing custom electronic circuits and systems for your specific needs.</p>
-                </div>
+                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4h4v4h-4zM4 10h4v4H4zM16 10h4v4h-4zM10 16h4v4h-4z" fill="var(--accent-color2)"/><path d="M12 6v4h4v2h-4v4H8v-4H4v-2h4V6h4z" fill="var(--accent-color2)" opacity="0.6"/></svg>
+                     <h3>Enterprise Application Architecture</h3>
+                     <p>Build for the future. We design scalable, resilient, and efficient application ecosystems that empower large organizations to thrive.</p>
+                 </div>
                  <div class="service-item">
-                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l.35.35-1.64 1.65H12c4.42 0 8 3.58 8 8 0 .19-.01.38-.03.56l1.98 1.98C21.99 14.06 22 13.54 22 13c0-5.52-4.48-10-10-10h-.71L11.65 2.35.35.35 2.35 11.65l.71.71zm6.03 6.03l1.62 1.62c-.18.9-.48 1.75-.88 2.53l1.69 1.69c.72-1.12 1.22-2.39 1.48-3.74-.06-1.6-1.39-4.08-2.91-5.12zM4.41 6.81C4.14 7.35 4 7.92 4 8.5c0 4.42 3.58 8 8 8h1.42l-1.64-1.64L11.34 14H8c-3.31 0-6-2.69-6-6 0-1.31.42-2.52 1.12-3.53L1.39 2.64 2.64 1.39l19.97 19.97 1.25-1.25L4.41 6.81zM8.46 9.54L6.82 7.9C7.4 6.8 8.57 6 9.88 6h.66l-2.08 2.08z" fill="var(--accent-color2)"/></svg>
-                    <h3>Prototype Development</h3>
-                    <p>Turn ideas into reality, fast. We help you rapidly build and iterate on functional prototypes for hardware and software concepts, validating designs effectively.</p>
-                </div>
+                      <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 7v10h-2v-4h-2v4H5V7h14m2-2H3v14h18V5z" fill="var(--accent-color2)"/><path d="M10 9h4v6h-4V9z" fill="var(--accent-color2)"/></svg>
+                     <h3>Installation Services</h3>
+                      <p>Get set up right, the first time. Our experts provide professional, efficient deployment of hardware and software infrastructure, minimizing disruption.</p>
+                 </div>
+                  <div class="service-item">
+                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" fill="var(--accent-color2)"/><path d="M10 18l4-4-4-4v3H8v2h2z" fill="var(--accent-color2)" opacity="0.7"/></svg>
+                     <h3>IT Equipment Recycling</h3>
+                     <p>Go green securely. We handle your outdated IT assets with environmentally responsible and data-secure disposal and recycling practices.</p>
+                 </div>
+                  <div class="service-item">
+                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="var(--accent-color2)"/><path d="M19.23 14.77c.13-.31.27-.61.27-.94 0-1.21-.87-2.21-2-2.46v-.86c1.31-.41 2.26-1.66 2.26-3.08 0-.32-.05-.62-.14-.91-.46 1.13-1.5 1.91-2.72 2.08v-1.08c.51-.28.86-.8.86-1.41 0-.94-.76-1.7-1.7-1.7s-1.7.76-1.7 1.7c0 .61.35 1.13.86 1.41v1.08C15.6 8.4 14.65 7.62 14.19 6.5c-.09.29-.14.59-.14.91 0 1.42.95 2.67 2.26 3.08v.86c-1.13.25-2 1.25-2 2.46 0 .33.14.63.27.94-.59.34-1.11.77-1.53 1.26 1.06.46 1.77 1.47 1.77 2.67v2.3h4v-2.3c0-1.2 1.03-2.21 2.23-2.67-.42-.49-.94-.92-1.53-1.26z" fill="var(--accent-color2)" opacity="0.6"/></svg>
+                     <h3>HR & Marketing Services</h3>
+                     <p>Fuel your growth from within. We provide dedicated HR and marketing expertise to build your team and amplify your brand message effectively.</p>
+                 </div>
+                  <div class="service-item">
+                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.75-2.7 1.75-2.11 0-2.8-.91-2.85-2.09H5.1c.06 2.17 1.41 3.75 3.9 4.22V21h3v-2.14c1.89-.41 3.3-1.55 3.3-3.57 0-2.11-1.4-3.47-4-4.14z" fill="var(--accent-color2)"/></svg>
+                     <h3>Payroll Management</h3>
+                     <p>Simplify payday. Our reliable and compliant payroll management solutions ensure accuracy and timeliness, freeing up your valuable time.</p>
+                 </div>
+                  <div class="service-item">
+                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="var(--accent-color2)"/><path d="M13 17h-2v-6h2v6zm0-8h-2V7h2v2z" fill="var(--accent-color2)" opacity="0.6"/></svg>
+                     <h3>UI/UX Development</h3>
+                     <p>Create delightful digital experiences. We design intuitive, engaging, and user-centered interfaces that drive adoption and satisfaction.</p>
+                 </div>
+                 <div class="service-item">
+                      <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" fill="var(--accent-color2)"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="var(--accent-color2)" opacity="0.6"/></svg>
+                     <h3>Electronic Development</h3>
+                     <p>Innovate with hardware. Our team excels in designing, developing, and testing custom electronic circuits and systems for your specific needs.</p>
+                 </div>
+                  <div class="service-item">
+                      <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l.35.35-1.64 1.65H12c4.42 0 8 3.58 8 8 0 .19-.01.38-.03.56l1.98 1.98C21.99 14.06 22 13.54 22 13c0-5.52-4.48-10-10-10h-.71L11.65 2.35.35.35 2.35 11.65l.71.71zm6.03 6.03l1.62 1.62c-.18.9-.48 1.75-.88 2.53l1.69 1.69c.72-1.12 1.22-2.39 1.48-3.74-.06-1.6-1.39-4.08-2.91-5.12zM4.41 6.81C4.14 7.35 4 7.92 4 8.5c0 4.42 3.58 8 8 8h1.42l-1.64-1.64L11.34 14H8c-3.31 0-6-2.69-6-6 0-1.31.42-2.52 1.12-3.53L1.39 2.64 2.64 1.39l19.97 19.97 1.25-1.25L4.41 6.81zM8.46 9.54L6.82 7.9C7.4 6.8 8.57 6 9.88 6h.66l-2.08 2.08z" fill="var(--accent-color2)"/></svg>
+                     <h3>Prototype Development</h3>
+                     <p>Turn ideas into reality, fast. We help you rapidly build and iterate on functional prototypes for hardware and software concepts, validating designs effectively.</p>
+                 </div>
             </div>
         </section>
 
-        <section id="industries" class="content-section alt-bg">
+         <section id="clients" class="content-section">
+             <h2>Trusted By Leading Organizations</h2>
+             <p class="section-intro">We're proud to partner with innovative businesses across various sectors.</p>
+             <div class="client-logos-container">
+                 <div class="client-logo-placeholder">Logo 1</div>
+                 <div class="client-logo-placeholder">Logo 2</div>
+                 <div class="client-logo-placeholder">Logo 3</div>
+                 <div class="client-logo-placeholder">Logo 4</div>
+                 <div class="client-logo-placeholder">Logo 5</div>
+                 </div>
+             <div class="certifications-container">
+                  <p>Holding certifications like:</p>
+                  <span class="cert-placeholder">SOC2</span>
+                  <span class="cert-placeholder">HIPAA Compliant</span>
+             </div>
+         </section>
+
+         <section id="testimonials" class="content-section alt-bg">
+             <svg class="alt-bg-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                 <defs>
+                     <pattern id="linearPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+                         <path d="M0 0 L20 20 M0 20 L20 0" stroke="rgba(240, 0, 255, 0.1)" stroke-width="1"/>
+                     </pattern>
+                 </defs>
+                 <rect width="100%" height="100%" fill="url(#linearPattern)" />
+             </svg>
+            <h2>What Our Clients Say</h2>
+            <p class="section-intro">Hear directly from those who've experienced the ClearMoon difference.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                     <p>"ClearMoon transformed our IT infrastructure. Their proactive approach and expert team are unmatched."</p>
+                     <cite>– Placeholder Name, Placeholder Title @ Placeholder Company</cite>
+                 </div>
+                 <div class="testimonial-item">
+                     <p>"The custom software solution developed by ClearMoon exceeded our expectations and improved efficiency significantly."</p>
+                     <cite>– Another Name, Another Role @ Client Inc.</cite>
+                 </div>
+                 </div>
+        </section>
+
+        <section id="industries" class="content-section">
              <svg class="deco-divider" width="100" height="10" viewBox="0 0 20 2" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0 H2 V1 H4 V0 H6 V1 H8 V0 H10 V1 H12 V0 H14 V1 H16 V0 H18 V1 H20 V2 H18 V1 H16 V2 H14 V1 H12 V2 H10 V1 H8 V2 H6 V1 H4 V2 H2 V1 H0 V0 Z" fill="var(--accent-color2)"/>
+                <path d="M0 0 H2 V1 H0 V0 Z M4 0 H6 V1 H4 V0 Z M8 0 H10 V1 H8 V0 Z M12 0 H14 V1 H12 V0 Z M16 0 H18 V1 H16 V0 Z M20 0 V1 H18 V2 H16 V1 H14 V2 H12 V1 H10 V2 H8 V1 H6 V2 H4 V1 H2 V2 H0 V1 H-2 V0 Z" fill="var(--accent-color2)"/>
             </svg>
             <h2>Serving Diverse Industries // Your Sector, Our Expertise</h2>
              <p class="section-intro">We speak your language. ClearMoon proudly tailors solutions for the unique challenges and opportunities within:</p>
             <div class="industry-list">
                 <span>Hospitality</span>
-                <span>Federal Education</span>
-                <span>Commercial Enterprises</span>
-                <span>Startups (All Types)</span>
-                <span>Healthcare</span>
+                 <span>Federal Education</span>
+                 <span>Commercial Enterprises</span>
+                 <span>Startups (All Types)</span>
+                 <span>Healthcare</span>
             </div>
         </section>
 
-        <section id="compliance" class="content-section">
+        <section id="compliance" class="content-section alt-bg">
+             <svg class="alt-bg-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                 <defs>
+                     <pattern id="linearPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+                         <path d="M0 0 L20 20 M0 20 L20 0" stroke="rgba(240, 0, 255, 0.1)" stroke-width="1"/>
+                     </pattern>
+                 </defs>
+                 <rect width="100%" height="100%" fill="url(#linearPattern)" />
+             </svg>
             <h2>Compliance & Standards Expertise // Navigating Regulations</h2>
-            <p class="section-intro">Achieve and maintain critical standards with confidence. We guide you through complex regulatory landscapes.</p>
-            <p>Our team possesses deep expertise in specialized requirements like <strong>HIPAA</strong> for healthcare data security and broader frameworks such as <strong>SOC2</strong>, ensuring your operations meet the highest standards of security and trust.</p>
-            </section>
+            <p class="section-intro">Achieve and maintain critical standards with confidence. We guide you through complex regulatory landscapes like <strong>HIPAA</strong> and <strong>SOC2</strong>.</p>
+            <p>Our deep understanding of compliance frameworks ensures your operations meet the highest standards for security, privacy, and trust, mitigating risk effectively.</p>
+        </section>
 
-        <section id="consultancy" class="content-section alt-bg">
-            <svg class="deco-divider" width="100" height="10" viewBox="0 0 20 2" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0 H2 V1 H4 V0 H6 V1 H8 V0 H10 V1 H12 V0 H14 V1 H16 V0 H18 V1 H20 V2 H18 V1 H16 V2 H14 V1 H12 V2 H10 V1 H8 V2 H6 V1 H4 V2 H2 V1 H0 V0 Z" fill="var(--accent-color2)" transform="rotate(180 10 1)"/>
-            </svg>
+        <section id="consultancy" class="content-section">
             <h2>Strategic Consultancy // Elevate Your Leadership</h2>
-             <p class="section-intro">Gain a competitive edge with expert guidance. We partner with your leadership to optimize strategy, operations, and technology.</p>
+             <p class="section-intro">Gain a competitive edge with expert guidance. We partner with your leadership to optimize strategy, operations, and technology adoption.</p>
             <p>Leverage the full spectrum of ClearMoon's in-house expertise through our dedicated consultancy services. We provide actionable insights and strategic roadmaps across all our service domains, empowering you to make informed decisions and drive impactful change.</p>
         </section>
 
-        <section id="contact" class="content-section">
+        <section id="contact" class="content-section alt-bg">
+              <svg class="alt-bg-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                 <defs>
+                     <pattern id="linearPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+                         <path d="M0 0 L20 20 M0 20 L20 0" stroke="rgba(240, 0, 255, 0.1)" stroke-width="1"/>
+                     </pattern>
+                 </defs>
+                 <rect width="100%" height="100%" fill="url(#linearPattern)" />
+             </svg>
             <h2>Let's Connect // Start Your ClearMoon Journey</h2>
-            <p class="section-intro">Ready to explore how ClearMoon can empower your organization? Reach out today!</p>
+            <p class="section-intro">Ready to discuss your project, request a consultation, or learn more? Reach out today!</p>
             <form class="contact-form">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
@@ -157,7 +233,7 @@
          </div>
 
         <p>&copy; <span id="current-year"></span> ClearMoon LLC. All Rights Reserved.</p>
-         <svg class="deco-corner bottom-left" width="30" height="30" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+        <svg class="deco-corner bottom-left" width="30" height="30" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
            <path d="M0 10 V5 H1 V9 H5 V10 H0 Z M6 10 V6 H7 V7 H8 V8 H9 V9 H10 V10 H6 Z" fill="var(--accent-color1)"/>
        </svg>
         <svg class="deco-corner bottom-right" width="30" height="30" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
