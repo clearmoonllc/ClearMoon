@@ -8,6 +8,7 @@
     --header-font: 'Press Start 2P', cursive; /* 8-bit style font */
     --body-font: 'Roboto', sans-serif; /* Clean modern font */
     --border-color: var(--accent-color1);
+    --star-blink-duration: 2.5s; /* Blinking speed */
 }
 
 * {
@@ -21,93 +22,81 @@ body {
     background-color: var(--primary-bg);
     color: var(--text-color);
     line-height: 1.6;
-    position: relative; /* Needed for absolute positioning of corners */
+    position: relative; /* Needed for absolute positioning of corners/stars */
+    overflow-x: hidden; /* Prevent horizontal scroll from stray decorations */
 }
 
-h1, h2, h3 {
-    font-family: var(--header-font); /* Using 8-bit font for headers */
-    color: var(--accent-color1);
-    margin-bottom: 0.5em;
-    line-height: 1.2; /* Adjust line height for pixel font */
-    text-transform: uppercase; /* Optional: Uppercase for pixel font */
-}
-
-h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); } /* Responsive font size */
-h2 { font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 1em; }
+/* ... (h1, h2, h3, p, a, img/svg styles remain mostly the same) ... */
+h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+h2 { font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 1em; text-align: center; } /* Center section headers */
 h3 {
     font-size: clamp(1rem, 3vw, 1.1rem);
-    color: var(--accent-color2); /* Different accent for H3 */
-    margin-top: 0.5em; /* Space above H3 */
+    color: var(--accent-color2);
+    margin-top: 0.5em;
     margin-bottom: 0.3em;
 }
+p { font-size: clamp(0.95rem, 2.5vw, 1rem); }
+a { color: var(--accent-color1); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--accent-color2); }
+img, svg { max-width: 100%; height: auto; vertical-align: middle; }
 
-p {
-    margin-bottom: 1em;
-    font-size: clamp(0.95rem, 2.5vw, 1rem); /* Responsive font size */
-}
-
-a {
-    color: var(--accent-color1);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--accent-color2);
-}
-
-img, svg {
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle; /* Align icons better */
-}
 
 /* --- Header & Navigation --- */
 .main-header {
     background-color: var(--secondary-bg);
     padding-bottom: 2rem;
-    border-bottom: 2px solid var(--border-color); /* 8-bit style border */
-    position: relative; /* For hero bg positioning */
-    overflow: hidden; /* Contain the background SVG */
+    border-bottom: 2px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem clamp(1rem, 5vw, 2rem); /* Responsive padding */
     max-width: 1200px;
     margin: 0 auto;
-    position: relative; /* Keep nav above bg */
+    position: relative;
     z-index: 2;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 1rem; /* Gap between logo and nav items if wrapped */
 }
 
 .logo {
-    font-family: var(--header-font);
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
-    color: #fff; /* White logo stands out */
+    display: flex; /* Align SVG nicely */
+    align-items: center;
+}
+
+.logo-svg {
+    height: 50px; /* Adjust size as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space if text is alongside */
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    gap: 0.5rem 1.5rem; /* Spacing between links */
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem; /* Spacing between links */
+    justify-content: center; /* Center links when wrapped */
 }
 
 .nav-links a {
     font-size: clamp(0.8rem, 2vw, 0.9rem);
     text-transform: uppercase;
+    white-space: nowrap; /* Prevent links wrapping mid-word */
 }
+
 
 /* --- Hero Section --- */
 .hero {
     text-align: center;
-    padding: 4rem 2rem;
+    padding: clamp(3rem, 10vw, 4rem) clamp(1rem, 5vw, 2rem); /* Responsive padding */
     max-width: 800px;
     margin: 2rem auto 0 auto;
-    position: relative; /* For potential background SVG and content */
-    z-index: 1; /* Keep content above bg */
+    position: relative;
+    z-index: 1;
 }
 
 .hero-bg-svg {
@@ -116,50 +105,43 @@ img, svg {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Place behind hero content */
-    opacity: 0.5; /* Make it subtle */
+    z-index: -1;
+    opacity: 0.5;
 }
-
-.hero h1 {
-    margin-bottom: 0.5em;
-    text-shadow: 0 0 8px var(--accent-color1); /* Enhanced glow */
-}
-
-.hero p {
-    font-size: clamp(1rem, 3vw, 1.1rem);
-    margin-bottom: 1.5rem;
-    color: #ccc; /* Slightly dimmer text */
-}
+/* ... (Hero h1, p styles) ... */
+.hero h1 { margin-bottom: 0.5em; text-shadow: 0 0 8px var(--accent-color1); }
+.hero p { font-size: clamp(1rem, 3vw, 1.1rem); margin-bottom: 1.5rem; color: #ccc; }
 
 /* --- Buttons --- */
 .cta-button {
+    /* Styles remain the same */
     display: inline-block;
     background-color: var(--accent-color1);
     color: var(--primary-bg);
-    padding: 12px 30px; /* Slightly larger padding */
+    padding: 12px 30px;
     border: 2px solid var(--accent-color1);
     font-family: var(--header-font);
     font-size: clamp(0.7rem, 2.5vw, 0.8rem);
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 0 8px rgba(0, 240, 255, 0.5); /* Glow effect */
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
 }
-
 .cta-button:hover {
     background-color: var(--accent-color2);
     border-color: var(--accent-color2);
     color: #fff;
     box-shadow: 0 0 15px rgba(240, 0, 255, 0.8);
-    transform: scale(1.05); /* Slight grow effect */
+    transform: scale(1.05);
 }
 
 /* --- Content Sections --- */
 .content-section {
-    padding: 4rem clamp(1rem, 5vw, 2rem); /* Responsive padding */
+    padding: 4rem clamp(1rem, 5vw, 2rem);
     max-width: 1100px;
     margin: 0 auto;
-    position: relative; /* For decorative elements */
+    position: relative; /* Needed for background SVGs */
+    overflow: hidden; /* Contain background SVGs */
 }
 
 .content-section.alt-bg {
@@ -167,59 +149,161 @@ img, svg {
 }
 
 .section-intro {
+    /* Styles remain the same */
     font-size: clamp(1rem, 3vw, 1.1rem);
     color: #ccc;
     text-align: center;
-    margin-bottom: 3rem; /* More space after intro */
+    margin-bottom: 3rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
+/* Background SVGs for Alt Sections */
+.alt-bg-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind content */
+    opacity: 0.3; /* Subtle */
+}
+/* Ensure content in alt sections is above the background */
+.alt-bg > *:not(.alt-bg-svg) {
+    position: relative;
+    z-index: 1;
+}
+
+
 /* --- Service Grid --- */
 .service-grid {
+    /* Styles remain the same */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 2.5rem; /* Slightly more gap */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
 }
-
 .service-item {
-    background-color: rgba(26, 26, 58, 0.7); /* Semi-transparent dark background */
-    padding: 1.5rem 1.8rem; /* More padding */
+    /* Styles remain the same */
+    background-color: rgba(26, 26, 58, 0.8); /* Slightly less transparent */
+    padding: 1.5rem 1.8rem;
     border: 1px solid var(--border-color);
-    border-radius: 5px; /* Slightly more rounded corners */
+    border-radius: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Align icon and text nicely */
-    flex-direction: column; /* Stack icon, title, text */
-    align-items: center; /* Center align items */
-    text-align: center; /* Center text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1; /* Ensure items are above bg in alt sections */
 }
-
 .service-item:hover {
-    transform: translateY(-8px); /* More lift on hover */
+    transform: translateY(-8px);
     box-shadow: 0 8px 20px rgba(0, 240, 255, 0.25);
 }
-
 .service-icon {
-    width: 48px; /* Fixed size for icons */
+    width: 48px;
     height: 48px;
-    margin-bottom: 1rem; /* Space below icon */
+    margin-bottom: 1rem;
+}
+
+/* --- Client Logos Section --- */
+.client-logos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem 3rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem; /* Space before certifications */
+}
+.client-logo-placeholder {
+    height: 60px; /* Adjust as needed */
+    width: 120px; /* Adjust as needed */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px dashed var(--accent-color2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+/* Add styles for actual <img> logos when you have them, e.g.:
+.client-logos-container img {
+    max-height: 60px;
+    width: auto;
+    filter: grayscale(100%) contrast(0%) brightness(1.8); // Style for uniform look
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+.client-logos-container img:hover {
+    opacity: 1;
+    filter: none;
+} */
+
+/* --- Certifications --- */
+.certifications-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+.certifications-container p {
+    margin-bottom: 1rem;
+    font-family: var(--header-font);
+    font-size: 0.9rem;
+    color: var(--accent-color1);
+}
+.cert-placeholder {
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--accent-color1);
+    border-radius: 4px;
+    margin: 0 0.5rem;
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+/* --- Testimonials Section --- */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.testimonial-item {
+    background-color: rgba(10, 10, 42, 0.7); /* Darker background */
+    padding: 1.5rem;
+    border-left: 4px solid var(--accent-color2); /* Accent border */
+    border-radius: 4px;
+    z-index: 1; /* Ensure above background */
+}
+.testimonial-item p {
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #ddd;
+}
+.testimonial-item cite {
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--accent-color1);
+    display: block; /* Put cite on new line */
+    margin-top: 1rem;
 }
 
 /* --- Industry List --- */
 .industry-list {
+    /* Styles remain the same */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem 1.5rem; /* More gap */
+    gap: 1rem 1.5rem;
     margin-top: 2rem;
 }
-
 .industry-list span {
+    /* Styles remain the same */
     background-color: var(--accent-color2);
     color: var(--primary-bg);
-    padding: 10px 20px; /* Larger pills */
-    border-radius: 25px; /* Pill shape */
+    padding: 10px 20px;
+    border-radius: 25px;
     font-size: clamp(0.85rem, 2.5vw, 0.95rem);
     font-weight: bold;
     box-shadow: 0 0 5px rgba(240, 0, 255, 0.4);
@@ -227,16 +311,18 @@ img, svg {
 
 /* --- Contact Form --- */
 .contact-form {
+    /* Styles remain the same */
     max-width: 600px;
     margin: 2rem auto 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem; /* More gap */
+    gap: 1.2rem;
+    z-index: 1; /* Ensure above background */
 }
-
+/* ... (input, textarea styles) ... */
 .contact-form input,
 .contact-form textarea {
-    padding: 15px; /* More padding */
+    padding: 15px;
     background-color: var(--secondary-bg);
     border: 1px solid var(--border-color);
     color: var(--text-color);
@@ -244,78 +330,47 @@ img, svg {
     font-size: 1rem;
     border-radius: 4px;
 }
-
 .contact-form input::placeholder,
-.contact-form textarea::placeholder {
-    color: #888;
-    opacity: 0.8;
-}
-
-.contact-form textarea {
-    resize: vertical; /* Allow vertical resize only */
-    min-height: 120px;
-}
-
-.contact-form button {
-    align-self: center; /* Center the button */
-    margin-top: 0.5rem;
-}
-
+.contact-form textarea::placeholder { color: #888; opacity: 0.8; }
+.contact-form textarea { resize: vertical; min-height: 120px; }
+.contact-form button { align-self: center; margin-top: 0.5rem; }
 
 /* --- Footer --- */
 .main-footer {
+    /* Styles remain the same */
     text-align: center;
     padding: 2rem 1rem;
-    margin-top: 3rem; /* More space before footer */
-    border-top: 1px solid var(--border-color); /* Subtle top border */
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
     color: #aaa;
     font-size: 0.9rem;
     background-color: var(--secondary-bg);
-    position: relative; /* For corner elements */
+    position: relative;
 }
-
 .audio-player-container {
+    /* Styles remain the same */
     margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.8rem;
-    flex-wrap: wrap; /* Allow wrap on small screens */
+    flex-wrap: wrap;
 }
-.audio-player-container p {
-     margin-bottom: 0; /* Reset paragraph margin */
-     font-family: var(--header-font);
-     font-size: 0.8rem;
-     color: var(--accent-color1);
-}
-
-audio {
-   max-width: 80%; /* Prevent player from being too wide */
-}
-
-/* Style the default audio player controls slightly */
-audio::-webkit-media-controls-panel {
-  background-color: var(--primary-bg);
-  border-radius: 5px;
-  border: 1px solid var(--accent-color1);
-}
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-timeline,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-volume-slider {
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg); /* Try to theme controls - browser support varies */
-}
+.audio-player-container p { margin-bottom: 0; font-family: var(--header-font); font-size: 0.8rem; color: var(--accent-color1; }
+audio { max-width: 80%; }
+/* ... (Audio player control attempts) ... */
+audio::-webkit-media-controls-panel { background-color: var(--primary-bg); border-radius: 5px; border: 1px solid var(--accent-color1); }
+audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-mute-button, audio::-webkit-media-controls-timeline, audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display, audio::-webkit-media-controls-volume-slider { filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg); }
 
 
-/* --- 8-bit Decorative Elements --- */
+/* --- 8-bit Decorative Elements & Animations --- */
 .deco-corner {
+    /* Styles remain the same */
     position: absolute;
     width: 30px;
     height: 30px;
-    z-index: 10; /* Keep them on top */
-    pointer-events: none; /* Don't interfere with clicks */
+    z-index: 10;
+    pointer-events: none;
 }
 .deco-corner.top-left { top: 10px; left: 10px; }
 .deco-corner.top-right { top: 10px; right: 10px; }
@@ -323,37 +378,50 @@ audio::-webkit-media-controls-volume-slider {
 .deco-corner.bottom-right { bottom: 10px; right: 10px; }
 
 .deco-divider {
+    /* Styles remain the same */
     display: block;
-    margin: 0 auto 1.5rem auto; /* Center divider */
+    margin: 0 auto 1.5rem auto;
     width: 100px;
     height: 10px;
+    z-index: 1; /* Keep above bg */
+    position: relative; /* Keep above bg */
 }
 
+.deco-star {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    /* Place them somewhere, e.g.: */
+    top: 80px;
+    left: 40px;
+}
+.blinking-star {
+    animation: blink var(--star-blink-duration) infinite alternate;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
+     /* Center logo and nav links when stacked */
     .navbar {
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
     }
     .nav-links {
         margin-top: 1rem;
-        justify-content: center; /* Center links on mobile */
+        justify-content: center;
     }
-    .hero {
-        padding: 3rem 1rem;
-    }
-    .content-section {
-        padding: 3rem 1rem;
-    }
-    .service-grid {
-        grid-template-columns: 1fr; /* Stack services on small screens */
-        gap: 2rem;
-    }
-    .service-item {
-        padding: 1.5rem; /* Adjust padding */
-    }
-    .audio-player-container {
-        flex-direction: column;
-    }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+    .hero { padding: 3rem 1rem; }
+    .content-section { padding: 3rem 1rem; }
+    .service-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .service-item { padding: 1.5rem; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .client-logos-container { gap: 1.5rem; }
+    .client-logo-placeholder { height: 50px; width: 100px; }
+    .audio-player-container { flex-direction: column; }
 }
