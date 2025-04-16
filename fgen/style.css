@@ -1,0 +1,76 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto; /* Center the container */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center text inside the container */
+}
+
+h1 {
+    color: #2c3e50; /* Darker blue */
+    margin-bottom: 20px;
+}
+
+button#generateBtn {
+    background-color: #3498db; /* Blue */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+button#generateBtn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+#plotOutput {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ecf0f1; /* Light grey background */
+    border-radius: 5px;
+    min-height: 50px; /* Ensure it has some height even when empty */
+    text-align: left; /* Align plot text left */
+}
+
+#plotOutput p {
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* Add these styles to your existing style.css file */
+
+label[for="keywordInput"] {
+    display: block; /* Make label take its own line */
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input#keywordInput {
+    display: block; /* Make input take its own line */
+    width: 80%; /* Adjust width as needed */
+    padding: 10px;
+    margin: 0 auto 20px auto; /* Center the input field horizontally */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Optional: Adjust button margin if needed */
+button#generateBtn {
+    margin-bottom: 20px; /* Keep or adjust */
+}
