@@ -72,60 +72,55 @@ img, svg {
     /* overflow: hidden; */ /* Temporarily comment out overflow to check if it's hiding things */
 }
 
+/* --- Simplified Navbar CSS for Debugging --- */
 .navbar {
-    display: flex;
-    justify-content: space-between; /* Logo left, Links right */
-    align-items: center;
-    padding: 1rem clamp(1rem, 5vw, 2rem); /* Use responsive padding */
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Align items vertically */
+    padding: 1rem 2rem; /* Add some padding */
     max-width: 1200px;
     margin: 0 auto;
-    position: relative;
-    z-index: 10; /* High z-index for navbar */
-    min-height: 60px; /* Ensure navbar has some minimum height */
+    border: 2px dashed red; /* TEMPORARY: Make navbar bounds visible */
+    min-height: 70px; /* Ensure height */
+    position: relative; /* Keep for z-index context if needed */
+    z-index: 10;
 }
 
 .logo {
-    flex-shrink: 0; /* Prevent logo from shrinking */
-    line-height: 0; /* Prevent extra space around SVG */
+    border: 2px dashed lime; /* TEMPORARY: Make logo div bounds visible */
+    /* Remove other properties like flex-shrink for now */
 }
 
 .logo-svg {
-    height: 50px; /* Set desired height */
-    width: 50px;  /* Set width explicitly to match height for 1:1 aspect ratio */
-    display: block;
-    color: var(--accent-color1); /* Ensure the SVG fill uses the intended color */
+    display: block; /* Ensure it's treated as a block */
+    width: 60px;    /* Force a width */
+    height: 60px;   /* Force a height */
+    background-color: magenta; /* TEMPORARY: Make SVG area highly visible */
+    border: 1px solid yellow; /* TEMPORARY: Make SVG bounds visible */
 }
-/* Ensure the mask fill is white and cutout fill is black */
-.logo-svg #moonMask path {
-    fill: white;
-}
-.logo-svg #moonMask polygon {
-    fill: black;
-}
-/* Ensure the main circle uses the variable */
-.logo-svg > circle {
-     fill: var(--accent-color1);
-}
+/* Keep SVG internal color rules - these target elements INSIDE the SVG */
+.logo-svg #moonMask path { fill: white; }
+.logo-svg #moonMask polygon { fill: black; }
+.logo-svg > circle { fill: var(--accent-color1); }
 
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    /* flex-wrap: wrap; */ /* Temporarily disable wrapping */
-    gap: 0.5rem 1.5rem;
-    justify-content: flex-end;
-    align-items: center; /* Vertically align items */
-    z-index: 11; /* Ensure links are above logo just in case */
+    border: 2px dashed cyan; /* TEMPORARY: Make nav-links bounds visible */
+    margin-left: auto; /* Try pushing nav links to the right this way */
+    /* Comment out other flex/layout properties for nav-links temporarily */
+     list-style: none;
+     padding: 0; /* Reset padding */
 }
 
-.nav-links a {
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
-    text-transform: uppercase;
-    white-space: nowrap;
-    color: var(--accent-color1); /* Explicitly set color */
-    display: block; /* Make sure it's a block element */
-    padding: 5px 0; /* Add some padding for click area */
+.nav-links li {
+    display: inline-block; /* Display links inline for now */
+    margin-left: 15px; /* Simple spacing */
 }
+.nav-links a {
+     color: var(--accent-color1); /* Ensure color */
+     text-transform: uppercase;
+     font-size: 0.9rem;
+}
+
 
 /* --- Hero Section --- */
 .hero {
@@ -488,14 +483,20 @@ audio::-webkit-media-controls-volume-slider {
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
+        /* Keep flex direction row for a bit longer if possible */
+        /* flex-direction: column; */
+        /* align-items: center; */
+        /* gap: 1rem; */
+        padding: 1rem; /* Adjust padding */
     }
     .nav-links {
-        margin-top: 0;
-        justify-content: center;
-        width: 100%;
+        /* margin-top: 0; */
+        justify-content: flex-end; /* Keep trying to push right */
+        /* width: 100%; */ /* Avoid taking full width if wrapping occurs */
+        gap: 0.5rem 1rem; /* Adjust gap */
+    }
+    .nav-links li {
+        /* Keep inline-block from debug styles */
     }
     .hero {
         padding: 3rem 1rem;
