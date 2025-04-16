@@ -1,0 +1,267 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-bg: #0a0a2a; /* Deep dark blue/purple */
+    --secondary-bg: #1a1a3a; /* Slightly lighter dark blue */
+    --accent-color1: #00f0ff; /* Bright Cyan */
+    --accent-color2: #f000ff; /* Bright Magenta */
+    --text-color: #e0e0e0; /* Light grey/white for text */
+    --header-font: 'Press Start 2P', cursive; /* 8-bit style font */
+    --body-font: 'Roboto', sans-serif; /* Clean modern font */
+    --border-color: var(--accent-color1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--header-font); /* Using 8-bit font for headers */
+    color: var(--accent-color1);
+    margin-bottom: 0.5em;
+    line-height: 1.2; /* Adjust line height for pixel font */
+    text-transform: uppercase; /* Optional: Uppercase for pixel font */
+}
+
+h1 { font-size: 2.5rem; } /* Adjust size as needed */
+h2 { font-size: 1.8rem; margin-bottom: 1em; }
+h3 { font-size: 1.1rem; color: var(--accent-color2); } /* Different accent for H3 */
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--accent-color1);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color2);
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Header & Navigation --- */
+.main-header {
+    background-color: var(--secondary-bg);
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color); /* 8-bit style border */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-family: var(--header-font);
+    font-size: 1.5rem;
+    color: #fff; /* White logo stands out */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 1.5rem;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* --- Hero Section --- */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: 2rem auto 0 auto;
+    position: relative; /* For potential background SVG */
+}
+
+.hero h1 {
+    margin-bottom: 0.5em;
+    text-shadow: 0 0 5px var(--accent-color1); /* Subtle glow */
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #bbb; /* Slightly dimmer text */
+}
+
+/* --- Buttons --- */
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color1);
+    color: var(--primary-bg);
+    padding: 10px 25px;
+    border: 2px solid var(--accent-color1);
+    font-family: var(--header-font);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.5); /* Glow effect */
+}
+
+.cta-button:hover {
+    background-color: var(--accent-color2);
+    border-color: var(--accent-color2);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(240, 0, 255, 0.7);
+}
+
+/* --- Content Sections --- */
+.content-section {
+    padding: 4rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.content-section.alt-bg {
+    background-color: var(--secondary-bg);
+}
+
+.section-intro {
+    font-size: 1.1rem;
+    color: #ccc;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Service Grid --- */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+.service-item {
+    background-color: rgba(26, 26, 58, 0.7); /* Semi-transparent dark background */
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px; /* Slightly rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
+}
+
+/* --- Industry List --- */
+.industry-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.industry-list span {
+    background-color: var(--accent-color2);
+    color: var(--primary-bg);
+    padding: 8px 15px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* --- Contact Form --- */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    border-radius: 3px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #888;
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resize only */
+}
+
+.contact-form button {
+    align-self: center; /* Center the button */
+}
+
+
+/* --- Footer --- */
+.main-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color); /* Subtle top border */
+    color: #aaa;
+    font-size: 0.9rem;
+    background-color: var(--secondary-bg);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+        justify-content: center; /* Center links on mobile */
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+        gap: 0.5rem 1rem; /* Add gap for wrapped items */
+    }
+
+    .nav-links li {
+        margin-left: 0; /* Remove left margin when stacked */
+    }
+
+    .hero {
+        padding: 3rem 1rem;
+    }
+
+    .content-section {
+        padding: 3rem 1rem;
+    }
+}
