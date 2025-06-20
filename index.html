@@ -4,7 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clear Moon - Full-Spectrum Technology Partner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Clear Moon is a full-spectrum technology partner and seasoned MSP based in Miami, FL, serving clients nationwide. We deliver scalable and secure IT solutions, from networking and security to custom software development.">
+    <meta name="keywords" content="MSP, Managed Service Provider, IT Support, Miami, Florida, Georgia, Texas, California, Washington, IT Services, Hospitality IT, Network Security, Custom Software, Tech Consulting">
+    
+    <!-- Favicon (Embedded SVG) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.clearmoon.llc/">
+    <meta property="og:title" content="Clear Moon - Full-Spectrum Technology Partner">
+    <meta property="og:description" content="We deliver scalable and secure IT solutions, from networking and security to custom software development, for hospitality and beyond.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0A192F/64FFDA?text=Clear+Moon">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.clearmoon.llc/">
+    <meta property="twitter:title" content="Clear Moon - Full-Spectrum Technology Partner">
+    <meta property="twitter:description" content="We deliver scalable and secure IT solutions, from networking and security to custom software development, for hospitality and beyond.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/0A192F/64FFDA?text=Clear+Moon">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11226977141"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
@@ -13,9 +35,58 @@
 
 	  gtag('config', 'AW-11226977141');
 	</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Clear Moon",
+      "image": "https://placehold.co/1200x630/0A192F/64FFDA?text=Clear+Moon",
+      "url": "https://www.clearmoon.llc/",
+      "telephone": "+14244444472",
+      "email": "sales@clearmoon.llc",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Miami",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "description": "A full-spectrum technology partner and seasoned MSP, delivering scalable and secure IT solutions.",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+       "areaServed": [
+        { "@type": "State", "name": "Florida" },
+        { "@type": "State", "name": "Georgia" },
+        { "@type": "State", "name": "New Hampshire" },
+        { "@type": "State", "name": "Texas" },
+        { "@type": "State", "name": "California" },
+        { "@type": "State", "name": "Washington" },
+        { "@type": "State", "name": "Idaho" },
+        { "@type": "State", "name": "Massachusetts" }
+      ],
+      "sameAs": [
+        "https://twitter.com/your-twitter-handle",
+        "https://linkedin.com/company/your-linkedin-handle"
+      ] 
+    }
+    </script>
+    
     <style>
         body {
             background-color: #0A192F;
@@ -165,6 +236,12 @@
 
             <div id="service-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
             </div>
+            
+            <div class="text-center mt-16 fade-in-up">
+                 <p class="text-lg">See a service that fits your needs?</p>
+                 <a href="#contact" class="inline-block mt-4 bg-accent text-primary font-bold py-3 px-8 rounded-md text-lg hover:bg-accent/80 transition-transform hover:scale-105">Let's Discuss Your Project</a>
+            </div>
+
         </section>
         
         <section id="industry" class="py-20 md:py-32">
@@ -196,7 +273,7 @@
                 <div class="md:col-span-2 flex justify-center items-center fade-in-up" style="animation-delay: 0.2s;">
                    <div class="w-full h-96 bg-secondary rounded-lg border border-gray-700 flex items-center justify-center p-8">
                        <div class="text-center">
-                            <span class="text-6xl text-accent">🏨</span>
+                            <span class="text-6xl text-accent" role="img" aria-label="Hotel emoji">🏨</span>
                             <p class="mt-4 font-heading text-xl text-lightest-slate">Battle-Tested in Hospitality</p>
                             <p class="mt-2 text-sm text-light-slate">Our methodologies are forged in an industry where technology, security, and user experience are paramount.</p>
                        </div>
@@ -212,19 +289,38 @@
             </div>
             <div class="grid md:grid-cols-3 gap-8 mt-16">
                 <div class="bg-secondary p-8 rounded-lg border border-gray-700 fade-in-up">
-                    <div class="text-3xl text-accent mb-4">👥</div>
+                    <div class="text-3xl text-accent mb-4" role="img" aria-label="Group of people icon">👥</div>
                     <h3 class="font-heading text-2xl text-lightest-slate">Deep Consultant Bench</h3>
                     <p class="mt-3">Our large collection of seasoned consultants provides specialized expertise across diverse industries and technologies, from complex networking to custom software development.</p>
                 </div>
                 <div class="bg-secondary p-8 rounded-lg border border-gray-700 fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="text-3xl text-accent mb-4">🛡️</div>
+                    <div class="text-3xl text-accent mb-4" role="img" aria-label="Shield icon">🛡️</div>
                     <h3 class="font-heading text-2xl text-lightest-slate">Framework-Driven Process</h3>
                     <p class="mt-3">We build technical credibility by using proven frameworks like NIST, SOC2T2, and ITIL for risk modeling, gap analysis, and policy development, ensuring robust and compliant solutions.</p>
                 </div>
                 <div class="bg-secondary p-8 rounded-lg border border-gray-700 fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="text-3xl text-accent mb-4">⚙️</div>
+                    <div class="text-3xl text-accent mb-4" role="img" aria-label="Gears icon">⚙️</div>
                     <h3 class="font-heading text-2xl text-lightest-slate">24/7/365 Proactive Operations</h3>
                     <p class="mt-3">Our robust NOC and SOC capabilities promise proactive problem resolution. We monitor, detect, and remediate issues before they impact your business operations.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="service-areas" class="py-20 md:py-32">
+            <div class="text-center max-w-3xl mx-auto fade-in-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Serving Clients Nationwide</h2>
+                <p class="mt-4 text-lg">While our headquarters are in Miami, our team of expert consultants provides remote and on-site support to businesses across the country. We are proud to serve clients in the following states and beyond.</p>
+            </div>
+            <div class="max-w-4xl mx-auto mt-12 fade-in-up">
+                <div class="flex flex-wrap justify-center gap-4 text-lg">
+                    <span class="bg-secondary px-5 py-2 rounded-full">Florida</span>
+                    <span class="bg-secondary px-5 py-2 rounded-full">Georgia</span>
+                    <span class="bg-secondary px-5 py-2 rounded-full">New Hampshire</span>
+                    <span class="bg-secondary px-5 py-2 rounded-full">Texas</span>
+                    <span class="bg-secondary px-5 py-2 rounded-full">California</span>
+                    <span class="bg-secondary px-5 py-2 rounded-full">Washington</span>
+                    <span class="bg-secondary px-5 py-2 rounded-full">Idaho</span>
+                    <span class="bg-secondary px-5 py-2 rounded-full">Massachusetts</span>
                 </div>
             </div>
         </section>
@@ -275,7 +371,7 @@
                         </div>
                         <span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span>
                     </a>
-                    <p class="mt-4 text-sm">Your full-spectrum technology partner, delivering mission-critical IT solutions.</p>
+                    <p class="mt-4 text-sm">Your full-spectrum technology partner, delivering mission-critical IT solutions from Miami, FL to clients nationwide.</p>
                 </div>
                 <div>
                     <h4 class="font-heading text-lg text-lightest-slate">Quick Links</h4>
@@ -322,7 +418,7 @@
                 { category: 'Software', title: 'Custom Software & App Development', icon: '⚙️', description: 'From custom business applications to mobile and web apps, our development teams handle the full lifecycle: architecture, coding, testing, and deployment to solve your unique challenges.' },
                 { category: 'Software', title: 'DevOps & Cloud Automation', icon: '☁️', description: 'Accelerate your development pipeline with our DevOps as a Service. We manage CI/CD, cloud infrastructure, containerization, and automation to improve your agility and reliability.'},
                 { category: 'Management', title: 'IT & Security Policy Consulting', icon: '📋', description: 'We develop and implement robust IT programs based on proven frameworks like NIST and ITIL. Services include policy development, risk modeling, and gap analysis.' },
-                { category: 'Management', title: 'Helpdesk & End-User Support', icon: '�', description: 'Our professional helpdesk provides responsive and effective support for your end-users, handling everything from troubleshooting to onboarding and offboarding.'},
+                { category: 'Management', title: 'Helpdesk & End-User Support', icon: '🎧', description: 'Our professional helpdesk provides responsive and effective support for your end-users, handling everything from troubleshooting to onboarding and offboarding.'},
                 { category: 'Asset Management', title: 'Full Lifecycle Asset Management', icon: '💻', description: 'We manage the complete lifecycle of your computer assets, from procurement and deployment to maintenance, warranty tracking, and secure disposal.'},
                 { category: 'Asset Management', title: 'Software License Management', icon: '📜', description: 'Ensure compliance and optimize costs with our software license management services. We track usage, manage renewals, and provide comprehensive reporting.'}
             ];
@@ -354,7 +450,7 @@
                     card.className = 'service-card bg-secondary p-6 rounded-lg border border-transparent fade-in-up';
                     card.style.animationDelay = `${index * 0.1}s`;
                     card.innerHTML = `
-                        <div class="text-4xl mb-4">${service.icon}</div>
+                        <div class="text-4xl mb-4" role="img" aria-label="${service.title} icon">${service.icon}</div>
                         <h3 class="font-heading text-xl font-bold text-lightest-slate">${service.title}</h3>
                         <p class="mt-3 text-sm">${service.description}</p>
                     `;
