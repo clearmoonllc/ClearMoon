@@ -22,7 +22,7 @@
     <style>
         /* Custom styles to extend Tailwind */
         body {
-            background-color: #121212;
+            background-color: #0c0a14; /* Dark base for stars */
             color: #F0F0F0;
             font-family: 'Inter', sans-serif;
         }
@@ -30,95 +30,110 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Lora', serif;
         }
-
-        /* Custom gradient for space/nebula effect */
-        .bg-space-gradient {
-            background-color: #121212;
-            background-image: 
-                radial-gradient(ellipse at 70% 30%, rgba(130, 38, 89, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 30% 70%, rgba(0, 77, 97, 0.3) 0%, transparent 50%);
-        }
         
-        /* Parallax container */
-        .parallax-container {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
+        /* --- NEW: JavaScript-powered Starfield --- */
+        #starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none; /* Allow clicks to pass through */
         }
-
-        /* Parallax layers */
-        .parallax-layer {
+        .star {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 150%; /* Taller to allow for vertical movement */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            will-change: transform;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
-        #parallax-bg-far {
-            background-image: url('https://placehold.co/1920x1080/121212/121212?text=+'); /* Placeholder for distant stars */
-            z-index: 1;
-        }
-        #parallax-bg-mid {
-             background-image: radial-gradient(circle at 15% 15%, rgba(0, 77, 97, 0.4) 0%, transparent 40%),
-                               radial-gradient(circle at 85% 75%, rgba(130, 38, 89, 0.4) 0%, transparent 40%);
-            z-index: 2;
-        }
-        #parallax-bg-near {
-            background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 1px, transparent 1px),
-                              radial-gradient(circle at 25% 75%, rgba(255,255,255,0.05) 1px, transparent 1px),
-                              radial-gradient(circle at 75% 25%, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 100px 100px;
-            z-index: 3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Custom button styles */
-        .btn-primary {
-            @apply bg-[#00FF85] text-[#121212] font-bold py-3 px-8 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
-        }
-        .btn-secondary {
-            @apply border-2 border-[#00FF85] text-[#00FF85] font-bold py-3 px-8 rounded-lg transition-all duration-300 hover:bg-[#00FF85] hover:text-[#121212];
-        }
-        .btn-ghost {
-            @apply border border-gray-500 text-gray-300 font-semibold py-2 px-6 rounded-lg transition-all duration-300 hover:bg-gray-700 hover:text-white;
-        }
-
-        /* Custom styles for the services tabs */
-        .tab-btn {
-            @apply px-6 py-3 text-gray-400 border-b-2 border-transparent transition-colors duration-300;
-        }
-        .tab-btn.active {
-            @apply text-[#00FF85] border-[#00FF85];
-        }
-        .tab-content {
-            @apply hidden;
-        }
-        .tab-content.active {
-            @apply block;
+        .bg-space-gradient {
+            background-image: 
+                radial-gradient(ellipse at 70% 30%, rgba(130, 38, 89, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 70%, rgba(0, 77, 97, 0.15) 0%, transparent 50%);
         }
         
-        /* Custom styles for accordion */
-        .accordion-header {
-            @apply cursor-pointer flex justify-between items-center;
+        /* --- FIXED: Hero Section "Screen" Style --- */
+        /* This glowing border effect is a great touch and works with standard CSS */
+        .hero-screen-glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 13px; /* Slightly larger than parent */
+            background: linear-gradient(45deg, rgba(0, 255, 133, 0.2), rgba(130, 38, 89, 0.2));
+            z-index: -1;
+            filter: blur(3px);
         }
-        .accordion-content {
-            @apply max-h-0 overflow-hidden transition-all duration-500 ease-in-out;
+        
+        /* --- FIXED: Button Styles (converted from @apply) --- */
+        .btn-primary {
+            display: inline-block;
+            background-color: transparent;
+            border: 2px solid #00FF85;
+            color: #00FF85;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease-in-out;
         }
-        .accordion-content.open {
-            @apply max-h-screen;
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background-color: #00FF85;
+            color: #121212;
+            box-shadow: 0 0 20px rgba(0, 255, 133, 0.4), 0 0 40px rgba(0, 255, 133, 0.2);
+        }
+
+        /* Scroll Progress Vine */
+        #scroll-progress-container {
+            position: fixed;
+            top: 0;
+            left: 10px;
+            width: 50px;
+            height: 100%;
+            z-index: 100;
+            pointer-events: none;
+        }
+        #scroll-path {
+            fill: none;
+            stroke: #00FF85;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-opacity: 0.7;
+            transition: stroke-dashoffset 0.1s linear;
         }
     </style>
 </head>
-<body class="bg-space-gradient">
+<body>
+
+    <!-- Starfield container -->
+    <div id="starfield" class="bg-space-gradient"></div>
+
+    <!-- Scroll Progress Vine SVG -->
+    <div id="scroll-progress-container" class="hidden md:block">
+        <svg id="scroll-svg" viewBox="0 0 50 2000" preserveAspectRatio="xMidYMin meet" style="height: 100%;">
+            <path id="scroll-path" d="M 25,0 
+                                     C 25,100 5,150 25,250 
+                                     c 10,5 20,-10 5,-20 c -15,10 -5,15 0,0
+                                     S 45,350 25,450
+                                     c -10,5 -20,-10 -5,-20 c 15,10 5,15 0,0
+                                     C 25,550 5,600 25,700
+                                     c 10,5 20,-10 5,-20 c -15,10 -5,15 0,0
+                                     S 45,800 25,900
+                                     c -10,5 -20,-10 -5,-20 c 15,10 5,15 0,0
+                                     C 25,1050 5,1100 25,1200
+                                     c 10,5 20,-10 5,-20 c -15,10 -5,15 0,0
+                                     S 45,1300 25,1450
+                                     c -10,5 -20,-10 -5,-20 c 15,10 5,15 0,0
+                                     C 25,1550 5,1600 25,1700
+                                     c 10,5 20,-10 5,-20 c -15,10 -5,15 0,0
+                                     S 45,1800 25,1900
+                                     C 25,1950 25,2000 25,2000" />
+        </svg>
+    </div>
 
     <!-- HEADER & NAVIGATION -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300 bg-transparent">
@@ -131,35 +146,36 @@
                 <a href="#team" class="text-gray-300 hover:text-white transition">Team</a>
                 <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
             </nav>
-            <a href="#contact" class="hidden md:block btn-primary text-sm">Begin Your Journey</a>
+            <!-- FIXED: Converted .btn-nav to utility classes -->
+            <a href="#contact" class="hidden md:inline-block border border-gray-500 text-gray-300 font-semibold py-2 px-6 rounded-lg transition-all duration-300 hover:bg-gray-700 hover:text-white hover:border-gray-600">Begin Your Journey</a>
             <button id="mobile-menu-btn" class="md:hidden text-white">
                 <i data-lucide="menu"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#1A1A1A] px-6 pb-4">
-            <a href="#services" class="block py-2 text-gray-300 hover:text-white">Services</a>
-            <a href="#academy" class="block py-2 text-gray-300 hover:text-white">Academy</a>
-            <a href="#proof" class="block py-2 text-gray-300 hover:text-white">Proof</a>
-            <a href="#team" class="block py-2 text-gray-300 hover:text-white">Team</a>
-            <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Contact</a>
-            <a href="#contact" class="block mt-4 text-center btn-primary w-full">Begin Your Journey</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#1A1A1A]/90 backdrop-blur-sm">
+            <div class="px-6 pb-4">
+                <a href="#services" class="block py-2 text-gray-300 hover:text-white">Services</a>
+                <a href="#academy" class="block py-2 text-gray-300 hover:text-white">Academy</a>
+                <a href="#proof" class="block py-2 text-gray-300 hover:text-white">Proof</a>
+                <a href="#team" class="block py-2 text-gray-300 hover:text-white">Team</a>
+                <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Contact</a>
+                <a href="#contact" class="block mt-4 text-center btn-primary w-full">Begin Your Journey</a>
+            </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="parallax-container flex items-center justify-center text-center">
-        <div id="parallax-bg-far" class="parallax-layer"></div>
-        <div id="parallax-bg-mid" class="parallax-layer"></div>
-        <div id="parallax-bg-near" class="parallax-layer"></div>
-        <div class="hero-content container mx-auto px-6">
+    <!-- ### FIXED HERO SECTION ### -->
+    <section id="home" class="h-screen flex items-center justify-center text-center relative px-4">
+        <!-- FIXED: Converted .hero-screen to utility classes and made it larger -->
+        <div class="hero-screen-glow relative bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-xl shadow-2xl shadow-black/50 p-8 md:p-12 max-w-5xl mx-auto">
             <h1 id="hero-headline" class="text-4xl md:text-6xl font-bold text-white mb-4"></h1>
             <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Expert guidance for emerging authors and researchers. From first spark to finished manuscript.</p>
-            <a href="#services" class="btn-secondary">Explore Our Services</a>
+            <a href="#services" class="btn-primary">Explore Our Services</a>
         </div>
     </section>
 
-    <main class="relative z-10 bg-[#121212]">
+    <main class="relative z-10 bg-[#0c0a14]">
         <!-- MANIFESTO SECTION -->
         <section id="manifesto" class="py-20 md:py-32">
             <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
@@ -169,7 +185,6 @@
                     <p class="text-gray-300">We provide the structure, the expert guidance, and the unwavering support to help you conquer self-doubt and transform your creative block into a polished, finished work.</p>
                 </div>
                 <div class="flex justify-center items-center">
-                    <!-- Animated visual element -->
                     <div class="w-64 h-64 rounded-full bg-gradient-to-br from-[#004D61] to-[#822659] animate-pulse opacity-50"></div>
                 </div>
             </div>
@@ -178,84 +193,75 @@
         <!-- SERVICES SECTION -->
         <section id="services" class="py-20 md:py-24 bg-[#1A1A1A]">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
+                <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">The Author's Armory</h2>
-                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">Your mission toolkit. A suite of services for authors and researchers at every stage.</p>
+                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">A comprehensive suite of services for authors and researchers at every stage.</p>
                 </div>
                 
-                <!-- Service Tabs -->
-                <div class="border-b border-gray-700 mb-8 flex justify-center">
-                    <button class="tab-btn active" data-tab="manuscript">Manuscript Development</button>
-                    <button class="tab-btn" data-tab="promotion">Book Launch & Promotion</button>
-                    <button class="tab-btn" data-tab="academic">Academic & Technical</button>
-                </div>
-
-                <!-- Tab Content -->
-                <div id="manuscript" class="tab-content active">
+                <!-- Manuscript Development Category -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-semibold text-center text-[#00FF85] mb-8">Manuscript Development</h3>
                     <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-                        <!-- Developmental Editing -->
                         <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
-                            <h3 class="text-2xl font-bold text-white mb-3">Developmental Editing</h3>
-                            <p class="text-gray-400 mb-4">Big-picture feedback on plot, character, pacing, and structure to make your story commercially viable.</p>
-                            <p class="text-sm text-gray-500"><strong class="text-gray-300">Ideal For:</strong> Novelists and memoirists with a completed first draft.</p>
+                            <i data-lucide="scroll-text" class="h-8 w-8 text-[#00FF85] mb-3"></i>
+                            <h4 class="text-xl font-bold text-white mb-3">Developmental Editing</h4>
+                            <p class="text-gray-400 mb-4">Big-picture feedback on plot, character, pacing, and structure.</p>
                         </div>
-                        <!-- Copy & Line Editing -->
                         <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
-                            <h3 class="text-2xl font-bold text-white mb-3">Copy & Line Editing</h3>
-                            <p class="text-gray-400 mb-4">Sentence-level polish focusing on clarity, flow, grammar, and syntax for a professional finish.</p>
-                            <p class="text-sm text-gray-500"><strong class="text-gray-300">Ideal For:</strong> Authors with a structurally sound manuscript.</p>
+                            <i data-lucide="file-check-2" class="h-8 w-8 text-[#00FF85] mb-3"></i>
+                            <h4 class="text-xl font-bold text-white mb-3">Copy & Line Editing</h4>
+                            <p class="text-gray-400 mb-4">Sentence-level polish focusing on clarity, flow, and grammar.</p>
                         </div>
-                        <!-- Ghostwriting -->
                         <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
-                            <h3 class="text-2xl font-bold text-white mb-3">Ghostwriting</h3>
-                            <p class="text-gray-400 mb-4">A collaborative partnership to bring your story or expertise to life in your unique voice.</p>
-                            <p class="text-sm text-gray-500"><strong class="text-gray-300">Ideal For:</strong> Experts with a story but limited time or writing skill.</p>
+                            <i data-lucide="feather" class="h-8 w-8 text-[#00FF85] mb-3"></i>
+                            <h4 class="text-xl font-bold text-white mb-3">Ghostwriting</h4>
+                            <p class="text-gray-400 mb-4">A collaborative partnership to bring your story or expertise to life.</p>
                         </div>
-                        <!-- World-Building Consultation -->
                         <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
-                            <h3 class="text-2xl font-bold text-white mb-3">World-Building Consultation</h3>
-                            <p class="text-gray-400 mb-4">In-depth guidance on creating immersive and logical fantasy or sci-fi worlds.</p>
-                            <p class="text-sm text-gray-500"><strong class="text-gray-300">Ideal For:</strong> Speculative fiction writers seeking unforgettable settings.</p>
+                            <i data-lucide="map" class="h-8 w-8 text-[#00FF85] mb-3"></i>
+                            <h4 class="text-xl font-bold text-white mb-3">World-Building Consultation</h4>
+                            <p class="text-gray-400 mb-4">In-depth guidance on creating immersive fantasy or sci-fi worlds.</p>
                         </div>
                     </div>
                 </div>
 
-                <div id="promotion" class="tab-content">
-                     <div class="grid md:grid-cols-2 gap-8">
-                        <!-- Press Release Writing -->
-                        <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
-                            <h3 class="text-2xl font-bold text-white mb-3">Press Release Writing</h3>
-                            <p class="text-gray-400 mb-4">Crafting and distributing professional press releases to announce your book launch to relevant media outlets.</p>
-                            <p class="text-sm text-gray-500"><strong class="text-gray-300">Ideal For:</strong> Authors seeking media buzz for their new release.</p>
+                <!-- Promotion & Academic Categories -->
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div class="mb-16 lg:mb-0">
+                        <h3 class="text-2xl font-semibold text-center text-[#00FF85] mb-8">Book Launch & Promotion</h3>
+                        <div class="grid sm:grid-cols-2 gap-8">
+                            <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
+                                <i data-lucide="megaphone" class="h-8 w-8 text-[#00FF85] mb-3"></i>
+                                <h4 class="text-xl font-bold text-white mb-3">Press Release Writing</h4>
+                                <p class="text-gray-400 mb-4">Crafting professional press releases to announce your book launch.</p>
+                            </div>
+                            <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
+                                <i data-lucide="pen-tool" class="h-8 w-8 text-[#00FF85] mb-3"></i>
+                                <h4 class="text-xl font-bold text-white mb-3">Marketing Copywriting</h4>
+                                <p class="text-gray-400 mb-4">Writing compelling book descriptions, author bios, and ad copy.</p>
+                            </div>
                         </div>
-                        <!-- Marketing Copywriting -->
-                        <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
-                            <h3 class="text-2xl font-bold text-white mb-3">Marketing Copywriting</h3>
-                            <p class="text-gray-400 mb-4">Writing compelling book descriptions, author bios, and ad copy that converts readers into buyers.</p>
-                            <p class="text-sm text-gray-500"><strong class="text-gray-300">Ideal For:</strong> Authors needing to build their brand and market their work.</p>
-                        </div>
-                     </div>
-                </div>
-
-                <div id="academic" class="tab-content">
-                    <div class="grid md:grid-cols-1 gap-8 max-w-lg mx-auto">
-                        <!-- Technical & Journal Editing -->
-                        <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
-                            <h3 class="text-2xl font-bold text-white mb-3">Technical & Journal Editing</h3>
-                            <p class="text-gray-400 mb-4">Specialized editing for academic papers, ensuring clarity, accuracy, and adherence to target journal guidelines.</p>
-                            <p class="text-sm text-gray-500"><strong class="text-gray-300">Ideal For:</strong> Researchers and academics preparing manuscripts for submission.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-center text-[#00FF85] mb-8">Academic & Technical</h3>
+                        <div class="max-w-md mx-auto">
+                            <div class="bg-[#121212] p-8 rounded-lg border border-gray-800">
+                                <i data-lucide="atom" class="h-8 w-8 text-[#00FF85] mb-3"></i>
+                                <h4 class="text-xl font-bold text-white mb-3">Technical & Journal Editing</h4>
+                                <p class="text-gray-400 mb-4">Specialized editing for academic papers, ensuring clarity and accuracy.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ACADEMY SECTION -->
+        <!-- The rest of your HTML content remains the same... -->
         <section id="academy" class="py-20 md:py-32 bg-space-gradient">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">The Lunar Aura Academy</h2>
                 <p class="text-[#00FF85] font-semibold text-lg mt-2">Your Writer's Compass</p>
-                <p class="text-gray-300 mt-4 max-w-3xl mx-auto">Go from idea to first draft with our structured on-demand courses. Join a supportive community of fellow writers. Get your questions answered in exclusive monthly Q&A sessions with our expert instructors.</p>
+                <p class="text-gray-300 mt-4 max-w-3xl mx-auto">A new constellation of courses is forming. Prepare to navigate your writing journey with structured guidance, a supportive community, and exclusive coaching.</p>
                 
                 <div class="grid md:grid-cols-3 gap-8 mt-12">
                     <div class="bg-[#1A1A1A]/50 backdrop-blur-sm p-8 rounded-lg border border-gray-800">
@@ -275,46 +281,84 @@
                     </div>
                 </div>
 
-                <div class="mt-12 bg-[#121212] max-w-md mx-auto p-8 rounded-lg border border-gray-800">
-                    <p class="text-4xl font-bold text-white">$49/month</p>
-                    <p class="text-gray-400 mt-2">All-Access. Cancel Anytime.</p>
-                    <button class="btn-primary w-full mt-6">Join the Academy</button>
+                <p class="mt-16 text-lg text-gray-300">Enrollment opens in...</p>
+                <div id="countdown" class="flex justify-center items-center gap-4 md:gap-8 mt-6 text-white">
+                    <div class="text-center bg-[#1A1A1A]/50 backdrop-blur-sm p-4 rounded-lg border border-gray-800 w-24">
+                        <span id="days" class="text-4xl font-bold">0</span>
+                        <span class="block text-sm text-gray-400">Days</span>
+                    </div>
+                    <div class="text-center bg-[#1A1A1A]/50 backdrop-blur-sm p-4 rounded-lg border border-gray-800 w-24">
+                        <span id="hours" class="text-4xl font-bold">0</span>
+                        <span class="block text-sm text-gray-400">Hours</span>
+                    </div>
+                    <div class="text-center bg-[#1A1A1A]/50 backdrop-blur-sm p-4 rounded-lg border border-gray-800 w-24">
+                        <span id="minutes" class="text-4xl font-bold">0</span>
+                        <span class="block text-sm text-gray-400">Minutes</span>
+                    </div>
+                    <div class="text-center bg-[#1A1A1A]/50 backdrop-blur-sm p-4 rounded-lg border border-gray-800 w-24">
+                        <span id="seconds" class="text-4xl font-bold">0</span>
+                        <span class="block text-sm text-gray-400">Seconds</span>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <a href="#contact" class="btn-primary">Notify Me</a>
                 </div>
             </div>
         </section>
 
-        <!-- PROOF SECTION -->
-        <section id="proof" class="py-20 md:py-24 bg-[#1A1A1A]">
+        <section id="future-projects" class="py-20 md:py-24 bg-[#1A1A1A]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Forging New Worlds</h2>
+                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">Our commitment to the craft is always evolving. Here's a glimpse of what we're building next.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-[#121212] p-8 rounded-lg border border-gray-800 text-center">
+                        <i data-lucide="wand-2" class="mx-auto h-10 w-10 text-[#00FF85] mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Interactive World-Builder</h3>
+                        <p class="text-gray-400 mt-2 text-sm">A tool to spark creativity, helping you generate and organize ideas for your fantasy and sci-fi settings.</p>
+                    </div>
+                    <div class="bg-[#121212] p-8 rounded-lg border border-gray-800 text-center">
+                        <i data-lucide="book-open-check" class="mx-auto h-10 w-10 text-[#00FF85] mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">The Writer's Quire</h3>
+                        <p class="text-gray-400 mt-2 text-sm">A blog featuring articles, reviews, and personal insights from our team and community of authors-in-progress.</p>
+                    </div>
+                    <div class="bg-[#121212] p-8 rounded-lg border border-gray-800 text-center">
+                        <i data-lucide="sprout" class="mx-auto h-10 w-10 text-[#00FF85] mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Grassroots Publishing Study</h3>
+                        <p class="text-gray-400 mt-2 text-sm">An in-depth case study following an author's journey from first draft to indie publication, sharing data and lessons learned.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proof" class="py-20 md:py-24 bg-[#121212]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">Echoes of Success</h2>
                     <p class="text-gray-400 mt-2">Don't just take our word for it.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-[#121212] p-6 rounded-lg border border-gray-800">
+                    <div class="bg-[#1A1A1A] p-6 rounded-lg border border-gray-800">
                         <p class="text-gray-300">"Working with Lunar Aura was a game-changer. Their developmental edit transformed my messy draft into a story I'm proud of."</p>
                         <p class="mt-4 font-bold text-white">- Alex Johnson</p>
                         <p class="text-sm text-[#00FF85]">Developmental Editing Client</p>
                     </div>
-                    <div class="bg-[#121212] p-6 rounded-lg border border-gray-800">
+                    <div class="bg-[#1A1A1A] p-6 rounded-lg border border-gray-800">
                         <p class="text-gray-300">"The world-building consultation was incredibly detailed. They helped me find and fix plot holes I didn't even know existed."</p>
                         <p class="mt-4 font-bold text-white">- Samantha Lee</p>
                         <p class="text-sm text-[#00FF85]">World-Building Client</p>
                     </div>
-                    <div class="bg-[#121212] p-6 rounded-lg border border-gray-800">
+                    <div class="bg-[#1A1A1A] p-6 rounded-lg border border-gray-800">
                         <p class="text-gray-300">"As a non-writer, the ghostwriting process was seamless. They captured my voice perfectly and brought my vision to life."</p>
                         <p class="mt-4 font-bold text-white">- Dr. Evelyn Reed</p>
                         <p class="text-sm text-[#00FF85]">Ghostwriting Client</p>
                     </div>
                 </div>
-                 <div class="text-center mt-12 italic text-gray-500">
-                    <p>"True quality doesn't always need a spotlight. Sometimes, it's discovered, like a new star in the night sky."</p>
-                </div>
             </div>
         </section>
 
-        <!-- TEAM SECTION -->
-        <section id="team" class="py-20 md:py-32">
+        <section id="team" class="py-20 md:py-32 bg-[#1A1A1A]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">Navigators of the Creative Cosmos</h2>
@@ -325,29 +369,22 @@
                         <img src="https://placehold.co/400x400/1A1A1A/F0F0F0?text=Team" alt="Team Member Headshot" class="w-40 h-40 rounded-full mx-auto mb-4 border-2 border-[#004D61]">
                         <h3 class="text-xl font-bold text-white">Jane Doe</h3>
                         <p class="text-[#00FF85] font-semibold">Lead Editor & Author Coach</p>
-                        <p class="text-gray-400 mt-2 text-sm">A published high-fantasy author with a passion for helping new writers conquer the first draft.</p>
-                        <p class="text-xs text-gray-500 mt-2">Favorite Subgenre: Epic Fantasy</p>
                     </div>
                     <div class="text-center">
                         <img src="https://placehold.co/400x400/1A1A1A/F0F0F0?text=Team" alt="Team Member Headshot" class="w-40 h-40 rounded-full mx-auto mb-4 border-2 border-[#004D61]">
                         <h3 class="text-xl font-bold text-white">John Smith</h3>
                         <p class="text-[#00FF85] font-semibold">Narrative Structure Specialist</p>
-                        <p class="text-gray-400 mt-2 text-sm">A graduate-level creative writer specializing in narrative structure and character arcs.</p>
-                         <p class="text-xs text-gray-500 mt-2">Currently Reading: Dune</p>
                     </div>
                     <div class="text-center">
                         <img src="https://placehold.co/400x400/1A1A1A/F0F0F0?text=Team" alt="Team Member Headshot" class="w-40 h-40 rounded-full mx-auto mb-4 border-2 border-[#004D61]">
                         <h3 class="text-xl font-bold text-white">Emily White</h3>
                         <p class="text-[#00FF85] font-semibold">Technical & Academic Editor</p>
-                        <p class="text-gray-400 mt-2 text-sm">A technical writer skilled in translating complex concepts into clear, engaging educational content.</p>
-                        <p class="text-xs text-gray-500 mt-2">Specialty: STEM Manuscripts</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="py-20 md:py-24 bg-[#1A1A1A]">
+        <section id="contact" class="py-20 md:py-24 bg-[#121212]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">Ready to Begin Your Journey?</h2>
@@ -356,13 +393,13 @@
                 <form id="contact-form" class="max-w-2xl mx-auto">
                     <div class="mb-6">
                         <label for="service-select" class="block text-gray-300 mb-2">What can we help you with?</label>
-                        <select id="service-select" name="service" class="w-full bg-[#121212] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
+                        <select id="service-select" name="service" class="w-full bg-[#1A1A1A] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
                             <option value="">-- Select a Service --</option>
                             <option value="editing">Developmental Editing</option>
                             <option value="ghostwriting">Ghostwriting</option>
                             <option value="marketing">Marketing & PR</option>
                             <option value="academic">Academic Editing</option>
-                            <option value="academy">The Academy</option>
+                            <option value="academy">Academy Waiting List</option>
                             <option value="general">General Inquiry</option>
                         </select>
                     </div>
@@ -371,29 +408,30 @@
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label for="name" class="block text-gray-300 mb-2">Name</label>
-                                <input type="text" id="name" name="name" class="w-full bg-[#121212] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
+                                <input type="text" id="name" name="name" class="w-full bg-[#1A1A1A] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
                             </div>
                             <div>
                                 <label for="email" class="block text-gray-300 mb-2">Email</label>
-                                <input type="email" id="email" name="email" class="w-full bg-[#121212] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
+                                <input type="email" id="email" name="email" class="w-full bg-[#1A1A1A] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
                             </div>
                         </div>
                         <div id="word-count-field" class="hidden">
                             <label for="word-count" class="block text-gray-300 mb-2">Manuscript Word Count (Approx.)</label>
-                            <input type="number" id="word-count" name="word-count" class="w-full bg-[#121212] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
+                            <input type="number" id="word-count" name="word-count" class="w-full bg-[#1A1A1A] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none">
                         </div>
                         <div>
                             <label for="message" class="block text-gray-300 mb-2">Project Description</label>
-                            <textarea id="message" name="message" rows="4" class="w-full bg-[#121212] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none"></textarea>
+                            <textarea id="message" name="message" rows="4" class="w-full bg-[#1A1A1A] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none"></textarea>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn-primary w-full md:w-auto">Submit Inquiry</button>
                         </div>
                     </div>
                     
-                    <div id="form-fields-academy" class="hidden text-center bg-[#121212] p-8 rounded-lg border border-gray-700">
-                        <p class="text-gray-300 mb-4">You've selected The Academy! You can get instant access to all courses, our community, and monthly coaching calls.</p>
-                        <button type="button" class="btn-primary">Go to Academy Sign Up</button>
+                    <div id="form-fields-academy" class="hidden text-center bg-[#1A1A1A] p-8 rounded-lg border border-gray-700">
+                        <p class="text-gray-300 mb-4">You'll be the first to know when the Academy launches. Please provide your email below to join the waiting list.</p>
+                        <input type="email" id="academy-email" name="academy-email" placeholder="your.email@example.com" class="w-full bg-[#1A1A1A] border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#00FF85] focus:outline-none mb-4">
+                        <button type="button" class="btn-primary">Join Waiting List</button>
                     </div>
 
                     <p class="text-xs text-gray-600 text-center mt-6">We respect your privacy. No spam, ever.</p>
@@ -408,14 +446,14 @@
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
                     <h4 class="text-xl font-bold text-white font-lora">Lunar Aura</h4>
-                    <p class="text-gray-400 mt-2 text-sm">Mission control for the writer's journey. Empowering emerging authors to transform creative blocks into finished works.</p>
+                    <p class="text-gray-400 mt-2 text-sm">Mission control for the writer's journey.</p>
                 </div>
                 <div>
                     <h5 class="font-bold text-white mb-3">Navigate</h5>
                     <ul class="space-y-2">
                         <li><a href="#services" class="text-gray-400 hover:text-white text-sm">Services</a></li>
                         <li><a href="#academy" class="text-gray-400 hover:text-white text-sm">Academy</a></li>
-                        <li><a href="#team" class="text-gray-400 hover:text-white text-sm">Team</a></li>
+                        <li><a href="#future-projects" class="text-gray-400 hover:text-white text-sm">Future Projects</a></li>
                         <li><a href="https://clearmoon.llc" target="_blank" class="text-gray-400 hover:text-white text-sm">Parent Company</a></li>
                     </ul>
                 </div>
@@ -437,6 +475,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- NEW: Starfield Generation ---
+            const starfield = document.getElementById('starfield');
+            if (starfield) {
+                const numStars = 250; // Adjust for more or fewer stars
+                for (let i = 0; i < numStars; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    const size = Math.random() * 2 + 1; // Stars between 1px and 3px
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.animationDuration = `${Math.random() * 3 + 2}s`; // 2s to 5s
+                    star.style.animationDelay = `${Math.random() * 3}s`;
+                    starfield.appendChild(star);
+                }
+            }
+            
             // --- Lucide Icons ---
             lucide.createIcons();
 
@@ -457,17 +513,6 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // --- Parallax Effect ---
-            const parallaxLayers = document.querySelectorAll('.parallax-layer');
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset;
-                parallaxLayers.forEach((layer, index) => {
-                    const speed = (index + 1) * 0.15; // Different speed for each layer
-                    const yPos = -(scrollTop * speed);
-                    layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
-                });
-            });
-
             // --- Hero Section Typing Effect ---
             new TypeIt("#hero-headline", {
                 speed: 75,
@@ -480,21 +525,6 @@
                 }
             }).go();
             
-            // --- Services Tabs ---
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Deactivate all
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Activate clicked
-                    button.classList.add('active');
-                    document.getElementById(button.dataset.tab).classList.add('active');
-                });
-            });
-
             // --- Smart Contact Form ---
             const serviceSelect = document.getElementById('service-select');
             const standardFields = document.getElementById('form-fields-standard');
@@ -503,8 +533,6 @@
 
             serviceSelect.addEventListener('change', (e) => {
                 const selection = e.target.value;
-                
-                // Hide all sections first
                 standardFields.classList.add('hidden');
                 academyFields.classList.add('hidden');
                 wordCountField.classList.add('hidden');
@@ -518,6 +546,58 @@
                     }
                 }
             });
+
+            // --- Academy Countdown Timer ---
+            const countdownDate = new Date("March 15, 2026 00:00:00").getTime();
+            const countdownInterval = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                if (distance > 0) {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                    document.getElementById("days").innerText = days;
+                    document.getElementById("hours").innerText = hours;
+                    document.getElementById("minutes").innerText = minutes;
+                    document.getElementById("seconds").innerText = seconds;
+                } else {
+                    clearInterval(countdownInterval);
+                    document.getElementById("countdown").innerHTML = "<div class='text-2xl text-[#00FF85]'>The Academy is Now Open!</div>";
+                }
+            }, 1000);
+
+            // --- Scroll Progress Vine Logic ---
+            const path = document.getElementById('scroll-path');
+            if (path) {
+                const svg = document.getElementById('scroll-svg');
+                let pathLength = 0;
+
+                const updatePath = () => {
+                    const docHeight = document.documentElement.scrollHeight;
+                    svg.setAttribute('height', docHeight);
+                    svg.setAttribute('viewBox', `0 0 50 ${docHeight}`);
+                    
+                    pathLength = path.getTotalLength();
+                    path.style.strokeDasharray = pathLength;
+                    path.style.strokeDashoffset = pathLength;
+                    
+                    handleScroll();
+                };
+
+                const handleScroll = () => {
+                    if (pathLength === 0) return;
+                    const scrollPercentage = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+                    const drawLength = pathLength * scrollPercentage;
+                    path.style.strokeDashoffset = pathLength - drawLength;
+                };
+                
+                setTimeout(updatePath, 100);
+                window.addEventListener('resize', () => setTimeout(updatePath, 100));
+                window.addEventListener('scroll', handleScroll, { passive: true });
+            }
 
             // --- Set current year in footer ---
             document.getElementById('year').textContent = new Date().getFullYear();
