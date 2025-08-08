@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Wireless Infrastructure Cost Estimator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for slider thumb */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #4f46e5;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 2px rgba(0,0,0,0.3);
+            transition: background-color 0.2s ease-in-out;
+        }
+        input[type=range]:active::-webkit-slider-thumb {
+            background: #3730a3;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #4f46e5;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 2px rgba(0,0,0,0.3);
+        }
+        
+        /* Custom styles for toggle switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #4f46e5;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #4f46e5;
+        }
+        #advancedDetails.hidden {
+            display: none;
+        }
+        /* Style for number inputs to match the look */
+        .value-input {
+            width: 70px;
+            text-align: center;
+        }
+        /* Hide number input arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-6 md:p-8 space-y-8">
+        <!-- Header -->
+        <div>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Wireless Infrastructure Estimator</h1>
+            <p class="text-gray-500 mt-1">Estimate deployment costs for hotel properties.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Left Column: Inputs -->
+            <div class="space-y-6">
+                <!-- Sliders -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="rooms" class="font-semibold text-gray-700">Number of Rooms</label>
+                            <input type="number" id="roomsValue" value="155" min="10" max="300" class="value-input text-indigo-600 font-semibold bg-indigo-50 px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <input type="range" id="roomsSlider" min="10" max="300" value="155" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="floors" class="font-semibold text-gray-700">Number of Floors</label>
+                            <input type="number" id="floorsValue" value="10" min="1" max="155" class="value-input text-indigo-600 font-semibold bg-indigo-50 px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <input type="range" id="floorsSlider" min="1" max="155" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+                
+                <!-- Toggles -->
+                <div class="space-y-4 pt-4 border-t">
+                     <h2 class="text-lg font-semibold text-gray-700">Project Variables</h2>
+                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                        <span class="text-gray-600">Existing In-Unit Cabling</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle-unit" id="cablingUnit" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" checked/>
+                            <label for="cablingUnit" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                        <span class="text-gray-600">Existing Hallway Cabling</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle-hallway" id="cablingHallway" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" checked/>
+                            <label for="cablingHallway" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                     <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                        <span class="text-gray-600">High Uncertainty</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle-uncertainty" id="highUncertainty" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="highUncertainty" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                        <span class="text-gray-600">Phased Deployment</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle-phased" id="phasedDeployment" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="phasedDeployment" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div class="bg-indigo-600 text-white rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-lg font-semibold text-indigo-200">Cost Estimate</h2>
+                    <div class="mt-2">
+                        <p id="totalCost" class="text-3xl md:text-4xl font-bold tracking-tight">$54,250 - $77,500</p>
+                        <p class="text-indigo-200 text-sm mt-1">Total Estimated Project Cost</p>
+                    </div>
+                </div>
+                <!-- Advanced details, hidden by default -->
+                <div id="advancedDetails" class="mt-6 border-t border-indigo-500 pt-4 space-y-3 text-sm hidden">
+                     <p class="text-xs text-center text-indigo-300">Advanced Details Unlocked</p>
+                    <div class="flex justify-between">
+                        <span class="text-indigo-200">Cost/Unit (Base):</span>
+                        <span id="costPerUnit" class="font-medium">$250 - $350</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-indigo-200">Units/Floor:</span>
+                        <span id="unitsPerFloor" class="font-medium">15.5</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-indigo-200">Inefficiency Multiplier:</span>
+                        <span id="multiplier" class="font-medium">1.02x</span>
+                    </div>
+                    <div id="phasingPremiumDetail" class="flex justify-between hidden">
+                        <span class="text-indigo-200">Phasing Premium:</span>
+                        <span id="phasingPremiumValue" class="font-medium"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DOM element references ---
+        const cablingUnit = document.getElementById('cablingUnit');
+        const cablingHallway = document.getElementById('cablingHallway');
+        const highUncertainty = document.getElementById('highUncertainty');
+        const phasedDeployment = document.getElementById('phasedDeployment');
+        
+        const roomsSlider = document.getElementById('roomsSlider');
+        const floorsSlider = document.getElementById('floorsSlider');
+        const roomsValue = document.getElementById('roomsValue');
+        const floorsValue = document.getElementById('floorsValue');
+
+        const totalCostEl = document.getElementById('totalCost');
+        const advancedDetailsEl = document.getElementById('advancedDetails');
+        const costPerUnitEl = document.getElementById('costPerUnit');
+        const unitsPerFloorEl = document.getElementById('unitsPerFloor');
+        const multiplierEl = document.getElementById('multiplier');
+        const phasingPremiumDetail = document.getElementById('phasingPremiumDetail');
+        const phasingPremiumValue = document.getElementById('phasingPremiumValue');
+
+        // --- Constants and State ---
+        const OPTIMAL_UNITS_PER_FLOOR = 16;
+        let backtickCount = 0;
+
+        // --- Functions ---
+        
+        /**
+         * Main function to calculate and display the cost estimate.
+         */
+        function calculateCost() {
+            // 1. Get current values from inputs
+            const hasUnitCabling = cablingUnit.checked;
+            const hasHallwayCabling = cablingHallway.checked;
+            const isUncertain = highUncertainty.checked;
+            const isPhased = phasedDeployment.checked;
+            
+            const rooms = parseInt(roomsValue.value, 10);
+            const floors = parseInt(floorsValue.value, 10);
+
+            // 2. Determine base cost per unit based on cabling toggles
+            let costLow, costHigh, costPerUnitText;
+            if (hasUnitCabling && hasHallwayCabling) {
+                costLow = 250; costHigh = 350; costPerUnitText = "$250 - $350";
+            } else if (hasUnitCabling && !hasHallwayCabling) {
+                costLow = 375; costHigh = 500; costPerUnitText = "$375 - $500";
+            } else if (!hasUnitCabling && hasHallwayCabling) {
+                costLow = 525; costHigh = 625; costPerUnitText = "$525 - $625";
+            } else { // Neither is checked
+                costLow = 650; costHigh = 900; costPerUnitText = "$650 - $900";
+            }
+            costPerUnitEl.textContent = costPerUnitText;
+
+            // 3. Calculate the inefficiency multiplier based on units/floor
+            const unitsPerFloor = rooms / floors;
+            unitsPerFloorEl.textContent = unitsPerFloor.toFixed(1);
+            
+            const inefficiencyScore = Math.min(1, Math.abs(1 - (unitsPerFloor / OPTIMAL_UNITS_PER_FLOOR)));
+            const multiplier = 1 + (0.5 * inefficiencyScore);
+            multiplierEl.textContent = `${multiplier.toFixed(2)}x`;
+
+            // 4. Calculate the initial total cost
+            let totalLow = costLow * rooms * multiplier;
+            let totalHigh = costHigh * rooms * multiplier;
+            
+            // 5. Apply uncertainty modifier if toggled
+            if(isUncertain) {
+                totalLow *= 0.9;
+                totalHigh *= 1.25;
+            }
+            
+            // 6. Handle phased deployment cost and note
+            if (isPhased) {
+                const minRooms = parseInt(roomsSlider.min, 10);
+                const maxRooms = parseInt(roomsSlider.max, 10);
+                // Calculate percentage from 15% (at min rooms) down to 5% (at max rooms)
+                const phasedPercent = 0.15 - ((rooms - minRooms) / (maxRooms - minRooms)) * 0.10;
+                totalLow *= (1 + phasedPercent);
+                totalHigh *= (1 + phasedPercent);
+                phasingPremiumValue.textContent = `~${(phasedPercent * 100).toFixed(1)}%`;
+                phasingPremiumDetail.classList.remove('hidden');
+            } else {
+                phasingPremiumDetail.classList.add('hidden');
+            }
+
+            // 7. Update the UI with the final results
+            const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+            totalCostEl.textContent = `${formatter.format(totalLow)} - ${formatter.format(totalHigh)}`;
+        }
+
+        /**
+         * Syncs sliders and number inputs, validates values, and triggers recalculation.
+         */
+        function syncAndCalculate() {
+            // Sync sliders to number inputs
+            roomsSlider.value = roomsValue.value;
+            floorsSlider.value = floorsValue.value;
+
+            // Validate and cap floor value based on rooms
+            const rooms = parseInt(roomsValue.value) || 0;
+            const floors = parseInt(floorsValue.value) || 1;
+            
+            floorsSlider.max = rooms;
+            floorsValue.max = rooms;
+
+            if (floors > rooms) {
+                floorsValue.value = rooms;
+                floorsSlider.value = rooms;
+            }
+            
+            calculateCost();
+        }
+
+        /**
+         * Handles the secret key combination to show advanced details.
+         * @param {KeyboardEvent} e The keyboard event.
+         */
+        function handleSecretCode(e) {
+            if (e.key === '`') {
+                backtickCount++;
+            } else {
+                backtickCount = 0; // Reset if any other key is pressed
+            }
+
+            if (backtickCount >= 5) {
+                advancedDetailsEl.classList.toggle('hidden');
+                backtickCount = 0; // Reset after toggling
+            }
+        }
+
+        // --- Event Listeners ---
+        window.addEventListener('keydown', handleSecretCode);
+        
+        // Listen to toggles
+        const toggles = [cablingUnit, cablingHallway, highUncertainty, phasedDeployment];
+        toggles.forEach(toggle => toggle.addEventListener('input', syncAndCalculate));
+
+        // Sync Sliders and Number Inputs
+        roomsSlider.addEventListener('input', () => { roomsValue.value = roomsSlider.value; syncAndCalculate(); });
+        roomsValue.addEventListener('input', syncAndCalculate);
+        floorsSlider.addEventListener('input', () => { floorsValue.value = floorsSlider.value; syncAndCalculate(); });
+        floorsValue.addEventListener('input', syncAndCalculate);
+
+        // Initial calculation on page load
+        document.addEventListener('DOMContentLoaded', syncAndCalculate);
+    </script>
+</body>
+</html>
