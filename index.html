@@ -90,7 +90,6 @@
             font-family: 'Inter', sans-serif;
         }
         .font-brand { font-family: 'Press Start 2P', cursive; }
-        /* font-heading uses Orbitron */
         .font-heading { font-family: 'Orbitron', sans-serif; }
         .bg-primary { background-color: #0A192F; }
         .bg-secondary { background-color: #2C3E50; }
@@ -142,6 +141,81 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
             border-color: #64FFDA;
         }
+
+        /* --- Orbital Animation Styles --- */
+        /* Lunar cycle (sidereal) is approx 27.32 days = 2360448 seconds */
+        :root {
+            --orbit-duration: 2360448s;
+            --orbit-size: 300px;
+        }
+
+        .orbit-container {
+            width: var(--orbit-size);
+            height: var(--orbit-size);
+            position: relative;
+        }
+
+        .orbit-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-path {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: rotate linear infinite;
+            animation-duration: var(--orbit-duration);
+            /* Ensure animation continues running even when tab is inactive */
+            animation-play-state: running; 
+        }
+
+        .orbit-moon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: #64FFDA;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+         /* --- Logo Marquee Styles --- */
+        .marquee {
+            overflow: hidden;
+            position: relative;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-flex;
+            animation: marquee-scroll 30s linear infinite;
+        }
+        /* Pause on hover */
+        .marquee:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
     </style>
 </head>
 <body class="bg-primary text-light-slate">
@@ -197,21 +271,56 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-6">
+    <main>
         
-        <section id="hero" class="min-h-screen flex items-center -mt-20">
-            <div class="max-w-3xl fade-in-up">
-                <p class="text-accent font-brand text-sm md:text-base mb-4 tracking-widest">Navigating Your Digital Frontier</p>
-                <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Clear Moon: Your Full-Spectrum Technology Partner.</h1>
-                <p class="mt-6 text-base md:text-lg max-w-2xl">We are a seasoned MSP with a vast network of expert consultants, delivering scalable and secure IT solutions for hospitality and beyond. We turn complex challenges into strategic advantages.</p>
-                <a href="#contact" class="inline-block mt-10 bg-transparent border border-accent text-accent font-bold py-3 px-8 rounded-md text-lg hover:bg-accent/10 transition-colors">Schedule a Consultation</a>
+        <section id="hero" class="min-h-screen flex items-center container mx-auto px-6 -mt-20">
+            <div class="flex flex-col lg:flex-row items-center w-full">
+                <div class="lg:w-1/2 fade-in-up">
+                    <p class="text-accent font-brand text-sm md:text-base mb-4 tracking-widest">Navigating Your Digital Frontier</p>
+                    <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Clear Moon: Your Full-Spectrum Technology Partner.</h1>
+                    <p class="mt-6 text-base md:text-lg max-w-2xl">We are a seasoned MSP with a vast network of expert consultants, delivering scalable and secure IT solutions for hospitality and beyond. We turn complex challenges into strategic advantages.</p>
+                    <a href="#contact" class="inline-block mt-10 bg-transparent border border-accent text-accent font-bold py-3 px-8 rounded-md text-lg hover:bg-accent/10 transition-colors">Schedule a Consultation</a>
+                </div>
+                <div class="hidden lg:flex lg:w-1/2 justify-center items-center fade-in-up" style="transition-delay: 0.3s;">
+                    <div class="orbit-container">
+                        <div class="orbit-center"></div>
+                        <div id="orbit-path" class="orbit-path">
+                            <div class="orbit-moon"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="services" class="py-20 md:py-32">
+        <section id="partners" class="py-8 bg-primary border-t border-b border-white/10 fade-in-up">
+            <div class="container mx-auto px-6 mb-4 text-center">
+                <p class="text-light-slate font-medium">Trusted by innovative companies nationwide</p>
+            </div>
+            <div class="marquee">
+                <div class="marquee-content">
+                    <span class="px-10 text-2xl font-heading text-gray-500">Horizon Hotels</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">Apex Mfg</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">SecureBank Corp</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">Retail Dynamics</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">HealthConnect</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">EventPro Venues</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span class="px-10 text-2xl font-heading text-gray-500">Horizon Hotels</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">Apex Mfg</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">SecureBank Corp</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">Retail Dynamics</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">HealthConnect</span>
+                    <span class="px-10 text-2xl font-heading text-gray-500">EventPro Venues</span>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="services" class="py-20 md:py-32 container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto fade-in-up">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Our Core Capabilities</h2>
-                <p class="mt-4 text-lg">This section provides a gateway to our comprehensive suite of technology services. We've organized our extensive offerings into clear, understandable categories. Use the filters below to explore the specific solutions that align with your business needs, from foundational networking and on-site systems to advanced monitoring and custom software development. Each card represents a bundle of expertise designed to solve real-world business problems.</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Technology Solutions That Drive Business Forward</h2>
+                <p class="mt-4 text-lg">We've organized our extensive offerings into clear categories. Use the filters below to explore the specific solutions that align with your business needs, from foundational networking and on-site systems to advanced monitoring and custom software development.</p>
             </div>
             
             <div id="service-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 my-12 fade-in-up">
@@ -227,10 +336,10 @@
 
         </section>
         
-        <section id="industry" class="py-20 md:py-32">
+        <section id="industry" class="py-20 md:py-32 container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto fade-in-up mb-12">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Proven Excellence Across Industries</h2>
-                <p class="mt-4 text-lg">We bring mission-critical performance and proactive problem-solving to diverse sectors. Explore how we tailor our expertise to meet the unique demands of your industry.</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Mission-Critical Performance for Your Sector</h2>
+                <p class="mt-4 text-lg">We bring proactive problem-solving to diverse sectors. Explore how we tailor our expertise to meet the unique demands of your industry.</p>
             </div>
 
             <div class="grid md:grid-cols-5 gap-8 fade-in-up">
@@ -254,10 +363,11 @@
                 </div>
             </div>
         </section>
-        <section id="differentiators" class="py-20 md:py-32">
+
+        <section id="differentiators" class="py-20 md:py-32 container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto fade-in-up">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Why Partner With Us?</h2>
-                <p class="mt-4 text-lg">Choosing a technology partner is a critical decision. This section outlines the core principles that set Clear Moon apart. We go beyond simply providing services; we deliver strategic value through our deep consultant network, our commitment to industry-best practices, and our relentless focus on proactive operations. These are the pillars that support your success.</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Strategic Value Beyond Standard IT Services</h2>
+                <p class="mt-4 text-lg">We go beyond simply providing services; we deliver strategic value through our deep consultant network, our commitment to industry-best practices, and our relentless focus on proactive operations. These are the pillars that support your success.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8 mt-16">
                 <div class="bg-secondary p-8 rounded-lg border border-gray-700 fade-in-up">
@@ -277,11 +387,49 @@
                 </div>
             </div>
         </section>
+
+        <section id="testimonials" class="py-20 md:py-32 bg-secondary/30">
+            <div class="container mx-auto px-6 fade-in-up">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">What Our Clients Say</h2>
+                </div>
+                <div class="relative max-w-4xl mx-auto">
+                    <div id="testimonial-carousel" class="overflow-hidden">
+                        <div id="testimonial-track" class="flex transition-transform duration-500 ease-in-out">
+                            
+                            <div class="min-w-full px-4 md:px-12">
+                                <blockquote class="text-center">
+                                    <p class="text-xl md:text-2xl italic text-lightest-slate mb-6">"Migrating our entire PMS and access control infrastructure seemed impossible. Clear Moon executed it flawlessly over a weekend. We experienced zero downtime, and our guest experience scores actually increased."</p>
+                                    <cite class="font-medium text-accent not-italic">— Sarah Jenkins, Director of Operations, Horizon Hotels</cite>
+                                </blockquote>
+                            </div>
+                            <div class="min-w-full px-4 md:px-12">
+                                <blockquote class="text-center">
+                                    <p class="text-xl md:text-2xl italic text-lightest-slate mb-6">"Their 24/7 SOC monitoring identified and neutralized a sophisticated threat before it could access our financial data. Clear Moon isn't just an MSP; they are a critical part of our security posture."</p>
+                                    <cite class="font-medium text-accent not-italic">— David Chen, CFO, SecureBank Corp</cite>
+                                </blockquote>
+                            </div>
+                            <div class="min-w-full px-4 md:px-12">
+                                <blockquote class="text-center">
+                                    <p class="text-xl md:text-2xl italic text-lightest-slate mb-6">"We needed a custom API to connect our legacy inventory system with our new e-commerce platform. Clear Moon's development team delivered a robust solution weeks ahead of schedule."</p>
+                                    <cite class="font-medium text-accent not-italic">— Mark Ronson, Head of E-commerce, Retail Dynamics</cite>
+                                </blockquote>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center mt-8 space-x-3" id="testimonial-dots">
+                        </div>
+                </div>
+            </div>
+        </section>
+
         
-        <section id="service-areas" class="py-20 md:py-32">
+        <section id="service-areas" class="py-20 md:py-32 container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto fade-in-up">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Serving Clients Nationwide</h2>
-                <p class="mt-4 text-lg">While our headquarters are in Miami, our team of expert consultants provides remote and on-site support to businesses across the country. We are proud to serve clients in the following states and beyond.</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Local Expertise, National Reach</h2>
+                <p class="mt-4 text-lg">While our headquarters are in Miami, our team of expert consultants provides remote and on-site support to businesses across the country.</p>
             </div>
             <div class="max-w-4xl mx-auto mt-12 fade-in-up">
                 <div class="flex flex-wrap justify-center gap-4 text-lg">
@@ -297,10 +445,10 @@
             </div>
         </section>
 
-        <section id="contact" class="py-20 md:py-32">
+        <section id="contact" class="py-20 md:py-32 container mx-auto px-6">
              <div class="text-center max-w-3xl mx-auto fade-in-up">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Let's Build Your Future</h2>
-                <p class="mt-4 text-lg">Ready to elevate your technology infrastructure? Reach out to our team for a no-obligation consultation. Whether you have a specific project in mind or want to explore how a strategic technology partner can help you achieve your goals, we're here to help. Complete the form below, and let's start the conversation.</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Elevate Your Infrastructure: Start the Conversation</h2>
+                <p class="mt-4 text-lg">Ready for a no-obligation consultation? Whether you have a specific project in mind or want to explore how a strategic technology partner can help you achieve your goals, we're here to help.</p>
             </div>
             <div class="max-w-2xl mx-auto mt-12 fade-in-up">
                 <form id="contact-form" class="space-y-6">
@@ -379,6 +527,29 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             
+            // === ORBITAL ANIMATION LOGIC ===
+            const orbitPath = document.getElementById('orbit-path');
+            if (orbitPath) {
+                const now = new Date();
+                // Sidereal period of the moon in days (the time it takes to orbit the Earth)
+                const cycleDurationDays = 27.321661; 
+                const cycleDurationMs = cycleDurationDays * 24 * 60 * 60 * 1000;
+                const cycleDurationSeconds = cycleDurationMs / 1000;
+
+                // Calculate progress through the current cycle using Unix timestamp
+                // This provides an approximation of the moon's position in orbit.
+                const progress = (now.getTime() % cycleDurationMs) / cycleDurationMs;
+                
+                // Set the animation delay to a negative value. This starts the CSS animation 
+                // partway through its cycle, corresponding to the current time within the lunar cycle.
+                const animationDelay = -(progress * cycleDurationSeconds);
+                
+                // Apply the calculated duration (the full lunar cycle) and the delay.
+                orbitPath.style.animationDuration = `${cycleDurationSeconds}s`;
+                orbitPath.style.animationDelay = `${animationDelay}s`;
+            }
+
+
             // === SERVICE DATA & RENDERING ===
             const serviceData = [
                 // Networking
@@ -447,7 +618,11 @@
                 
                 // Trigger animation after rendering
                 requestAnimationFrame(() => {
-                    document.querySelectorAll('.service-card').forEach(card => card.classList.add('visible'));
+                    document.querySelectorAll('.service-card').forEach(card => {
+                       if (!card.classList.contains('visible')) {
+                           card.classList.add('visible');
+                       }
+                    });
                 });
             }
 
@@ -571,9 +746,11 @@
                 });
                 
                 const activeBtn = document.querySelector(`.industry-btn[data-index="${index}"]`);
-                activeBtn.classList.remove('bg-secondary/50', 'hover:bg-secondary');
-                // Highlight the active button
-                activeBtn.classList.add('bg-accent/20', 'text-accent', 'shadow-md');
+                if (activeBtn) {
+                    activeBtn.classList.remove('bg-secondary/50', 'hover:bg-secondary');
+                    // Highlight the active button
+                    activeBtn.classList.add('bg-accent/20', 'text-accent', 'shadow-md');
+                }
 
                 // Manage Auto-Rotation
                 if (userInteraction) {
@@ -608,6 +785,52 @@
                 startAutoRotate(); // Start the auto-rotation
             }
             // --- End of Industry Focus Logic ---
+
+
+            // === TESTIMONIAL CAROUSEL LOGIC ===
+            const track = document.getElementById('testimonial-track');
+            const dotsContainer = document.getElementById('testimonial-dots');
+            const slides = track.children;
+            let currentSlide = 0;
+
+            // Create dots dynamically
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('button');
+                dot.dataset.slide = i;
+                dot.className = 'testimonial-dot w-3 h-3 rounded-full transition-colors';
+                dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+                dotsContainer.appendChild(dot);
+            }
+            const dots = document.querySelectorAll('.testimonial-dot');
+
+
+            function updateCarousel(index) {
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach(dot => {
+                    dot.classList.remove('bg-accent');
+                    dot.classList.add('bg-gray-600');
+                });
+                if(dots[index]){
+                    dots[index].classList.remove('bg-gray-600');
+                    dots[index].classList.add('bg-accent');
+                }
+            }
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    currentSlide = parseInt(e.target.dataset.slide);
+                    updateCarousel(currentSlide);
+                });
+            });
+
+            // Initialize the first dot
+            updateCarousel(0);
+
+             // Auto-advance testimonials
+             setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateCarousel(currentSlide);
+            }, 10000); // Change every 10 seconds
 
 
             // === GENERAL UTILITIES ===
