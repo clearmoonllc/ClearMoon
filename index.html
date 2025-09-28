@@ -90,7 +90,7 @@
             font-family: 'Inter', sans-serif;
         }
         .font-brand { font-family: 'Press Start 2P', cursive; }
-        /* Updated font-heading to use Orbitron */
+        /* font-heading uses Orbitron */
         .font-heading { font-family: 'Orbitron', sans-serif; }
         .bg-primary { background-color: #0A192F; }
         .bg-secondary { background-color: #2C3E50; }
@@ -228,43 +228,32 @@
         </section>
         
         <section id="industry" class="py-20 md:py-32">
-            <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-3 fade-in-up">
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Proven Excellence in Demanding Environments</h2>
-                     <p class="mt-4 text-lg">This area highlights our specialized expertise, using our success in the hospitality industry as a powerful case study for our broader capabilities. The relentless demands of hospitality—requiring 24/7 uptime, flawless guest experiences, and ironclad security—have perfected our processes. We bring this same level of mission-critical performance and proactive problem-solving to every client, regardless of their sector.</p>
-                    <div class="mt-8 p-6 bg-secondary rounded-lg border border-gray-700">
-                        <h3 class="font-heading text-2xl text-accent">Specialized Expertise in Hospitality</h3>
-                        <p class="mt-3">The unique challenges of the hospitality sector—ensuring PCI compliance, and securing vast amounts of personal data—have honed our expertise. This battle-tested methodology is applied to all client engagements, guaranteeing a higher standard of service and reliability.</p>
-                    </div>
-                    <div class="mt-8">
-                        <h4 class="font-heading text-xl text-lightest-slate">Also Serving...</h4>
-                        <div class="flex flex-wrap gap-4 mt-4 text-light-slate">
-                            <span class="bg-secondary px-4 py-2 rounded-full">Event Venues</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Conference Centers</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Non-Profits</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Retail & E-commerce</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Finance & Banking</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Healthcare</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Education</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Manufacturing</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Legal Services</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">Real Estate</span>
-                            <span class="bg-secondary px-4 py-2 rounded-full">SMBs</span>
+            <div class="text-center max-w-3xl mx-auto fade-in-up mb-12">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Proven Excellence Across Industries</h2>
+                <p class="mt-4 text-lg">We bring mission-critical performance and proactive problem-solving to diverse sectors. Explore how we tailor our expertise to meet the unique demands of your industry.</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-8 fade-in-up">
+                <div class="md:col-span-2">
+                    <div id="industry-selector" class="flex flex-col space-y-2 sticky top-24">
+                        </div>
+                </div>
+
+                <div class="md:col-span-3">
+                    <div id="industry-display" class="bg-secondary p-8 rounded-lg border border-gray-700 h-full flex flex-col shadow-xl" style="min-height: 450px;">
+                        <div class="text-5xl mb-4" id="industry-icon"></div>
+                        <h3 class="font-heading text-2xl md:text-3xl text-lightest-slate mb-4" id="industry-headline"></h3>
+                        <p class="text-lg mb-6" id="industry-description"></p>
+                        
+                        <div class="mt-auto pt-6 border-t border-gray-700">
+                            <h4 class="font-heading text-xl text-accent mb-3">Key Solutions:</h4>
+                            <ul class="list-disc list-inside space-y-1" id="industry-solutions">
+                                </ul>
                         </div>
                     </div>
                 </div>
-                <div class="md:col-span-2 flex justify-center items-center fade-in-up" style="animation-delay: 0.2s;">
-                   <div class="w-full h-96 bg-secondary rounded-lg border border-gray-700 flex items-center justify-center p-8">
-                       <div class="text-center">
-                            <span class="text-6xl text-accent" role="img" aria-label="Hotel emoji">🏨</span>
-                            <p class="mt-4 font-heading text-xl text-lightest-slate">Battle-Tested in Hospitality</p>
-                            <p class="mt-2 text-sm text-light-slate">Our methodologies are forged in an industry where technology, security, and user experience are paramount.</p>
-                       </div>
-                   </div>
-                </div>
             </div>
         </section>
-
         <section id="differentiators" class="py-20 md:py-32">
             <div class="text-center max-w-3xl mx-auto fade-in-up">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-lightest-slate">Why Partner With Us?</h2>
@@ -390,7 +379,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             
-            // UPDATED Service Data Array (Expanded to 16 services)
+            // === SERVICE DATA & RENDERING ===
             const serviceData = [
                 // Networking
                 { category: 'Networking', title: 'Managed Network & Wireless Solutions', icon: '📶', description: 'Designing, installing, and managing secure, high-performance wired, wireless, and cloud networks. Includes guest Wi-Fi, VPNs, and QoS for flawless connectivity.' },
@@ -478,6 +467,151 @@
             // Initial Render
             renderServices();
 
+
+            // --- Industry Focus Interactive Showcase Logic ---
+            const industryData = [
+                { 
+                    id: 'hospitality',
+                    name: 'Hospitality', 
+                    icon: '🏨', 
+                    headline: 'Battle-Tested in Mission-Critical Environments', 
+                    description: 'The relentless demands of hospitality—requiring 24/7 uptime, flawless guest experiences, and ironclad security—have perfected our processes. We ensure PCI compliance and protect vast amounts of guest data.',
+                    solutions: ['Property Management Systems (PMS) Integration', 'Secure High-Density Guest Wi-Fi', 'Access Control & IoT Management', 'PCI Compliance Auditing']
+                },
+                { 
+                    id: 'retail',
+                    name: 'Retail & E-commerce', 
+                    icon: '🛍️', 
+                    headline: 'Securing Transactions and Enhancing Experience', 
+                    description: 'Providing robust e-commerce backends and secure brick-and-mortar IT. We focus on keeping commerce flowing smoothly, securing POS systems, and integrating inventory management.',
+                    solutions: ['POS System Integration & Security', 'E-commerce Backend Support (DevOps)', 'Inventory Management APIs', 'In-Store Network Security']
+                },
+                { 
+                    id: 'finance',
+                    name: 'Finance & Banking', 
+                    icon: '🏦', 
+                    headline: 'Compliance-Driven IT and Ironclad Security', 
+                    description: 'Implementing solutions adhering to strict financial regulations (GLBA, SOX). Our focus is on data security, proactive threat intelligence (SOC), and maintaining reliable infrastructure for critical operations.',
+                    solutions: ['Regulatory Compliance (SOX/GLBA)', '24/7 SOC Monitoring', 'Secure Cloud Infrastructure', 'Disaster Recovery (BDR)']
+                },
+                { 
+                    id: 'healthcare',
+                    name: 'Healthcare', 
+                    icon: '🩺', 
+                    headline: 'HIPAA-Compliant Solutions for Patient Care', 
+                    description: 'Managing EMR systems and securing sensitive patient data. We ensure 24/7 uptime for medical devices and communication systems, maintaining strict adherence to HIPAA guidelines.',
+                    solutions: ['HIPAA Compliance Audits', 'EMR System Management', 'Medical IoT Security', 'Secure Communications']
+                },
+                { 
+                    id: 'manufacturing',
+                    name: 'Manufacturing & Logistics', 
+                    icon: '🏭', 
+                    headline: 'Integrating IT and OT for Smart Operations', 
+                    description: 'Connecting the shop floor with the top floor. We specialize in IoT integration, supply chain automation, and securing Operational Technology (OT) environments to minimize downtime.',
+                    solutions: ['IT/OT Network Segmentation', 'Industrial IoT Integration', 'Supply Chain Automation', 'Data Analytics & Reporting']
+                }
+            ];
+
+            const selectorContainer = document.getElementById('industry-selector');
+            const displayIcon = document.getElementById('industry-icon');
+            const displayHeadline = document.getElementById('industry-headline');
+            const displayDescription = document.getElementById('industry-description');
+            const displaySolutions = document.getElementById('industry-solutions');
+            const displayArea = document.getElementById('industry-display');
+
+            let currentIndustryIndex = 0;
+            let autoRotateInterval;
+            let pauseTimeout;
+            const ROTATE_SPEED = 7000; // 7 seconds
+            const PAUSE_DURATION = 15000; // 15 seconds
+
+            function renderIndustrySelectors() {
+                industryData.forEach((industry, index) => {
+                    const button = document.createElement('button');
+                    // Styling for the sidebar buttons
+                    button.className = 'industry-btn text-left p-4 rounded-lg transition-colors flex items-center space-x-3';
+                    button.dataset.index = index;
+                    button.innerHTML = `<span class="text-2xl">${industry.icon}</span><span>${industry.name}</span>`;
+                    
+                    button.addEventListener('click', () => {
+                        // True indicates user interaction
+                        selectIndustry(index, true);
+                    });
+                    
+                    selectorContainer.appendChild(button);
+                });
+            }
+
+            function selectIndustry(index, userInteraction = false) {
+                currentIndustryIndex = index;
+                const industry = industryData[index];
+
+                // Update Display Content with fade transition
+                displayArea.style.opacity = 0;
+                setTimeout(() => {
+                    displayIcon.textContent = industry.icon;
+                    displayHeadline.textContent = industry.headline;
+                    displayDescription.textContent = industry.description;
+
+                    // Render Solutions
+                    displaySolutions.innerHTML = '';
+                    industry.solutions.forEach(solution => {
+                        const li = document.createElement('li');
+                        li.textContent = solution;
+                        displaySolutions.appendChild(li);
+                    });
+                    displayArea.style.opacity = 1;
+                }, 300); // Wait for fade out (300ms)
+
+
+                // Update Button States
+                document.querySelectorAll('.industry-btn').forEach(btn => {
+                    btn.classList.remove('bg-accent/20', 'text-accent', 'shadow-md');
+                    btn.classList.add('bg-secondary/50', 'hover:bg-secondary');
+                });
+                
+                const activeBtn = document.querySelector(`.industry-btn[data-index="${index}"]`);
+                activeBtn.classList.remove('bg-secondary/50', 'hover:bg-secondary');
+                // Highlight the active button
+                activeBtn.classList.add('bg-accent/20', 'text-accent', 'shadow-md');
+
+                // Manage Auto-Rotation
+                if (userInteraction) {
+                    // Stop the current rotation
+                    clearInterval(autoRotateInterval);
+                    // Clear any pending restart timeout (crucial if user clicks rapidly)
+                    clearTimeout(pauseTimeout);
+                    // Set a new timeout to restart rotation after the pause duration
+                    pauseTimeout = setTimeout(() => {
+                        startAutoRotate();
+                    }, PAUSE_DURATION);
+                }
+            }
+
+            function startAutoRotate() {
+                // Ensure no other intervals are running
+                clearInterval(autoRotateInterval);
+                // Start the 7-second rotation cycle
+                autoRotateInterval = setInterval(() => {
+                    let nextIndex = (currentIndustryIndex + 1) % industryData.length;
+                    // False indicates automatic rotation
+                    selectIndustry(nextIndex, false);
+                }, ROTATE_SPEED);
+            }
+
+            // Initialize Industry Showcase
+            if (selectorContainer && displayArea) {
+                // Add transition style for the fade effect
+                displayArea.style.transition = 'opacity 0.3s ease-in-out';
+                renderIndustrySelectors();
+                selectIndustry(0, false); // Select the first industry initially
+                startAutoRotate(); // Start the auto-rotation
+            }
+            // --- End of Industry Focus Logic ---
+
+
+            // === GENERAL UTILITIES ===
+
             // Starfield generation
             const starfield = document.getElementById('starfield');
             for (let i = 0; i < 150; i++) {
@@ -529,7 +663,6 @@
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
             const submitButton = document.getElementById('submit-button');
-            // NOTE: Ensure this URL matches your active Google Apps Script deployment.
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIq2PirflgZHPEI3WIQvVzFzFcYP_RVt98JhCghwXMyIGdFWeh36L2DQHxJR0PTxK-cg/exec'; 
 
             contactForm.addEventListener('submit', function(e) {
