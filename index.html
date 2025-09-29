@@ -176,13 +176,12 @@
             left: 0;
             animation: rotate linear infinite;
             animation-duration: var(--orbit-duration);
-            /* Ensure animation continues running even when tab is inactive */
             animation-play-state: running; 
         }
 
         .orbit-moon {
             position: absolute;
-            top: 0;
+            top: 0; /* Aligned to the top edge of the orbit path */
             left: 50%;
             width: 6px;
             height: 6px;
@@ -190,10 +189,49 @@
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
+        
+        /* Telemetry Styling */
+        .telemetry {
+            position: absolute;
+            color: rgba(100, 255, 218, 0.7);
+            font-size: 8px; /* Ultra small font for the retro look */
+            white-space: nowrap;
+        }
+
+        .earth-time {
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+        }
+
+        .earth-coords {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+        }
+
+        .moon-coords {
+            top: 50%;
+            left: calc(100% + 5px);
+            transform: translateY(-50%);
+            /* Counter-rotation to keep text upright */
+            animation: counter-rotate linear infinite;
+            animation-duration: var(--orbit-duration);
+            animation-play-state: running; 
+        }
+
 
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+
+        /* We must include the translateY in the keyframes to ensure the rotation center is correct relative to the positioning */
+        @keyframes counter-rotate {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(-360deg); }
         }
 
          /* --- Logo Marquee Styles --- */
@@ -204,7 +242,8 @@
         }
         .marquee-content {
             display: inline-flex;
-            animation: marquee-scroll 30s linear infinite;
+            /* Increased duration for the longer list of logos */
+            animation: marquee-scroll 90s linear infinite;
         }
         /* Pause on hover */
         .marquee:hover .marquee-content {
@@ -283,9 +322,14 @@
                 </div>
                 <div class="hidden lg:flex lg:w-1/2 justify-center items-center fade-in-up" style="transition-delay: 0.3s;">
                     <div class="orbit-container">
-                        <div class="orbit-center"></div>
+                        <div class="orbit-center">
+                            <div id="earth-time" class="telemetry earth-time font-brand"></div>
+                            <div id="earth-coords" class="telemetry earth-coords font-brand"></div>
+                        </div>
                         <div id="orbit-path" class="orbit-path">
-                            <div class="orbit-moon"></div>
+                            <div class="orbit-moon">
+                                <div id="moon-coords" class="telemetry moon-coords font-brand"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -294,24 +338,60 @@
 
         <section id="partners" class="py-8 bg-primary border-t border-b border-white/10 fade-in-up">
             <div class="container mx-auto px-6 mb-4 text-center">
-                <p class="text-light-slate font-medium">Trusted by innovative companies nationwide</p>
+                <p class="text-light-slate font-medium">Trusted partners and clients nationwide</p>
             </div>
             <div class="marquee">
                 <div class="marquee-content">
-                    <span class="px-10 text-2xl font-heading text-gray-500">Horizon Hotels</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">Apex Mfg</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">SecureBank Corp</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">Retail Dynamics</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">HealthConnect</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">EventPro Venues</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Marriott</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Hilton</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Wyndham</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Universal Studios</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Sundance</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">O'Reilly</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">SingleDigits</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Windstream</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Cloud5</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Guest-Tek</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Aerwave</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">WhiteSky</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Groove</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Allbridge</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">DeepBlue</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">CrownCastle</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">BH</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">WorldVue</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">HospitalityWifi</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">WorldCinema</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Ruckus</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Auvik</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Mist</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">FatalFoxStudios</span>
                 </div>
                 <div class="marquee-content" aria-hidden="true">
-                    <span class="px-10 text-2xl font-heading text-gray-500">Horizon Hotels</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">Apex Mfg</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">SecureBank Corp</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">Retail Dynamics</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">HealthConnect</span>
-                    <span class="px-10 text-2xl font-heading text-gray-500">EventPro Venues</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Marriott</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Hilton</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Wyndham</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Universal Studios</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Sundance</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">O'Reilly</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">SingleDigits</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Windstream</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Cloud5</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Guest-Tek</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Aerwave</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">WhiteSky</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Groove</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Allbridge</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">DeepBlue</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">CrownCastle</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">BH</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">WorldVue</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">HospitalityWifi</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">WorldCinema</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Ruckus</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Auvik</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">Mist</span>
+                    <span class="px-8 text-xl font-heading text-gray-500">FatalFoxStudios</span>
                 </div>
             </div>
         </section>
@@ -527,27 +607,73 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             
-            // === ORBITAL ANIMATION LOGIC ===
+            // === ORBITAL ANIMATION & TELEMETRY LOGIC ===
             const orbitPath = document.getElementById('orbit-path');
+            const moonCoordsEl = document.getElementById('moon-coords');
+            const earthTimeEl = document.getElementById('earth-time');
+            const earthCoordsEl = document.getElementById('earth-coords');
+
+            // Sidereal period of the moon in days
+            const cycleDurationDays = 27.321661; 
+            const cycleDurationMs = cycleDurationDays * 24 * 60 * 60 * 1000;
+            const cycleDurationSeconds = cycleDurationMs / 1000;
+
             if (orbitPath) {
                 const now = new Date();
-                // Sidereal period of the moon in days (the time it takes to orbit the Earth)
-                const cycleDurationDays = 27.321661; 
-                const cycleDurationMs = cycleDurationDays * 24 * 60 * 60 * 1000;
-                const cycleDurationSeconds = cycleDurationMs / 1000;
-
-                // Calculate progress through the current cycle using Unix timestamp
-                // This provides an approximation of the moon's position in orbit.
+                
+                // Calculate progress through the current cycle
                 const progress = (now.getTime() % cycleDurationMs) / cycleDurationMs;
                 
-                // Set the animation delay to a negative value. This starts the CSS animation 
-                // partway through its cycle, corresponding to the current time within the lunar cycle.
+                // Set the animation delay to a negative value to start partway through the cycle.
                 const animationDelay = -(progress * cycleDurationSeconds);
                 
-                // Apply the calculated duration (the full lunar cycle) and the delay.
+                // Apply to the orbit path and the counter-rotating moon coordinates
                 orbitPath.style.animationDuration = `${cycleDurationSeconds}s`;
                 orbitPath.style.animationDelay = `${animationDelay}s`;
+
+                if (moonCoordsEl) {
+                    // Ensure the counter-rotation uses the same timing
+                    moonCoordsEl.style.animationDuration = `${cycleDurationSeconds}s`;
+                    moonCoordsEl.style.animationDelay = `${animationDelay}s`;
+                }
             }
+
+            // Telemetry Updates
+            function generateCoords(prefix) {
+                // Generate randomized coordinates for aesthetic effect
+                const x = (Math.random() * 10000).toFixed(2);
+                const y = (Math.random() * 10000).toFixed(2);
+                const z = (Math.random() * 5000).toFixed(2);
+                return `${prefix} X:${x} Y:${y} Z:${z}`;
+            }
+
+            function updateTelemetry() {
+                const now = new Date();
+                // Format date and time for the telemetry display
+                const dateStr = now.toISOString().split('T')[0];
+                const timeStr = now.toTimeString().split(' ')[0];
+                if (earthTimeEl) {
+                    earthTimeEl.textContent = `${dateStr} ${timeStr} UTC`;
+                }
+            }
+
+            function updateMoonCoords() {
+                if (moonCoordsEl) {
+                    moonCoordsEl.textContent = generateCoords("M");
+                }
+            }
+
+            // Initial Setup
+            updateTelemetry();
+            updateMoonCoords();
+            if (earthCoordsEl) {
+                // Earth coordinates remain static upon load
+                earthCoordsEl.textContent = generateCoords("E");
+            }
+
+            // Intervals for updates
+            setInterval(updateTelemetry, 1000); // Update time every second
+            setInterval(updateMoonCoords, 3000); // Update moon coords every 3 seconds
 
 
             // === SERVICE DATA & RENDERING ===
@@ -790,47 +916,50 @@
             // === TESTIMONIAL CAROUSEL LOGIC ===
             const track = document.getElementById('testimonial-track');
             const dotsContainer = document.getElementById('testimonial-dots');
-            const slides = track.children;
-            let currentSlide = 0;
+            
+            if(track && dotsContainer) {
+                const slides = track.children;
+                let currentSlide = 0;
 
-            // Create dots dynamically
-            for (let i = 0; i < slides.length; i++) {
-                const dot = document.createElement('button');
-                dot.dataset.slide = i;
-                dot.className = 'testimonial-dot w-3 h-3 rounded-full transition-colors';
-                dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
-                dotsContainer.appendChild(dot);
-            }
-            const dots = document.querySelectorAll('.testimonial-dot');
-
-
-            function updateCarousel(index) {
-                track.style.transform = `translateX(-${index * 100}%)`;
-                dots.forEach(dot => {
-                    dot.classList.remove('bg-accent');
-                    dot.classList.add('bg-gray-600');
-                });
-                if(dots[index]){
-                    dots[index].classList.remove('bg-gray-600');
-                    dots[index].classList.add('bg-accent');
+                // Create dots dynamically
+                for (let i = 0; i < slides.length; i++) {
+                    const dot = document.createElement('button');
+                    dot.dataset.slide = i;
+                    dot.className = 'testimonial-dot w-3 h-3 rounded-full transition-colors';
+                    dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+                    dotsContainer.appendChild(dot);
                 }
-            }
+                const dots = document.querySelectorAll('.testimonial-dot');
 
-            dots.forEach(dot => {
-                dot.addEventListener('click', (e) => {
-                    currentSlide = parseInt(e.target.dataset.slide);
-                    updateCarousel(currentSlide);
+
+                function updateCarousel(index) {
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                    dots.forEach(dot => {
+                        dot.classList.remove('bg-accent');
+                        dot.classList.add('bg-gray-600');
+                    });
+                    if(dots[index]){
+                        dots[index].classList.remove('bg-gray-600');
+                        dots[index].classList.add('bg-accent');
+                    }
+                }
+
+                dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        currentSlide = parseInt(e.target.dataset.slide);
+                        updateCarousel(currentSlide);
+                    });
                 });
-            });
 
-            // Initialize the first dot
-            updateCarousel(0);
+                // Initialize the first dot
+                updateCarousel(0);
 
-             // Auto-advance testimonials
-             setInterval(() => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateCarousel(currentSlide);
-            }, 10000); // Change every 10 seconds
+                // Auto-advance testimonials
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    updateCarousel(currentSlide);
+                }, 10000); // Change every 10 seconds
+            }
 
 
             // === GENERAL UTILITIES ===
@@ -868,19 +997,21 @@
             const menuOpenIcon = document.getElementById('menu-open-icon');
             const menuCloseIcon = document.getElementById('menu-close-icon');
 
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                menuOpenIcon.classList.toggle('hidden');
-                menuCloseIcon.classList.toggle('hidden');
-            });
-
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    menuOpenIcon.classList.remove('hidden');
-                    menuCloseIcon.classList.add('hidden');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    menuOpenIcon.classList.toggle('hidden');
+                    menuCloseIcon.classList.toggle('hidden');
                 });
-            });
+
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        menuOpenIcon.classList.remove('hidden');
+                        menuCloseIcon.classList.add('hidden');
+                    });
+                });
+            }
 
             // Contact form submission
             const contactForm = document.getElementById('contact-form');
@@ -888,33 +1019,35 @@
             const submitButton = document.getElementById('submit-button');
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIq2PirflgZHPEI3WIQvVzFzFcYP_RVt98JhCghwXMyIGdFWeh36L2DQHxJR0PTxK-cg/exec'; 
 
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                submitButton.disabled = true;
-                submitButton.textContent = 'Submitting...';
-                formStatus.textContent = '';
-                
-                const formData = new FormData(contactForm);
-                fetch(SCRIPT_URL, { method: 'POST', body: formData })
-                    .then(response => {
-                        if (response.ok) {
-                            formStatus.textContent = 'Thank you for your message!';
-                            formStatus.className = 'text-center mt-6 h-6 text-accent';
-                            contactForm.reset();
-                        } else {
-                            throw new Error('Network response was not ok.');
-                        }
-                    })
-                    .catch(error => {
-                        formStatus.textContent = 'An error occurred. Please try again.';
-                        formStatus.className = 'text-center mt-6 h-6 text-red-500';
-                        console.error('Form submission error:', error);
-                    })
-                    .finally(() => {
-                         submitButton.disabled = false;
-                         submitButton.textContent = "Let's Connect";
-                    });
-            });
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Submitting...';
+                    formStatus.textContent = '';
+                    
+                    const formData = new FormData(contactForm);
+                    fetch(SCRIPT_URL, { method: 'POST', body: formData })
+                        .then(response => {
+                            if (response.ok) {
+                                formStatus.textContent = 'Thank you for your message!';
+                                formStatus.className = 'text-center mt-6 h-6 text-accent';
+                                contactForm.reset();
+                            } else {
+                                throw new Error('Network response was not ok.');
+                            }
+                        })
+                        .catch(error => {
+                            formStatus.textContent = 'An error occurred. Please try again.';
+                            formStatus.className = 'text-center mt-6 h-6 text-red-500';
+                            console.error('Form submission error:', error);
+                        })
+                        .finally(() => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = "Let's Connect";
+                        });
+                });
+            }
 
         });
     </script>
