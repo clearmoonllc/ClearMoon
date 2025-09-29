@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel WiFi Infrastructure Cost Calculator | Clear Moon</title>
+    <meta name="description" content="Get an instant estimate for your hotel's wireless network infrastructure deployment. Clear Moon's interactive calculator helps you budget for new Wi-Fi installation.">
+    <meta name="keywords" content="hotel wifi cost, hospitality wifi, hotel network installation, wifi cost estimator, wireless infrastructure cost, clear moon llc">
+    <link rel="canonical" href="https://clearmoon.llc/hotel-wifi-calculator"> <!-- Full URL of the page -->
+
+    <!-- Open Graph / Facebook SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://clearmoon.llc/hotel-wifi-calculator">
+    <meta property="og:title" content="Hotel WiFi Infrastructure Cost Calculator | Clear Moon">
+    <meta property="og:description" content="Use our interactive calculator to estimate the cost of deploying a new, high-performance wireless network for your hotel property.">
+    <meta property="og:image" content="https://clearmoon.llc/og-image-calculator.png"> <!-- Create a specific preview image for social sharing -->
+
+    <!-- Twitter SEO -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://clearmoon.llc/hotel-wifi-calculator">
+    <meta property="twitter:title" content="Hotel WiFi Infrastructure Cost Calculator | Clear Moon">
+    <meta property="twitter:description" content="How much does new hotel Wi-Fi cost? Get a free, instant estimate with our interactive tool.">
+    <meta property="twitter:image" content="https://clearmoon.llc/twitter-card-calculator.png"> <!-- Twitter-specific preview image -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='625 305 140 165'%3E%3Cdefs%3E%3ClinearGradient id='grad' gradientUnits='userSpaceOnUse' x1='697.88' y1='309.67' x2='671.36' y2='460.07'%3E%3Cstop offset='0' stop-color='%23FFF57E'/%3E%3Cstop offset='.2' stop-color='%23FDC60B'/%3E%3Cstop offset='.5' stop-color='%23F28F3F'/%3E%3Cstop offset='.8' stop-color='%23EE7139'/%3E%3Cstop offset='1' stop-color='%23AB576A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23grad)' d='M758.84 384.49c0 42.17-34.18 76.35-76.35 76.35-37.94 0-69.4-27.68-75.33-63.94 10.56 19.8 31.41 33.27 55.41 33.27 34.67 0 62.77-28.1 62.77-62.77 0-27.39-17.54-50.66-41.99-59.24 36.28-2.58 70 31.4 70 71.58z M659.12 339.59l11.01 4.53-1.4-11.83 4.54-11.01-11.83 1.4-11.01-4.54 1.4 11.83-4.54 11.01 11.83-1.4z M648.25 416l4.27-4.96 6.15-2.26-4.97-4.27-2.26-6.15-4.27 4.97-6.15 2.26 4.97 4.27-2.26 6.15z M692.16 364.48l3-.1-2.42-2.09-1.11-3 -2.09 2.42-3 1.11 2.42 2.09 1.11 3 2.09-2.43z M630.04 367.01l2.92-1.31 3.19.27-1.31-2.92.28-3.19-2.92 1.31-3.19-.27 1.31 2.92-.28 3.19z'/%3E%3C/svg%3E">
+
+    <!-- JSON-LD Structured Data for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Hotel WiFi Infrastructure Cost Calculator",
+      "url": "https://clearmoon.llc/hotel-wifi-calculator",
+      "description": "An interactive tool to estimate the cost of deploying new wireless infrastructure for hotel and hospitality properties.",
+      "mainEntity": {
+        "@type": "Calculator",
+        "name": "Hotel Wireless Infrastructure Cost Estimator"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clear Moon LLC",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://clearmoon.llc/logo.svg" 
+        }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How accurate is this WiFi cost calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This calculator provides a budgetary estimate based on industry averages. The final cost depends on specific property characteristics like construction materials, existing infrastructure, and desired performance levels. A physical site survey is required for a precise quote."
+        }
+      },{
+        "@type": "Question",
+        "name": "What factors influence the cost of hotel WiFi installation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Key factors include the number of rooms, the cost of wireless access points, the availability of existing cabling (both in-room and in hallways), labor costs, and the complexity of the network infrastructure (switches, controllers, gateways)."
+        }
+      },{
+        "@type": "Question",
+        "name": "Why is good WiFi important for a hotel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "High-quality WiFi is no longer an amenity; it's a utility expected by nearly all guests. It directly impacts guest satisfaction, review scores, and repeat business. A reliable network is crucial for both guest experience and hotel operations."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        /* Clear Moon Theme Definition */
+        body {
+            background-color: #0A192F;
+            color: #CCD6F6;
+            font-family: 'Inter', sans-serif;
+        }
+        .font-heading { font-family: 'Orbitron', sans-serif; }
+        .bg-primary { background-color: #0A192F; }
+        .bg-secondary { background-color: #1B2A41; } /* Slightly lighter for better contrast */
+        .text-accent { color: #64FFDA; }
+        .border-accent { border-color: #64FFDA; }
+        .text-light-slate { color: #CCD6F6; }
+        .text-lightest-slate { color: #E6F1FF; }
+        .bg-accent-dark { background-color: #115E59; }
+        .bg-input-bg { background-color: #2C3E50; }
+
+        /* Custom styles for slider thumb */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #64FFDA;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #0A192F;
+            box-shadow: 0 0 2px rgba(0,0,0,0.3);
+            transition: background-color 0.2s ease-in-out;
+        }
+        input[type=range]:active::-webkit-slider-thumb {
+            background: #3b9a82;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #64FFDA;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #0A192F;
+        }
+        
+        /* Custom styles for toggle switch */
+        .toggle-checkbox {
+            border-color: #1B2A41;
+        }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #64FFDA;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #64FFDA;
+        }
+        .toggle-label {
+             background-color: #4a607c;
+        }
+
+        #advancedDetails.hidden {
+            display: none;
+        }
+        .value-input {
+            width: 70px;
+            text-align: center;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-primary flex flex-col min-h-screen">
+    <canvas id="starfield" class="fixed top-0 left-0 -z-10"></canvas>
+
+    <header id="header" class="bg-primary/90 backdrop-blur-md sticky top-0 z-40 border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="https://clearmoon.llc" class="flex items-center space-x-3">
+                 <svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg" aria-label="Clear Moon Logo">
+                     <defs>
+                         <linearGradient id="logoGradient" gradientUnits="userSpaceOnUse" x1="697.8817" y1="309.6764" x2="671.3631" y2="460.0707">
+                             <stop offset="0" style="stop-color:#FFF57E"/>
+                             <stop offset="0.2" style="stop-color:#FDC60B"/>
+                             <stop offset="0.5" style="stop-color:#F28F3F"/>
+                             <stop offset="0.8" style="stop-color:#EE7139"/>
+                             <stop offset="1" style="stop-color:#AB576A"/>
+                         </linearGradient>
+                     </defs>
+                     <g fill="url(#logoGradient)">
+                        <path d="M758.843,384.489c0,42.169-34.184,76.353-76.353,76.353c-37.939,0-69.399-27.675-75.332-63.936 c10.563,19.791,31.409,33.264,55.41,33.264c34.67,0,62.776-28.106,62.776-62.776c0-27.382-17.537-50.655-41.987-59.236 C725.124,308.624,758.843,342.611,758.843,384.489z M659.118,339.589l11.013,4.535l-1.4-11.828l4.535-11.013l-11.828,1.4 l-11.013-4.535l1.4,11.828l-4.535,11.013L659.118,339.589z M648.254,416.001l4.27-4.966l6.148-2.259l-4.966-4.27l-2.259-6.147 l-4.27,4.966l-6.147,2.259l4.966,4.27L648.254,416.001z M692.164,364.475l3.005-1.104l-2.427-2.087l-1.104-3.005l-2.087,2.427 l-3.005,1.104l2.427,2.087l1.104,3.005L692.164,364.475z M630.041,367.013l2.92-1.312l3.189,0.276l-1.312-2.92l0.276-3.189 l-2.92,1.312l-3.189-0.276l1.312,2.92L630.041,367.013z"/>
+                     </g>
+                 </svg>
+                <span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span>
+            </a>
+            <a href="https://clearmoon.llc" class="text-light-slate hover:text-accent transition-colors">
+                &larr; Back to Main Site
+            </a>
+        </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto p-4 py-12">
+        <div class="w-full max-w-4xl mx-auto bg-secondary rounded-2xl shadow-xl p-6 md:p-8 space-y-8 border border-white/10">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-lightest-slate font-heading">Wireless Infrastructure Estimator</h1>
+                <p class="text-light-slate mt-1">Estimate deployment costs for your hotel property.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <!-- Sliders and Toggles -->
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <label for="roomsSlider" class="font-semibold text-light-slate">Number of Rooms</label>
+                                <input type="number" id="roomsValue" value="155" min="10" max="300" class="value-input text-accent font-semibold bg-input-bg px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-accent">
+                            </div>
+                            <input type="range" id="roomsSlider" min="10" max="300" value="155" class="w-full h-2 bg-input-bg rounded-lg appearance-none cursor-pointer" aria-label="Number of Rooms">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <label for="floorsSlider" class="font-semibold text-light-slate">Number of Floors</label>
+                                <input type="number" id="floorsValue" value="10" min="1" max="155" class="value-input text-accent font-semibold bg-input-bg px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-accent">
+                            </div>
+                            <input type="range" id="floorsSlider" min="1" max="155" value="10" class="w-full h-2 bg-input-bg rounded-lg appearance-none cursor-pointer" aria-label="Number of Floors">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 pt-4 border-t border-white/10">
+                       <h2 class="text-lg font-semibold text-lightest-slate">Project Variables</h2>
+                        <div class="flex items-center justify-between bg-input-bg p-3 rounded-lg">
+                            <span class="text-light-slate">Existing In-Unit Cabling</span>
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="toggle-unit" id="cablingUnit" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-primary border-4 appearance-none cursor-pointer" checked/>
+                                <label for="cablingUnit" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between bg-input-bg p-3 rounded-lg">
+                            <span class="text-light-slate">Existing Hallway Cabling</span>
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="toggle-hallway" id="cablingHallway" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-primary border-4 appearance-none cursor-pointer" checked/>
+                                <label for="cablingHallway" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
+                            </div>
+                        </div>
+                         <div class="flex items-center justify-between bg-input-bg p-3 rounded-lg">
+                            <span class="text-light-slate">High Uncertainty (Wider Range)</span>
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="toggle-uncertainty" id="highUncertainty" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-primary border-4 appearance-none cursor-pointer"/>
+                                <label for="highUncertainty" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between bg-input-bg p-3 rounded-lg">
+                            <span class="text-light-slate">Phased Deployment (Increased Cost)</span>
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="toggle-phased" id="phasedDeployment" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-primary border-4 appearance-none cursor-pointer"/>
+                                <label for="phasedDeployment" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Box -->
+                <div class="bg-accent-dark text-white rounded-xl p-6 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <h2 class="text-lg font-semibold opacity-80">Cost Estimate</h2>
+                        <div class="mt-2">
+                            <p id="totalCost" class="text-3xl md:text-4xl font-bold tracking-tight">$54,250 - $77,500</p>
+                            <p class="opacity-80 text-sm mt-1">Total Estimated Project Cost</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm mb-3">Ready for a detailed quote based on a site survey?</p>
+                        <a href="https://clearmoon.llc/#contact" class="block w-full text-center bg-primary text-accent font-bold py-3 px-4 rounded-md text-lg hover:bg-primary/80 transition-colors">
+                            Schedule Consultation
+                        </a>
+                    </div>
+
+                    <div id="advancedDetails" class="mt-6 border-t border-white/20 pt-4 space-y-3 text-sm hidden">
+                        <p class="text-xs text-center opacity-70">Advanced Details Unlocked</p>
+                        <div class="flex justify-between">
+                            <span class="opacity-80">Cost/Unit (Base):</span>
+                            <span id="costPerUnit" class="font-medium">$250 - $350</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="opacity-80">Units/Floor:</span>
+                            <span id="unitsPerFloor" class="font-medium">15.5</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="opacity-80">Inefficiency Multiplier:</span>
+                            <span id="multiplier" class="font-medium">1.02x</span>
+                        </div>
+                        <div id="phasingPremiumDetail" class="flex justify-between hidden">
+                            <span class="opacity-80">Phasing Premium:</span>
+                            <span id="phasingPremiumValue" class="font-medium"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media & Content Section -->
+        <div class="w-full max-w-4xl mx-auto mt-12 space-y-8">
+            <div class="bg-secondary rounded-2xl shadow-xl p-6 md:p-8 border border-white/10">
+                <h2 class="text-2xl font-bold text-lightest-slate font-heading mb-4">Why Invest in Modern Hotel Wi-Fi?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                         <p class="text-light-slate mb-4">
+                            In today's connected world, high-performance Wi-Fi is a critical utility for guest satisfaction and hotel operations. A modern network does more than just provide internet access; it enables smart room features, supports staff communication, and provides valuable data analytics. 
+                         </p>
+                         <p class="text-light-slate">
+                            Investing in robust infrastructure directly translates to better reviews, repeat business, and a future-proof property.
+                         </p>
+                    </div>
+                    <!-- YouTube Video Embed -->
+                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                        <iframe 
+                            src="https://www.youtube.com/embed/s5nU0_Gq_3E" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen 
+                            title="Explainer Video on Modern Wi-Fi Technology"
+                            class="w-full h-full">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer class="container mx-auto text-center p-6 text-light-slate/60 text-sm">
+        <p>&copy; 2025 Clear Moon LLC. All Rights Reserved.</p>
+        <p class="mt-1">This calculator is for estimation purposes only. Contact us for a formal quote.</p>
+    </footer>
+
+    <script>
+        // --- DOM element references ---
+        const cablingUnit = document.getElementById('cablingUnit');
+        const cablingHallway = document.getElementById('cablingHallway');
+        const highUncertainty = document.getElementById('highUncertainty');
+        const phasedDeployment = document.getElementById('phasedDeployment');
+        
+        const roomsSlider = document.getElementById('roomsSlider');
+        const floorsSlider = document.getElementById('floorsSlider');
+        const roomsValue = document.getElementById('roomsValue');
+        const floorsValue = document.getElementById('floorsValue');
+
+        const totalCostEl = document.getElementById('totalCost');
+        const advancedDetailsEl = document.getElementById('advancedDetails');
+        const costPerUnitEl = document.getElementById('costPerUnit');
+        const unitsPerFloorEl = document.getElementById('unitsPerFloor');
+        const multiplierEl = document.getElementById('multiplier');
+        const phasingPremiumDetail = document.getElementById('phasingPremiumDetail');
+        const phasingPremiumValue = document.getElementById('phasingPremiumValue');
+
+        // --- Constants and State ---
+        const OPTIMAL_UNITS_PER_FLOOR = 16;
+        let backtickCount = 0;
+
+        // --- Functions ---
+        
+        /**
+         * Main function to calculate and display the cost estimate.
+         */
+        function calculateCost() {
+            // 1. Get current values from inputs
+            const hasUnitCabling = cablingUnit.checked;
+            const hasHallwayCabling = cablingHallway.checked;
+            const isUncertain = highUncertainty.checked;
+            const isPhased = phasedDeployment.checked;
+            
+            const rooms = parseInt(roomsValue.value, 10);
+            const floors = parseInt(floorsValue.value, 10);
+
+            // 2. Determine base cost per unit based on cabling toggles
+            let costLow, costHigh, costPerUnitText;
+            if (hasUnitCabling && hasHallwayCabling) {
+                costLow = 250; costHigh = 350; costPerUnitText = "$250 - $350";
+            } else if (hasUnitCabling && !hasHallwayCabling) {
+                costLow = 375; costHigh = 500; costPerUnitText = "$375 - $500";
+            } else if (!hasUnitCabling && hasHallwayCabling) {
+                costLow = 525; costHigh = 625; costPerUnitText = "$525 - $625";
+            } else { // Neither is checked
+                costLow = 650; costHigh = 900; costPerUnitText = "$650 - $900";
+            }
+            costPerUnitEl.textContent = costPerUnitText;
+
+            // 3. Calculate the inefficiency multiplier based on units/floor
+            const unitsPerFloor = rooms / floors;
+            unitsPerFloorEl.textContent = unitsPerFloor.toFixed(1);
+            
+            const inefficiencyScore = Math.min(1, Math.abs(1 - (unitsPerFloor / OPTIMAL_UNITS_PER_FLOOR)));
+            const multiplier = 1 + (0.5 * inefficiencyScore);
+            multiplierEl.textContent = `${multiplier.toFixed(2)}x`;
+
+            // 4. Calculate the initial total cost
+            let totalLow = costLow * rooms * multiplier;
+            let totalHigh = costHigh * rooms * multiplier;
+            
+            // 5. Apply uncertainty modifier if toggled
+            if(isUncertain) {
+                totalLow *= 0.9;
+                totalHigh *= 1.25;
+            }
+            
+            // 6. Handle phased deployment cost and note
+            if (isPhased) {
+                const minRooms = parseInt(roomsSlider.min, 10);
+                const maxRooms = parseInt(roomsSlider.max, 10);
+                // Calculate percentage from 15% (at min rooms) down to 5% (at max rooms)
+                const phasedPercent = 0.15 - ((rooms - minRooms) / (maxRooms - minRooms)) * 0.10;
+                totalLow *= (1 + phasedPercent);
+                totalHigh *= (1 + phasedPercent);
+                phasingPremiumValue.textContent = `~${(phasedPercent * 100).toFixed(1)}%`;
+                phasingPremiumDetail.classList.remove('hidden');
+            } else {
+                phasingPremiumDetail.classList.add('hidden');
+            }
+
+            // 7. Update the UI with the final results
+            const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+            totalCostEl.textContent = `${formatter.format(totalLow)} - ${formatter.format(totalHigh)}`;
+        }
+
+        /**
+         * Syncs sliders and number inputs, validates values, and triggers recalculation.
+         */
+        function syncAndCalculate() {
+            // Sync sliders to number inputs
+            roomsSlider.value = roomsValue.value;
+            floorsSlider.value = floorsValue.value;
+
+            // Validate and cap floor value based on rooms
+            const rooms = parseInt(roomsValue.value) || 0;
+            const floors = parseInt(floorsValue.value) || 1;
+            
+            floorsSlider.max = rooms;
+            floorsValue.max = rooms;
+
+            if (floors > rooms) {
+                floorsValue.value = rooms;
+                floorsSlider.value = rooms;
+            }
+            
+            calculateCost();
+        }
+
+        /**
+         * Handles the secret key combination to show advanced details.
+         * @param {KeyboardEvent} e The keyboard event.
+         */
+        function handleSecretCode(e) {
+            if (e.key === '`') {
+                backtickCount++;
+            } else {
+                backtickCount = 0; // Reset if any other key is pressed
+            }
+
+            if (backtickCount >= 5) {
+                advancedDetailsEl.classList.toggle('hidden');
+                backtickCount = 0; // Reset after toggling
+            }
+        }
+
+        // --- Event Listeners ---
+        window.addEventListener('keydown', handleSecretCode);
+        
+        // Listen to toggles
+        const toggles = [cablingUnit, cablingHallway, highUncertainty, phasedDeployment];
+        toggles.forEach(toggle => toggle.addEventListener('input', syncAndCalculate));
+
+        // Sync Sliders and Number Inputs
+        roomsSlider.addEventListener('input', () => { roomsValue.value = roomsSlider.value; syncAndCalculate(); });
+        roomsValue.addEventListener('input', syncAndCalculate);
+        floorsSlider.addEventListener('input', () => { floorsValue.value = floorsSlider.value; syncAndCalculate(); });
+        floorsValue.addEventListener('input', syncAndCalculate);
+
+        // Initial calculation on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            syncAndCalculate();
+
+            // --- Starfield Background Logic ---
+            const starfield = document.getElementById('starfield');
+            if (starfield) {
+                const ctx = starfield.getContext('2d');
+                let stars = [];
+                const numStars = 250; // Adjust for density
+
+                function setCanvasSize() {
+                    starfield.width = window.innerWidth;
+                    starfield.height = window.innerHeight;
+                }
+
+                function createStars() {
+                    stars = [];
+                    const starColor = '#CCD6F6'; // Using text-light-slate color
+                    for (let i = 0; i < numStars; i++) {
+                        stars.push({
+                            x: Math.random() * starfield.width,
+                            y: Math.random() * starfield.height,
+                            radius: Math.random() * 1.2 + 0.3,
+                            alpha: Math.random() * 0.7 + 0.1,
+                            velocity: (Math.random() - 0.5) * 0.015,
+                            color: starColor
+                        });
+                    }
+                }
+
+                function animateStars() {
+                    ctx.clearRect(0, 0, starfield.width, starfield.height);
+                    stars.forEach(star => {
+                        star.alpha += star.velocity;
+
+                        if (star.alpha <= 0.1 || star.alpha >= 0.8) {
+                            star.velocity = -star.velocity;
+                        }
+
+                        ctx.beginPath();
+                        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(204, 214, 246, ${star.alpha})`;
+                        ctx.fill();
+                    });
+                    requestAnimationFrame(animateStars);
+                }
+
+                setCanvasSize();
+                createStars();
+                animateStars();
+
+                window.addEventListener('resize', () => {
+                    setCanvasSize();
+                    createStars();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
