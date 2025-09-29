@@ -71,7 +71,7 @@
         "opens": "09:00",
         "closes": "17:00"
       },
-       "areaServed": [
+      "areaServed": [
         { "@type": "State", "name": "Florida" },
         { "@type": "State", "name": "Georgia" },
         { "@type": "State", "name": "New Hampshire" },
@@ -80,7 +80,7 @@
         { "@type": "State", "name": "Washington" },
         { "@type": "State", "name": "Idaho" },
         { "@type": "State", "name": "Massachusetts" }
-       ],
+      ],
       "sameAs": [
         "https://twitter.com/clearmoonllc",
         "https://www.linkedin.com/company/clear-moon"
@@ -284,23 +284,33 @@
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Main Navigation">
             <a href="#hero" class="flex items-center space-x-3" aria-label="Clear Moon Home">
                  <svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <g fill="url(#logoGradient)">
-                       <use href="#logo-path" />
-                    </g>
-                </svg>
+                     <g fill="url(#logoGradient)">
+                         <use href="#logo-path" />
+                     </g>
+                 </svg>
                 <span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span>
             </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#services" class="hover:text-accent transition-colors">Services</a>
                 <a href="#industry" class="hover:text-accent transition-colors">Industry Focus</a>
                 <a href="#differentiators" class="hover:text-accent transition-colors">Why Us</a>
-                <a href="hotel-wifi-estimator.html" class="hover:text-accent transition-colors">Tools</a>
+                <!-- Tools Dropdown -->
+                <div class="relative group">
+                    <button class="hover:text-accent transition-colors flex items-center" aria-haspopup="true">
+                        Tools
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-secondary border border-white/10 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity invisible group-hover:visible z-50">
+                        <a href="hotel-wifi-estimator.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Hotel WiFi Cost Estimator</a>
+                        <!-- Future tools can be added here -->
+                    </div>
+                </div>
                 <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
             </div>
             <a href="#contact" class="hidden md:inline-block bg-transparent border border-accent text-accent py-2 px-4 rounded-md hover:bg-accent/10 transition-colors">
                 Schedule a Consultation
             </a>
-            <button id="mobile-menu-btn" class="md:hidden text-lightest-slate z-50" aria-label="Toggle Mobile Menu">
+            <button id="mobile-menu-btn" class="md:hidden text-lightest-slate z-50" aria-label="Toggle Mobile Menu" aria-expanded="false">
                 <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -310,7 +320,17 @@
                 <a href="#services" class="hover:text-accent transition-colors mobile-nav-link">Services</a>
                 <a href="#industry" class="hover:text-accent transition-colors mobile-nav-link">Industry Focus</a>
                 <a href="#differentiators" class="hover:text-accent transition-colors mobile-nav-link">Why Us</a>
-                 <a href="hotel-wifi-estimator.html" class="hover:text-accent transition-colors mobile-nav-link">Tools</a>
+                <!-- Mobile Tools Dropdown -->
+                <div class="w-full text-center">
+                    <button id="mobile-tools-btn" class="hover:text-accent transition-colors flex items-center justify-center w-full py-2" aria-haspopup="true" aria-expanded="false">
+                        Tools
+                        <svg class="w-4 h-4 ml-1 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-tools-dropdown" class="hidden mt-2 space-y-2">
+                        <a href="hotel-wifi-estimator.html" class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Hotel WiFi Cost Estimator</a>
+                         <!-- Future tools can be added here -->
+                    </div>
+                </div>
                 <a href="#contact" class="hover:text-accent transition-colors mobile-nav-link">Contact</a>
                 <a href="#contact" class="mt-4 bg-accent text-primary py-2 px-6 rounded-md hover:bg-accent/80 transition-colors mobile-nav-link">
                     Schedule a Consultation
@@ -573,9 +593,9 @@
                 <div class="md:col-span-1">
                      <a href="#hero" class="flex items-center space-x-3">
                          <svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <g fill="url(#logoGradient)">
-                                <use href="#logo-path" />
-                            </g>
+                             <g fill="url(#logoGradient)">
+                                 <use href="#logo-path" />
+                             </g>
                          </svg>
                         <span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span>
                     </a>
@@ -767,9 +787,9 @@
                 // Trigger animation after rendering
                 requestAnimationFrame(() => {
                     document.querySelectorAll('.service-card').forEach(card => {
-                       if (!card.classList.contains('visible')) {
-                           card.classList.add('visible');
-                       }
+                        if (!card.classList.contains('visible')) {
+                            card.classList.add('visible');
+                        }
                     });
                 });
             }
@@ -1018,10 +1038,13 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const menuOpenIcon = document.getElementById('menu-open-icon');
             const menuCloseIcon = document.getElementById('menu-close-icon');
+            const mobileToolsBtn = document.getElementById('mobile-tools-btn');
+            const mobileToolsDropdown = document.getElementById('mobile-tools-dropdown');
 
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+                    const isExpanded = mobileMenu.classList.toggle('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
                     menuOpenIcon.classList.toggle('hidden');
                     menuCloseIcon.classList.toggle('hidden');
                 });
@@ -1031,9 +1054,20 @@
                         mobileMenu.classList.add('hidden');
                         menuOpenIcon.classList.remove('hidden');
                         menuCloseIcon.classList.add('hidden');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     });
                 });
             }
+
+            if (mobileToolsBtn && mobileToolsDropdown) {
+                 mobileToolsBtn.addEventListener('click', (e) => {
+                     e.stopPropagation(); // Prevent closing main menu
+                     const isExpanded = mobileToolsDropdown.classList.toggle('hidden');
+                     mobileToolsBtn.setAttribute('aria-expanded', isExpanded);
+                     mobileToolsBtn.querySelector('svg').classList.toggle('rotate-180');
+                 });
+            }
+
 
             // Contact form submission
             const contactForm = document.getElementById('contact-form');
