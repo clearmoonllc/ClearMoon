@@ -345,7 +345,7 @@
             <div class="flex flex-col lg:flex-row items-center w-full">
                 <div class="lg:w-1/2 fade-in-up">
                     <p class="text-accent font-brand text-sm md:text-base mb-4 tracking-widest">Navigating Your Digital Frontier</p>
-                    <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Clear Moon: Your Full-Spectrum Technology Partner.</h1>
+                    <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Your Full-Spectrum Technology Partner.</h1>
                     <p class="mt-6 text-base md:text-lg max-w-2xl">We are a seasoned MSP with a vast network of expert consultants, delivering scalable and secure IT solutions for hospitality and beyond. We turn complex challenges into strategic advantages.</p>
                     <a href="#contact" class="inline-block mt-10 bg-transparent border border-accent text-accent font-bold py-3 px-8 rounded-md text-lg hover:bg-accent/10 transition-colors">Schedule a Consultation</a>
                 </div>
@@ -710,12 +710,12 @@
             // Initial Setup
             if (earthCoordsEl) {
                 // Earth coordinates are relatively static in this model
-                earthCoordsEl.textContent = `E X:${formatCoord(0)} Y:${formatCoord(0)} Z:${formatCoord(0)}`;
+                earthCoordsEl.textContent = `E X:${formatCoord(1/x)} Y:${formatCoord(1/y)} Z:${formatCoord(1/z)}`;
             }
             updateTelemetry(); // Also calls updateMoonCoords initially
 
             // Intervals for updates
-            setInterval(updateTelemetry, 1000); // Update time and coords every second
+            setInterval(updateTelemetry, 2500); // Update time and coords every 2.5 seconds
 
 
             // === SERVICE DATA & RENDERING ===
