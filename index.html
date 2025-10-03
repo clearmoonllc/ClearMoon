@@ -115,18 +115,6 @@
             overflow: hidden;
         }
         
-        .star {
-            position: absolute;
-            background-color: #fff;
-            border-radius: 50%;
-            animation: twinkle linear infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -265,7 +253,7 @@
     </style>
 </head>
 <body class="bg-primary text-light-slate">
-    <div id="starfield"></div>
+    <canvas id="starfield"></canvas>
     
     <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
         <defs>
@@ -345,7 +333,7 @@
             <div class="flex flex-col lg:flex-row items-center w-full">
                 <div class="lg:w-1/2 fade-in-up">
                     <p class="text-accent font-brand text-sm md:text-base mb-4 tracking-widest">Navigating Your Digital Frontier</p>
-                    <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Your Full-Spectrum Technology Partner.</h1>
+                    <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Clear Moon: Your Full-Spectrum Technology Partner.</h1>
                     <p class="mt-6 text-base md:text-lg max-w-2xl">We are a seasoned MSP with a vast network of expert consultants, delivering scalable and secure IT solutions for hospitality and beyond. We turn complex challenges into strategic advantages.</p>
                     <a href="#contact" class="inline-block mt-10 bg-transparent border border-accent text-accent font-bold py-3 px-8 rounded-md text-lg hover:bg-accent/10 transition-colors">Schedule a Consultation</a>
                 </div>
@@ -709,13 +697,18 @@
 
             // Initial Setup
             if (earthCoordsEl) {
-                // Earth coordinates are relatively static in this model
-                earthCoordsEl.textContent = `E X:${formatCoord(1/x)} Y:${formatCoord(1/y)} Z:${formatCoord(1/z)}`;
+                // Earth coordinates are relatively static in this model - now will be updated
+                const now = new Date();
+                const earthWobble = now.getTime() * 0.000005;
+                const earthX = Math.cos(earthWobble) * 50;
+                const earthY = Math.sin(earthWobble) * 50;
+                const earthZ = Math.cos(earthWobble * 0.7) * 25;
+                earthCoordsEl.textContent = `E X:${earthX.toFixed(2)} Y:${earthY.toFixed(2)} Z:${earthZ.toFixed(2)}`;
             }
             updateTelemetry(); // Also calls updateMoonCoords initially
 
             // Intervals for updates
-            setInterval(updateTelemetry, 2500); // Update time and coords every 2.5 seconds
+            setInterval(updateTelemetry, 1000); // Update time and coords every second
 
 
             // === SERVICE DATA & RENDERING ===
@@ -1006,19 +999,134 @@
 
             // === GENERAL UTILITIES ===
 
-            // Starfield generation
-            const starfield = document.getElementById('starfield');
-            for (let i = 0; i < 150; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 2 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                star.style.animationDelay = `${Math.random() * 3}s`;
-                starfield.appendChild(star);
+            // Starfield, Comet, and Easter Egg Canvas Logic
+            const canvas = document.getElementById('starfield');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let stars = [];
+                let comet = null;
+                let easterEgg = null;
+                let lastCometTime = 0;
+                const COMET_INTERVAL = 20000; // 20 seconds
+
+                function setCanvasSize() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+
+                function createStars() {
+                    stars = [];
+                    const numStars = window.innerWidth > 768 ? 200 : 100;
+                    for (let i = 0; i < numStars; i++) {
+                        stars.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            radius: Math.random() * 1.5,
+                            alpha: Math.random() * 0.5 + 0.2,
+                            velocity: (Math.random() - 0.5) * 0.02
+                        });
+                    }
+                }
+
+                function spawnComet() {
+                    const side = Math.floor(Math.random() * 4);
+                    let x, y, dx, dy;
+                    const speed = Math.random() * 2 + 1;
+
+                    switch(side) {
+                        case 0: x = Math.random() * canvas.width; y = 0; dx = (Math.random() - 0.5) * 2; dy = speed; break; // from top
+                        case 1: x = canvas.width; y = Math.random() * canvas.height; dx = -speed; dy = (Math.random() - 0.5) * 2; break; // from right
+                        case 2: x = Math.random() * canvas.width; y = canvas.height; dx = (Math.random() - 0.5) * 2; dy = -speed; break; // from bottom
+                        case 3: x = 0; y = Math.random() * canvas.height; dx = speed; dy = (Math.random() - 0.5) * 2; break; // from left
+                    }
+                    comet = { x, y, dx, dy, radius: 2, alpha: 1, length: 15 };
+                    lastCometTime = Date.now();
+                }
+
+                function spawnEasterEgg() {
+                     if (easterEgg) return;
+                     const y = Math.random() * canvas.height * 0.8 + canvas.height * 0.1;
+                     const speed = 0.5;
+                     easterEgg = { x: -40, y: y, dx: speed, size: 15 };
+                }
+                
+                // 1% chance per minute to spawn easter egg
+                setInterval(() => {
+                    if (Math.random() < 0.11) {
+                        spawnEasterEgg();
+                    }
+                }, 60000);
+
+                function draw() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    // Draw stars
+                    ctx.fillStyle = '#CCD6F6';
+                    stars.forEach(star => {
+                        star.alpha += star.velocity;
+                        if (star.alpha <= 0.2 || star.alpha >= 0.7) {
+                            star.velocity = -star.velocity;
+                        }
+                        ctx.globalAlpha = star.alpha;
+                        ctx.beginPath();
+                        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                    ctx.globalAlpha = 1;
+
+                    // Handle and draw comet
+                    if (!comet && Date.now() - lastCometTime > COMET_INTERVAL) {
+                        if (Math.random() < 0.01) { 
+                           spawnComet();
+                        }
+                    }
+
+                    if (comet) {
+                        comet.x += comet.dx;
+                        comet.y += comet.dy;
+                        const grad = ctx.createLinearGradient(comet.x, comet.y, comet.x - comet.dx * comet.length, comet.y - comet.dy * comet.length);
+                        grad.addColorStop(0, `rgba(255, 255, 255, ${comet.alpha})`);
+                        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                        ctx.strokeStyle = grad;
+                        ctx.lineWidth = comet.radius;
+                        ctx.beginPath();
+                        ctx.moveTo(comet.x, comet.y);
+                        ctx.lineTo(comet.x - comet.dx * comet.length, comet.y - comet.dy * comet.length);
+                        ctx.stroke();
+
+                        if (comet.x < -20 || comet.x > canvas.width + 20 || comet.y < -20 || comet.y > canvas.height + 20) {
+                            comet = null;
+                        }
+                    }
+                    
+                    // Handle and draw Easter Egg
+                    if (easterEgg) {
+                        easterEgg.x += easterEgg.dx;
+                        ctx.fillStyle = '#64FFDA';
+                        const s = easterEgg.size;
+                        ctx.beginPath();
+                        ctx.moveTo(easterEgg.x, easterEgg.y);
+                        ctx.lineTo(easterEgg.x - s, easterEgg.y - s / 3);
+                        ctx.lineTo(easterEgg.x - s, easterEgg.y + s / 3);
+                        ctx.closePath();
+                        ctx.fill();
+
+                        if (easterEgg.x > canvas.width + 50) {
+                            easterEgg = null;
+                        }
+                    }
+
+                    requestAnimationFrame(draw);
+                }
+
+                setCanvasSize();
+                createStars();
+                draw();
+
+                window.addEventListener('resize', () => {
+                    setCanvasSize();
+                    createStars();
+                });
             }
 
             // Intersection Observer for fade-in animations
