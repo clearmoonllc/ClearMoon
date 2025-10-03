@@ -264,7 +264,14 @@
                 <stop offset="0.8" style="stop-color:#EE7139"/>
                 <stop offset="1" style="stop-color:#AB576A"/>
             </linearGradient>
-             <path id="logo-path" d="M758.843,384.489c0,42.169-34.184,76.353-76.353,76.353c-37.939,0-69.399-27.675-75.332-63.936 c10.563,19.791,31.409,33.264,55.41,33.264c34.67,0,62.776-28.106,62.776-62.776c0-27.382-17.537-50.655-41.987-59.236 C725.124,308.624,758.843,342.611,758.843,384.489z M659.118,339.589l11.013,4.535l-1.4-11.828l4.535-11.013l-11.828,1.4 l-11.013-4.535l1.4,11.828l-4.535,11.013L659.118,339.589z M648.254,416.001l4.27-4.966l6.148-2.259l-4.966-4.27l-2.259-6.147 l-4.27,4.966l-6.147,2.259l4.966,4.27L648.254,416.001z M692.164,364.475l3.005-1.104l-2.427-2.087l-1.104-3.005l-2.087,2.427 l-3.005,1.104l2.427,2.087l1.104,3.005L692.164,364.475z M630.041,367.013l2.92-1.312l3.189,0.276l-1.312-2.92l0.276-3.189 l-2.92,1.312l-3.189-0.276l1.312,2.92L630.041,367.013z"/>
+            <path id="logo-path" d="M758.843,384.489c0,42.169-34.184,76.353-76.353,76.353c-37.939,0-69.399-27.675-75.332-63.936 c10.563,19.791,31.409,33.264,55.41,33.264c34.67,0,62.776-28.106,62.776-62.776c0-27.382-17.537-50.655-41.987-59.236 C725.124,308.624,758.843,342.611,758.843,384.489z M659.118,339.589l11.013,4.535l-1.4-11.828l4.535-11.013l-11.828,1.4 l-11.013-4.535l1.4,11.828l-4.535,11.013L659.118,339.589z M648.254,416.001l4.27-4.966l6.148-2.259l-4.966-4.27l-2.259-6.147 l-4.27,4.966l-6.147,2.259l4.966,4.27L648.254,416.001z M692.164,364.475l3.005-1.104l-2.427-2.087l-1.104-3.005l-2.087,2.427 l-3.005,1.104l2.427,2.087l1.104,3.005L692.164,364.475z M630.041,367.013l2.92-1.312l3.189,0.276l-1.312-2.92l0.276-3.189 l-2.92,1.312l-3.189-0.276l1.312,2.92L630.041,367.013z"/>
+            <!-- Easter Egg Ship SVG -->
+            <g id="easter-egg-ship">
+                <path d="M0,5 L5,5 L10,2 L25,2 L30,5 L30,11 L25,14 L10,14 L5,11 L0,11 Z" fill="#2C3E50" stroke="#CCD6F6" stroke-width="0.5" />
+                <rect x="26" y="7" width="3" height="2" fill="#64FFDA" />
+                <path d="M0,5 L-3,3 L-3,13 L0,11 Z" fill="#F28F3F" />
+                <path d="M10,2 L12,0 L23,0 L25,2 Z" fill="#CCD6F6" />
+            </g>
         </defs>
     </svg>
 
@@ -333,7 +340,7 @@
             <div class="flex flex-col lg:flex-row items-center w-full">
                 <div class="lg:w-1/2 fade-in-up">
                     <p class="text-accent font-brand text-sm md:text-base mb-4 tracking-widest">Navigating Your Digital Frontier</p>
-                    <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Clear Moon: Your Full-Spectrum Technology Partner.</h1>
+                    <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight">Your Full-Spectrum Technology Partner.</h1>
                     <p class="mt-6 text-base md:text-lg max-w-2xl">We are a seasoned MSP with a vast network of expert consultants, delivering scalable and secure IT solutions for hospitality and beyond. We turn complex challenges into strategic advantages.</p>
                     <a href="#contact" class="inline-block mt-10 bg-transparent border border-accent text-accent font-bold py-3 px-8 rounded-md text-lg hover:bg-accent/10 transition-colors">Schedule a Consultation</a>
                 </div>
@@ -577,8 +584,8 @@
 
     <footer class="bg-secondary mt-16">
         <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="md:col-span-1">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                <div class="col-span-2 md:col-span-1">
                      <a href="#hero" class="flex items-center space-x-3">
                          <svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                              <g fill="url(#logoGradient)">
@@ -595,8 +602,13 @@
                         <li><a href="#hero" class="hover:text-accent transition-colors">Home</a></li>
                         <li><a href="#services" class="hover:text-accent transition-colors">Services</a></li>
                         <li><a href="#industry" class="hover:text-accent transition-colors">Industry Focus</a></li>
-                        <li><a href="hotel-wifi-estimator.html" class="hover:text-accent transition-colors">Tools</a></li>
                         <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading text-lg text-lightest-slate">Tools</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="hotel-wifi-estimator.html" class="hover:text-accent transition-colors">Hotel WiFi Cost Estimator</a></li>
                     </ul>
                 </div>
                  <div>
@@ -675,6 +687,15 @@
                     earthTimeEl.textContent = `${dateStr} ${timeStr} UTC`;
                 }
 
+                // Update earth coords with a slow wobble
+                if (earthCoordsEl) {
+                    const earthWobble = now.getTime() * 0.00001; 
+                    const earthX = Math.cos(earthWobble) / 4; 
+                    const earthY = Math.sin(earthWobble) / 4;
+                    const earthZ = Math.cos(earthWobble * 0.8) / 8;
+                    earthCoordsEl.textContent = `E X:${earthX.toFixed(2)} Y:${earthY.toFixed(2)} Z:${earthZ.toFixed(2)}`;
+                }
+
                 // Update progress based on current time for coordinate calculation
                 currentProgress = (now.getTime() % cycleDurationMs) / cycleDurationMs;
                 updateMoonCoords(currentProgress);
@@ -695,20 +716,11 @@
                 }
             }
 
-            // Initial Setup
-            if (earthCoordsEl) {
-                // Earth coordinates are relatively static in this model - now will be updated
-                const now = new Date();
-                const earthWobble = now.getTime() * 0.000005;
-                const earthX = Math.cos(earthWobble) * 50;
-                const earthY = Math.sin(earthWobble) * 50;
-                const earthZ = Math.cos(earthWobble * 0.7) * 25;
-                earthCoordsEl.textContent = `E X:${earthX.toFixed(2)} Y:${earthY.toFixed(2)} Z:${earthZ.toFixed(2)}`;
-            }
-            updateTelemetry(); // Also calls updateMoonCoords initially
+            // Initial call to set values immediately
+            updateTelemetry(); 
 
-            // Intervals for updates
-            setInterval(updateTelemetry, 1000); // Update time and coords every second
+            // Interval for continuous updates
+            setInterval(updateTelemetry, 1000); 
 
 
             // === SERVICE DATA & RENDERING ===
@@ -1008,6 +1020,22 @@
                 let easterEgg = null;
                 let lastCometTime = 0;
                 const COMET_INTERVAL = 20000; // 20 seconds
+                
+                let shipImage = new Image();
+                let shipLoaded = false;
+
+                // Load SVG for easter egg
+                const shipSvgElement = document.getElementById('easter-egg-ship');
+                if(shipSvgElement) {
+                    const serializer = new XMLSerializer();
+                    const svgString = serializer.serializeToString(shipSvgElement);
+                    const fullSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16">${svgString}</svg>`;
+                    shipImage.onload = () => {
+                        shipLoaded = true;
+                    };
+                    shipImage.src = `data:image/svg+xml;base64,${window.btoa(fullSvg)}`;
+                }
+
 
                 function setCanvasSize() {
                     canvas.width = window.innerWidth;
@@ -1044,15 +1072,15 @@
                 }
 
                 function spawnEasterEgg() {
-                     if (easterEgg) return;
+                     if (easterEgg || !shipLoaded) return;
                      const y = Math.random() * canvas.height * 0.8 + canvas.height * 0.1;
                      const speed = 0.5;
-                     easterEgg = { x: -40, y: y, dx: speed, size: 15 };
+                     easterEgg = { x: -40, y: y, dx: speed, width: 32, height: 16 };
                 }
                 
                 // 1% chance per minute to spawn easter egg
                 setInterval(() => {
-                    if (Math.random() < 0.11) {
+                    if (Math.random() < 0.01) {
                         spawnEasterEgg();
                     }
                 }, 60000);
@@ -1102,14 +1130,7 @@
                     // Handle and draw Easter Egg
                     if (easterEgg) {
                         easterEgg.x += easterEgg.dx;
-                        ctx.fillStyle = '#64FFDA';
-                        const s = easterEgg.size;
-                        ctx.beginPath();
-                        ctx.moveTo(easterEgg.x, easterEgg.y);
-                        ctx.lineTo(easterEgg.x - s, easterEgg.y - s / 3);
-                        ctx.lineTo(easterEgg.x - s, easterEgg.y + s / 3);
-                        ctx.closePath();
-                        ctx.fill();
+                        ctx.drawImage(shipImage, easterEgg.x, easterEgg.y, easterEgg.width, easterEgg.height);
 
                         if (easterEgg.x > canvas.width + 50) {
                             easterEgg = null;
