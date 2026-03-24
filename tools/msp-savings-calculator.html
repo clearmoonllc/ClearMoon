@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSP Savings Calculator — ClearMoon</title>
+    <meta name="description" content="Calculate your potential IT cost savings by switching to a managed service provider. Based on real industry benchmarks.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="../dist/css/theme.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0A192F',secondary:'#2C3E50',accent:'#64FFDA','light-slate':'#CCD6F6','lightest-slate':'#E6F1FF','dark-slate':'#8892B0'}}}}</script>
+</head>
+<body class="bg-primary text-light-slate min-h-screen">
+    <canvas id="starfield"></canvas>
+
+    <header class="relative z-10 py-6 px-4 sm:px-8">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-3 hover:opacity-80 transition">
+                <span class="text-accent text-2xl">◈</span>
+                <h1 class="text-lg font-heading text-lightest-slate font-bold tracking-wide">MSP SAVINGS CALCULATOR</h1>
+            </a>
+            <a href="../index.html" class="text-xs text-dark-slate hover:text-accent transition tracking-wider font-heading">← BACK</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 pb-16">
+        <div class="glass rounded-2xl p-6 sm:p-10">
+            <p class="text-sm text-dark-slate mb-8">Based on industry benchmarks: organizations partnering with MSPs report <strong class="text-accent">20–30% IT cost reduction</strong>, <strong class="text-accent">27% less downtime</strong>, and <strong class="text-accent">15–25% productivity gains</strong>. <span class="text-[10px]">(Sources: JumpCloud, Datto, Barracuda 2024 reports)</span></p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="text-xs font-heading text-accent tracking-widest block mb-2">CURRENT MONTHLY IT SPEND ($)</label>
+                    <input type="number" id="it-spend" value="15000" min="0" class="w-full bg-primary/60 border border-accent/20 text-lightest-slate px-4 py-3 rounded-lg focus:border-accent/50 focus:outline-none font-heading text-lg">
+                </div>
+                <div>
+                    <label class="text-xs font-heading text-accent tracking-widest block mb-2">NUMBER OF EMPLOYEES</label>
+                    <input type="number" id="emp-count" value="50" min="1" class="w-full bg-primary/60 border border-accent/20 text-lightest-slate px-4 py-3 rounded-lg focus:border-accent/50 focus:outline-none font-heading text-lg">
+                </div>
+                <div>
+                    <label class="text-xs font-heading text-accent tracking-widest block mb-2">HOURS OF DOWNTIME / MONTH</label>
+                    <input type="number" id="downtime-hrs" value="4" min="0" class="w-full bg-primary/60 border border-accent/20 text-lightest-slate px-4 py-3 rounded-lg focus:border-accent/50 focus:outline-none font-heading text-lg">
+                </div>
+                <div>
+                    <label class="text-xs font-heading text-accent tracking-widest block mb-2">AVG HOURLY EMPLOYEE COST ($)</label>
+                    <input type="number" id="hourly-cost" value="45" min="0" class="w-full bg-primary/60 border border-accent/20 text-lightest-slate px-4 py-3 rounded-lg focus:border-accent/50 focus:outline-none font-heading text-lg">
+                </div>
+            </div>
+
+            <button onclick="calcSavings()" class="btn-solid w-full py-4 text-lg rounded-lg mb-8">Calculate Projected Savings</button>
+
+            <div id="savings-result" class="hidden">
+                <h2 class="text-xl font-heading text-lightest-slate mb-6 text-center">PROJECTED ANNUAL SAVINGS</h2>
+                <div class="grid sm:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-primary/60 border border-accent/15 rounded-xl p-5 text-center">
+                        <div class="text-[10px] text-dark-slate font-heading tracking-widest mb-1">IT COST REDUCTION</div>
+                        <div id="res-it" class="text-2xl text-accent font-heading font-bold">$0</div>
+                        <div class="text-[10px] text-dark-slate mt-1">20–30% avg reduction</div>
+                    </div>
+                    <div class="bg-primary/60 border border-accent/15 rounded-xl p-5 text-center">
+                        <div class="text-[10px] text-dark-slate font-heading tracking-widest mb-1">DOWNTIME SAVINGS</div>
+                        <div id="res-down" class="text-2xl text-accent font-heading font-bold">$0</div>
+                        <div class="text-[10px] text-dark-slate mt-1">27% downtime reduction</div>
+                    </div>
+                    <div class="bg-primary/60 border border-accent/15 rounded-xl p-5 text-center">
+                        <div class="text-[10px] text-dark-slate font-heading tracking-widest mb-1">PRODUCTIVITY GAINS</div>
+                        <div id="res-prod" class="text-2xl text-accent font-heading font-bold">$0</div>
+                        <div class="text-[10px] text-dark-slate mt-1">15–25% efficiency boost</div>
+                    </div>
+                </div>
+                <div class="bg-accent/10 border border-accent/30 rounded-xl p-6 text-center">
+                    <div class="text-xs text-dark-slate font-heading tracking-widest mb-1">ESTIMATED TOTAL ANNUAL IMPACT</div>
+                    <div id="res-total" class="text-4xl text-accent font-heading font-bold">$0</div>
+                    <p class="text-[10px] text-dark-slate mt-2">Conservative estimate based on published industry benchmarks</p>
+                </div>
+                <div class="mt-8 text-center">
+                    <a href="../index.html#contact" class="btn-outline inline-block">Schedule a Free Assessment →</a>
+                </div>
+                <p class="text-[10px] text-dark-slate text-center mt-6">Disclaimer: These projections are estimates based on industry averages (JumpCloud, Datto, Barracuda, Forbes 2024 reports). Actual savings depend on your organization's specific environment, current IT maturity, and service scope. Contact us for a detailed, no-obligation assessment.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative z-10 text-center py-8 text-xs text-dark-slate">
+        <p>&copy; 2026 <a href="../index.html" class="hover:text-accent transition">Clear Moon MSP</a> · All Rights Reserved</p>
+    </footer>
+
+    <script src="../dist/js/shared.js" defer></script>
+    <script>
+    function calcSavings() {
+        const spend = parseFloat(document.getElementById('it-spend').value) || 0;
+        const emps = parseInt(document.getElementById('emp-count').value) || 0;
+        const downHrs = parseFloat(document.getElementById('downtime-hrs').value) || 0;
+        const hourly = parseFloat(document.getElementById('hourly-cost').value) || 0;
+
+        // Conservative: use 25% IT cost reduction (midpoint of 20-30%)
+        const itSavings = spend * 0.25 * 12;
+        // Downtime: 27% reduction in downtime hours × employees × hourly cost
+        const downtimeSavings = downHrs * 0.27 * emps * hourly * 12;
+        // Productivity: 15% boost (conservative end of 15-25%) × total labor cost
+        const prodGains = emps * hourly * 160 * 0.15 * 12; // 160 hrs/month
+
+        document.getElementById('res-it').textContent = '$' + Math.round(itSavings).toLocaleString();
+        document.getElementById('res-down').textContent = '$' + Math.round(downtimeSavings).toLocaleString();
+        document.getElementById('res-prod').textContent = '$' + Math.round(prodGains).toLocaleString();
+        document.getElementById('res-total').textContent = '$' + Math.round(itSavings + downtimeSavings + prodGains).toLocaleString();
+        document.getElementById('savings-result').classList.remove('hidden');
+    }
+    </script>
+</body>
+</html>

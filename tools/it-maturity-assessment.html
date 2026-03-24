@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Maturity Assessment — ClearMoon</title>
+    <meta name="description" content="Take our 10-question IT maturity assessment to evaluate your organization's technology readiness across security, backup, cloud, compliance, and more.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="../dist/css/theme.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0A192F',secondary:'#2C3E50',accent:'#64FFDA','light-slate':'#CCD6F6','lightest-slate':'#E6F1FF','dark-slate':'#8892B0'}}}}</script>
+    <style>
+        .q-option { cursor: pointer; transition: all 0.2s; }
+        .q-option:hover { border-color: rgba(100,255,218,0.4); background: rgba(100,255,218,0.05); }
+        .q-option.selected { border-color: #64FFDA; background: rgba(100,255,218,0.1); }
+        .q-option.selected::before { content: '✓ '; color: #64FFDA; }
+        .progress-bar { height: 3px; background: rgba(100,255,218,0.1); border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #64FFDA; transition: width 0.4s; }
+        .maturity-badge { font-family: 'Orbitron'; font-size: 4rem; }
+    </style>
+</head>
+<body class="bg-primary text-light-slate min-h-screen">
+    <canvas id="starfield"></canvas>
+
+    <header class="relative z-10 py-6 px-4 sm:px-8">
+        <div class="max-w-3xl mx-auto flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-3 hover:opacity-80 transition">
+                <span class="text-accent text-2xl">◈</span>
+                <h1 class="text-lg font-heading text-lightest-slate font-bold tracking-wide">IT MATURITY ASSESSMENT</h1>
+            </a>
+            <a href="../index.html" class="text-xs text-dark-slate hover:text-accent transition tracking-wider font-heading">← BACK</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 pb-16">
+        <div class="glass rounded-2xl p-6 sm:p-10">
+            <div class="progress-bar mb-6"><div id="quiz-progress" class="progress-fill" style="width:0%"></div></div>
+            <div id="quiz-container"></div>
+            <div id="quiz-result" class="hidden"></div>
+        </div>
+    </main>
+
+    <footer class="relative z-10 text-center py-8 text-xs text-dark-slate">
+        <p>&copy; 2026 <a href="../index.html" class="hover:text-accent transition">Clear Moon MSP</a> · All Rights Reserved</p>
+    </footer>
+
+    <script src="../dist/js/shared.js" defer></script>
+    <script>
+    const questions = [
+        {
+            q: "How does your organization handle data backups?",
+            cat: "Backup & Recovery",
+            opts: [
+                { text: "No formal backup process", score: 1 },
+                { text: "Manual backups (USB/external drives)", score: 2 },
+                { text: "Automated local backups (daily)", score: 3 },
+                { text: "Cloud + local backups with regular testing", score: 4 },
+                { text: "3-2-1 strategy with immutable backups, automated DR testing", score: 5 }
+            ]
+        },
+        {
+            q: "What is your approach to endpoint security?",
+            cat: "Cybersecurity",
+            opts: [
+                { text: "Basic antivirus only", score: 1 },
+                { text: "Managed antivirus on most devices", score: 2 },
+                { text: "EDR/XDR deployed across endpoints", score: 3 },
+                { text: "EDR + MDM + patching automation", score: 4 },
+                { text: "Zero-trust architecture with SIEM/SOC monitoring", score: 5 }
+            ]
+        },
+        {
+            q: "How do you manage user access and identity?",
+            cat: "Identity & Access",
+            opts: [
+                { text: "Shared passwords / no policy", score: 1 },
+                { text: "Individual accounts, basic password policy", score: 2 },
+                { text: "Active Directory / Google Workspace with SSO", score: 3 },
+                { text: "SSO + MFA enforced across all apps", score: 4 },
+                { text: "Conditional access, PAM, automated provisioning/deprovisioning", score: 5 }
+            ]
+        },
+        {
+            q: "How much of your infrastructure is in the cloud?",
+            cat: "Cloud Readiness",
+            opts: [
+                { text: "Everything is on-premises", score: 1 },
+                { text: "Email is cloud-based, rest on-prem", score: 2 },
+                { text: "Mix of cloud and on-prem (hybrid)", score: 3 },
+                { text: "Cloud-first with some on-prem legacy", score: 4 },
+                { text: "Fully cloud-native with IaC and auto-scaling", score: 5 }
+            ]
+        },
+        {
+            q: "How do you handle network monitoring and alerting?",
+            cat: "Network Operations",
+            opts: [
+                { text: "React when users report issues", score: 1 },
+                { text: "Basic uptime checks (pings)", score: 2 },
+                { text: "SNMP monitoring on key devices", score: 3 },
+                { text: "Full NMS with dashboards and automated alerts", score: 4 },
+                { text: "AI-driven network analytics, predictive alerting, self-healing", score: 5 }
+            ]
+        },
+        {
+            q: "What is your compliance posture?",
+            cat: "Compliance & Governance",
+            opts: [
+                { text: "No formal compliance effort", score: 1 },
+                { text: "Aware of requirements but not formalized", score: 2 },
+                { text: "Policies documented, annual review", score: 3 },
+                { text: "Certified (SOC 2, HIPAA, PCI-DSS) with regular audits", score: 4 },
+                { text: "Continuous compliance with automated evidence collection", score: 5 }
+            ]
+        },
+        {
+            q: "How is your IT documentation maintained?",
+            cat: "Documentation",
+            opts: [
+                { text: "No documentation / tribal knowledge", score: 1 },
+                { text: "Some notes in scattered files", score: 2 },
+                { text: "Centralized wiki or documentation tool", score: 3 },
+                { text: "Maintained runbooks, network diagrams, asset inventory", score: 4 },
+                { text: "Living documentation integrated with ITSM, auto-updated", score: 5 }
+            ]
+        },
+        {
+            q: "How does your organization handle IT service requests?",
+            cat: "Service Management",
+            opts: [
+                { text: "Walk-up / email directly to IT person", score: 1 },
+                { text: "Shared inbox for IT requests", score: 2 },
+                { text: "Basic ticketing system (no SLAs)", score: 3 },
+                { text: "ITSM platform with SLAs, escalation paths", score: 4 },
+                { text: "Full ITIL-aligned service desk with self-service portal and automation", score: 5 }
+            ]
+        },
+        {
+            q: "What is your disaster recovery readiness?",
+            cat: "Business Continuity",
+            opts: [
+                { text: "No DR plan", score: 1 },
+                { text: "Informal plan, never tested", score: 2 },
+                { text: "Documented DR plan, tested annually", score: 3 },
+                { text: "Automated failover for critical systems, quarterly testing", score: 4 },
+                { text: "Multi-region DR with RTO < 1hr, RPO < 15min, regular tabletop exercises", score: 5 }
+            ]
+        },
+        {
+            q: "How does your organization leverage AI and automation?",
+            cat: "Innovation & AI",
+            opts: [
+                { text: "Not using AI or automation", score: 1 },
+                { text: "Some scripting for repetitive tasks", score: 2 },
+                { text: "Automation for patching, backups, or provisioning", score: 3 },
+                { text: "AI-assisted security, chatbots, workflow automation", score: 4 },
+                { text: "AI-driven operations, predictive analytics, custom ML models", score: 5 }
+            ]
+        }
+    ];
+
+    let currentQ = 0;
+    const answers = [];
+
+    function renderQuestion() {
+        const c = document.getElementById('quiz-container');
+        const q = questions[currentQ];
+        document.getElementById('quiz-progress').style.width = ((currentQ) / questions.length * 100) + '%';
+
+        let html = '<div class="text-[10px] text-accent font-heading tracking-widest mb-2">' + q.cat.toUpperCase() + ' · QUESTION ' + (currentQ+1) + ' OF ' + questions.length + '</div>';
+        html += '<h2 class="text-lg text-lightest-slate font-semibold mb-6">' + q.q + '</h2>';
+        html += '<div class="space-y-3">';
+        q.opts.forEach((opt, i) => {
+            html += '<div class="q-option border border-accent/10 rounded-lg px-4 py-3 text-sm" data-score="' + opt.score + '" onclick="selectOption(this,' + i + ')">' + opt.text + '</div>';
+        });
+        html += '</div>';
+        html += '<div class="flex justify-between mt-6">';
+        if (currentQ > 0) html += '<button onclick="prevQ()" class="text-sm text-dark-slate hover:text-accent transition">← Back</button>';
+        else html += '<span></span>';
+        html += '<button id="next-btn" onclick="nextQ()" class="btn-solid px-6 py-2 text-sm rounded-lg opacity-30 pointer-events-none">Next →</button>';
+        html += '</div>';
+        c.innerHTML = html;
+    }
+
+    function selectOption(el, idx) {
+        document.querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        answers[currentQ] = questions[currentQ].opts[idx].score;
+        const btn = document.getElementById('next-btn');
+        btn.classList.remove('opacity-30', 'pointer-events-none');
+    }
+
+    function nextQ() {
+        if (answers[currentQ] === undefined) return;
+        currentQ++;
+        if (currentQ >= questions.length) { showResult(); return; }
+        renderQuestion();
+    }
+
+    function prevQ() {
+        if (currentQ > 0) { currentQ--; renderQuestion(); }
+    }
+
+    function showResult() {
+        document.getElementById('quiz-container').classList.add('hidden');
+        document.getElementById('quiz-progress').style.width = '100%';
+        const total = answers.reduce((a,b) => a+b, 0);
+        const avg = total / questions.length;
+        const maxScore = questions.length * 5;
+        const pct = Math.round((total / maxScore) * 100);
+
+        let level, color, desc, recs;
+        if (avg < 1.5) { level = 1; color = '#FF6B6B'; desc = 'Initial / Ad-Hoc'; recs = 'Your IT operations lack structure. Priority: establish backup processes, deploy endpoint security, and create basic documentation.'; }
+        else if (avg < 2.5) { level = 2; color = '#F28F3F'; desc = 'Developing'; recs = 'Foundations are in place but inconsistent. Priority: formalize security policies, implement MFA, and adopt a ticketing system.'; }
+        else if (avg < 3.5) { level = 3; color = '#FFD93D'; desc = 'Defined'; recs = 'Solid baseline with room to grow. Priority: cloud migration planning, compliance certification, and DR testing.'; }
+        else if (avg < 4.5) { level = 4; color = '#64FFDA'; desc = 'Managed'; recs = 'Strong IT posture. Priority: automation expansion, AI integration, and advanced monitoring (SIEM, zero-trust).'; }
+        else { level = 5; color = '#64FFDA'; desc = 'Optimized'; recs = 'Industry-leading maturity. Priority: continuous improvement, innovation leadership, and strategic IT-business alignment.'; }
+
+        const el = document.getElementById('quiz-result');
+        el.classList.remove('hidden');
+        el.innerHTML = `
+            <div class="text-center mb-8">
+                <div class="maturity-badge" style="color:${color}">${level}</div>
+                <h2 class="text-xl font-heading text-lightest-slate">MATURITY LEVEL: <span style="color:${color}">${desc.toUpperCase()}</span></h2>
+                <p class="text-sm text-dark-slate mt-1">Score: ${total}/${maxScore} (${pct}%)</p>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-3 mb-6">
+                ${questions.map((q,i) => `
+                    <div class="bg-primary/60 border border-accent/10 rounded-lg px-4 py-2 text-xs">
+                        <span class="text-dark-slate">${q.cat}:</span>
+                        <span class="font-heading" style="color: ${['#FF6B6B','#F28F3F','#FFD93D','#64FFDA','#64FFDA'][answers[i]-1]}">${answers[i]}/5</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="bg-accent/10 border border-accent/30 rounded-xl p-6 mb-6">
+                <h3 class="text-sm font-heading text-accent mb-2">RECOMMENDED NEXT STEPS</h3>
+                <p class="text-sm">${recs}</p>
+            </div>
+            <div class="text-center">
+                <a href="../index.html#contact" class="btn-outline inline-block">Get a Free Detailed Assessment →</a>
+                <p class="text-[10px] text-dark-slate mt-4">This assessment provides directional guidance based on common IT maturity frameworks (CMMI, NIST CSF). For a comprehensive evaluation tailored to your specific industry and regulatory requirements, schedule a consultation.</p>
+            </div>
+        `;
+    }
+
+    renderQuestion();
+    </script>
+</body>
+</html>

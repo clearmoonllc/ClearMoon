@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Health Scorecard | Clear Moon Tools</title>
+    <meta name="description" content="Score your network infrastructure across redundancy, security, performance, and management. Free network health assessment from Clear Moon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../dist/css/theme.css">
+    <style>
+        .domain-bar { height: 8px; border-radius: 9999px; transition: width 0.8s ease; }
+    </style>
+</head>
+<body class="bg-primary text-light-slate">
+    <canvas id="starfield"></canvas>
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false"><defs><linearGradient id="logoGradient" gradientUnits="userSpaceOnUse" x1="697.8817" y1="309.6764" x2="671.3631" y2="460.0707"><stop offset="0" style="stop-color:#FFF57E"/><stop offset="0.2" style="stop-color:#FDC60B"/><stop offset="0.5" style="stop-color:#F28F3F"/><stop offset="0.8" style="stop-color:#EE7139"/><stop offset="1" style="stop-color:#AB576A"/></linearGradient><path id="logo-path" d="M758.843,384.489c0,42.169-34.184,76.353-76.353,76.353c-37.939,0-69.399-27.675-75.332-63.936 c10.563,19.791,31.409,33.264,55.41,33.264c34.67,0,62.776-28.106,62.776-62.776c0-27.382-17.537-50.655-41.987-59.236 C725.124,308.624,758.843,342.611,758.843,384.489z M659.118,339.589l11.013,4.535l-1.4-11.828l4.535-11.013l-11.828,1.4 l-11.013-4.535l1.4,11.828l-4.535,11.013L659.118,339.589z M648.254,416.001l4.27-4.966l6.148-2.259l-4.966-4.27l-2.259-6.147 l-4.27,4.966l-6.147,2.259l4.966,4.27L648.254,416.001z M692.164,364.475l3.005-1.104l-2.427-2.087l-1.104-3.005l-2.087,2.427 l-3.005,1.104l2.427,2.087l1.104,3.005L692.164,364.475z M630.041,367.013l2.92-1.312l3.189,0.276l-1.312-2.92l0.276-3.189 l-2.92,1.312l-3.189-0.276l1.312,2.92L630.041,367.013z"/></defs></svg>
+
+    <header id="header" class="bg-primary/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center space-x-3"><svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="url(#logoGradient)"><use href="#logo-path"/></g></svg><span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="../index.html#services" class="hover:text-accent transition-colors">Services</a>
+                <a href="../cybersecurity.html" class="hover:text-accent transition-colors">Cybersecurity</a>
+                <a href="../ai-services.html" class="hover:text-accent transition-colors">AI Solutions</a>
+                <a href="../toolkit.html" class="hover:text-accent transition-colors">Toolkit</a>
+                <div class="relative group"><button class="hover:text-accent transition-colors flex items-center" aria-haspopup="true">Case Studies <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-secondary border border-white/10 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity invisible group-hover:visible z-50"><a href="../case-study-cameras.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Distribution Hub Cameras</a><a href="../case-study-hospitality.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Hospitality Network & A/V</a><a href="../case-study-ai.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Enterprise AI Integration</a><a href="../case-study-msp.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Managed Services Turnaround</a></div></div>
+                <div class="relative group"><button class="text-accent transition-colors flex items-center" aria-haspopup="true">Tools <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-secondary border border-white/10 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity invisible group-hover:visible z-50"><a href="hotel-wifi-estimator.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Hotel WiFi Cost Estimator</a><a href="downtime-cost-calculator.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Downtime Cost Calculator</a><a href="cybersecurity-calculator.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Cybersecurity Risk Assessor</a><a href="cloud-roi-estimator.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Cloud Migration ROI Estimator</a><a href="compliance-checker.html" class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Compliance Readiness Checker</a><a href="network-scorecard.html" class="block px-4 py-2 text-accent rounded-md">Network Health Scorecard</a></div></div>
+                <a href="../index.html#contact" class="hover:text-accent transition-colors">Contact</a>
+            </div>
+            <a href="../index.html#contact" class="hidden md:inline-block bg-transparent border border-accent text-accent py-2 px-4 rounded-md hover:bg-accent/10 transition-colors">Schedule a Consultation</a>
+            <button id="mobile-menu-btn" class="md:hidden text-lightest-slate z-50" aria-label="Toggle Mobile Menu" aria-expanded="false"><svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg><svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-secondary">
+            <div class="flex flex-col items-center space-y-4 py-8">
+                <a href="../index.html#services" class="hover:text-accent transition-colors mobile-nav-link">Services</a>
+                <a href="../cybersecurity.html" class="hover:text-accent transition-colors mobile-nav-link">Cybersecurity</a>
+                <a href="../ai-services.html" class="hover:text-accent transition-colors mobile-nav-link">AI Solutions</a>
+                <a href="../toolkit.html" class="hover:text-accent transition-colors">Toolkit</a>
+                <a href="../index.html#contact" class="hover:text-accent transition-colors mobile-nav-link">Contact</a>
+                <a href="../index.html#contact" class="mt-4 bg-accent text-primary py-2 px-6 rounded-md hover:bg-accent/80 transition-colors mobile-nav-link">Schedule a Consultation</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-20 min-h-screen">
+        <div class="max-w-3xl mx-auto fade-in-up">
+            <h1 class="font-heading text-3xl md:text-4xl text-lightest-slate mb-4">Network Health Scorecard</h1>
+            <p class="mb-2">Evaluate your infrastructure across 4 critical domains: Redundancy, Security, Performance, and Management.</p>
+            <p class="mb-8 text-sm text-dark-slate">Organizations with mature network practices experience 60% fewer unplanned outages.</p>
+
+            <div class="glass-strong p-8 rounded-xl">
+                <form id="net-form" class="space-y-6">
+                    <div class="bg-primary/50 p-4 rounded-lg">
+                        <h3 class="font-heading text-sm text-accent mb-3 uppercase tracking-wide">🔄 Redundancy & Resilience</h3>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm mb-1">Do you have redundant internet circuits from different ISPs?</label>
+                                <select id="r1" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">Yes, automatic failover</option><option value="2">Yes, manual failover</option><option value="1">Single ISP with SLA</option><option value="0">Single ISP, no SLA</option></select></div>
+                            <div><label class="block text-sm mb-1">Do you have UPS and generator backup for network equipment?</label>
+                                <select id="r2" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">UPS + generator with auto-transfer</option><option value="2">UPS only (30+ min)</option><option value="1">UPS only (&lt;15 min)</option><option value="0">No backup power</option></select></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary/50 p-4 rounded-lg">
+                        <h3 class="font-heading text-sm text-accent mb-3 uppercase tracking-wide">🛡️ Security Posture</h3>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm mb-1">Do you use a next-gen firewall with IDS/IPS and geo-blocking?</label>
+                                <select id="s1" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">Yes, with threat feeds & logging</option><option value="2">Standard firewall with basic rules</option><option value="1">Consumer-grade router/firewall</option><option value="0">No dedicated firewall</option></select></div>
+                            <div><label class="block text-sm mb-1">Is your network segmented (VLANs for guest, IoT, corporate, servers)?</label>
+                                <select id="s2" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">Full VLAN segmentation with ACLs</option><option value="2">Some VLANs, limited ACLs</option><option value="1">Basic guest vs corporate split</option><option value="0">Flat network, no segmentation</option></select></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary/50 p-4 rounded-lg">
+                        <h3 class="font-heading text-sm text-accent mb-3 uppercase tracking-wide">⚡ Performance</h3>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm mb-1">Do you have QoS policies for voice, video, and critical applications?</label>
+                                <select id="p1" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">Yes, application-aware QoS</option><option value="2">Basic priority queuing</option><option value="1">Bandwidth limits only</option><option value="0">No QoS configuration</option></select></div>
+                            <div><label class="block text-sm mb-1">Is your switching infrastructure 10GbE or higher at the distribution/core layer?</label>
+                                <select id="p2" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">Yes, 10GbE+ with link aggregation</option><option value="2">10GbE core, 1GbE distribution</option><option value="1">1GbE throughout</option><option value="0">Mixed speeds inc. 100Mbps</option></select></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary/50 p-4 rounded-lg">
+                        <h3 class="font-heading text-sm text-accent mb-3 uppercase tracking-wide">📊 Management & Visibility</h3>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm mb-1">Do you have centralized network monitoring (SNMP/NetFlow) with alerting?</label>
+                                <select id="m1" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">Full monitoring with dashboards & alerts</option><option value="2">Basic monitoring, manual checks</option><option value="1">Ping monitoring only</option><option value="0">No network monitoring</option></select></div>
+                            <div><label class="block text-sm mb-1">Do you have documented network topology and regular config backups?</label>
+                                <select id="m2" class="w-full bg-primary border border-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:border-accent"><option value="3">Yes, automated config backup + up-to-date diagrams</option><option value="2">Config backups only</option><option value="1">Outdated documentation</option><option value="0">No documentation or backups</option></select></div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="scoreNetwork()" class="w-full bg-accent text-primary font-bold py-3 rounded-md hover:bg-accent/90 transition-colors">Generate Scorecard</button>
+                </form>
+
+                <div id="results" class="hidden mt-8 pt-8 border-t border-gray-600">
+                    <div class="text-center mb-8">
+                        <h3 class="text-xl text-lightest-slate mb-2">Overall Network Health</h3>
+                        <div class="relative w-40 h-40 mx-auto mb-4">
+                            <svg class="w-full h-full" viewBox="0 0 36 36">
+                                <path class="text-gray-700" stroke-width="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path id="score-ring" stroke-dasharray="0, 100" class="text-accent" stroke-width="3" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center"><span id="score-text" class="text-3xl font-bold text-lightest-slate">0</span></div>
+                        </div>
+                        <p id="grade-text" class="text-lg font-medium"></p>
+                    </div>
+                    <div id="domain-breakdown" class="space-y-4"></div>
+                    <div class="text-center mt-8">
+                        <p class="text-sm mb-4">Want a professional network assessment with detailed recommendations?</p>
+                        <a href="../index.html#contact" class="btn-solid">Request a Network Audit</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 glass p-6 rounded-xl text-center">
+                <p class="text-sm">Try our other tools:</p>
+                <div class="flex flex-wrap gap-3 justify-center mt-3">
+                    <a href="compliance-checker.html" class="btn-outline text-xs">Compliance Checker</a>
+                    <a href="cybersecurity-calculator.html" class="btn-outline text-xs">Cyber Risk Assessor</a>
+                    <a href="downtime-cost-calculator.html" class="btn-outline text-xs">Downtime Calculator</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-secondary mt-16"><div class="container mx-auto px-6 py-12"><div class="grid grid-cols-2 md:grid-cols-5 gap-8"><div class="col-span-2 md:col-span-1"><a href="../index.html" class="flex items-center space-x-3"><svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="url(#logoGradient)"><use href="#logo-path"/></g></svg><span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span></a><p class="mt-4 text-sm">Your full-spectrum technology partner, delivering mission-critical IT solutions from Miami, FL to clients nationwide.</p></div><div><h4 class="font-heading text-lg text-lightest-slate">Quick Links</h4><ul class="mt-4 space-y-2"><li><a href="../index.html" class="hover:text-accent transition-colors">Home</a></li><li><a href="../index.html#services" class="hover:text-accent transition-colors">Services</a></li><li><a href="../cybersecurity.html" class="hover:text-accent transition-colors">Cybersecurity</a></li><li><a href="../ai-services.html" class="hover:text-accent transition-colors">AI Solutions</a></li></ul></div><div><h4 class="font-heading text-lg text-lightest-slate">Tools</h4><ul class="mt-4 space-y-2"><li><a href="hotel-wifi-estimator.html" class="hover:text-accent transition-colors">Hotel WiFi Estimator</a></li><li><a href="downtime-cost-calculator.html" class="hover:text-accent transition-colors">Downtime Calculator</a></li><li><a href="cybersecurity-calculator.html" class="hover:text-accent transition-colors">Cyber Risk Assessor</a></li><li><a href="compliance-checker.html" class="hover:text-accent transition-colors">Compliance Checker</a></li><li><a href="network-scorecard.html" class="hover:text-accent transition-colors">Network Scorecard</a></li></ul></div><div><h4 class="font-heading text-lg text-lightest-slate">Contact Info</h4><ul class="mt-4 space-y-2"><li class="flex items-center space-x-2"><span>📍</span><span>Miami, Florida</span></li><li class="flex items-center space-x-2"><span>📞</span><span>(424) 444-4472</span></li><li class="flex items-center space-x-2"><span>✉️</span><span>sales@clearmoon.llc</span></li></ul></div><div><h4 class="font-heading text-lg text-lightest-slate">Connect</h4><div class="flex space-x-4 mt-4"><a href="https://www.linkedin.com/company/clear-moon" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">LinkedIn</a><a href="https://twitter.com/clearmoonllc" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Twitter</a></div></div></div><div class="mt-12 border-t border-gray-700 pt-8 text-center text-sm"><p>&copy; 2026 Clear Moon MSP. All Rights Reserved. | <a href="../privacypolicy.html" class="hover:text-accent transition-colors">Privacy Policy</a></p></div></div></footer>
+
+    <script src="../dist/js/shared.js" defer></script>
+    <script>
+        function scoreNetwork() {
+            const domains = [
+                { name: 'Redundancy & Resilience', icon: '🔄', ids: ['r1','r2'], max: 6 },
+                { name: 'Security Posture', icon: '🛡️', ids: ['s1','s2'], max: 6 },
+                { name: 'Performance', icon: '⚡', ids: ['p1','p2'], max: 6 },
+                { name: 'Management & Visibility', icon: '📊', ids: ['m1','m2'], max: 6 }
+            ];
+            let totalEarned = 0, totalMax = 0;
+            const breakdown = document.getElementById('domain-breakdown');
+            breakdown.innerHTML = '';
+
+            domains.forEach(domain => {
+                let earned = 0;
+                domain.ids.forEach(id => { earned += parseInt(document.getElementById(id).value); });
+                totalEarned += earned;
+                totalMax += domain.max;
+                const pct = Math.round((earned / domain.max) * 100);
+                const color = pct >= 80 ? '#4ade80' : pct >= 50 ? '#facc15' : '#f87171';
+
+                breakdown.innerHTML += `
+                    <div class="bg-primary p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">${domain.icon} ${domain.name}</span>
+                            <span class="text-sm font-bold" style="color:${color}">${pct}%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2"><div class="domain-bar" style="width:${pct}%;background:${color}"></div></div>
+                    </div>`;
+            });
+
+            const overall = Math.round((totalEarned / totalMax) * 100);
+            document.getElementById('score-text').textContent = overall;
+            document.getElementById('score-ring').setAttribute('stroke-dasharray', `${overall}, 100`);
+
+            const grade = document.getElementById('grade-text');
+            const ring = document.getElementById('score-ring');
+            ring.classList.remove('text-green-400','text-yellow-400','text-red-500','text-accent');
+            if (overall >= 80) {
+                grade.textContent = 'Excellent — enterprise-grade network infrastructure.';
+                grade.className = 'text-lg font-medium text-green-400';
+                ring.classList.add('text-green-400');
+            } else if (overall >= 50) {
+                grade.textContent = 'Fair — notable gaps in infrastructure maturity.';
+                grade.className = 'text-lg font-medium text-yellow-400';
+                ring.classList.add('text-yellow-400');
+            } else {
+                grade.textContent = 'Critical — significant infrastructure risks present.';
+                grade.className = 'text-lg font-medium text-red-500';
+                ring.classList.add('text-red-500');
+            }
+
+            document.getElementById('results').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
