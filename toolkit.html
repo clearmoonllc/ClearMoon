@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Tech Toolkit — ClearMoon MSP</title>
+    <meta name="description" content="Essential network tools for field technicians. IP lookup, subnet calculator, DNS lookup, port reference, cable guides, and more.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="dist/css/theme.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0A192F',secondary:'#2C3E50',accent:'#64FFDA','light-slate':'#CCD6F6','lightest-slate':'#E6F1FF','dark-slate':'#8892B0'}}}}</script>
+    <style>
+        .tool-card { cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 0 20px rgba(100,255,218,0.15); border-color: rgba(100,255,218,0.4); }
+        .tool-card.expanded { grid-column: 1/-1; }
+        .tool-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+        .tool-card.expanded .tool-body { max-height: 2000px; padding-top: 1rem; }
+        .tool-input { background: rgba(10,25,47,0.6); border: 1px solid rgba(100,255,218,0.15); color: #CCD6F6; padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; }
+        .tool-input:focus { outline: none; border-color: rgba(100,255,218,0.5); box-shadow: 0 0 8px rgba(100,255,218,0.15); }
+        .tool-btn { background: rgba(100,255,218,0.1); border: 1px solid rgba(100,255,218,0.3); color: #64FFDA; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .tool-btn:hover { background: rgba(100,255,218,0.2); }
+        .result-box { background: rgba(10,25,47,0.8); border: 1px solid rgba(100,255,218,0.1); border-radius: 0.5rem; padding: 0.75rem; font-family: 'Orbitron', monospace; font-size: 0.75rem; color: #64FFDA; }
+        table.ref-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        table.ref-table th { text-align: left; color: #64FFDA; padding: 0.4rem 0.5rem; border-bottom: 1px solid rgba(100,255,218,0.2); font-family: 'Orbitron'; font-size: 0.65rem; letter-spacing: 1px; }
+        table.ref-table td { padding: 0.35rem 0.5rem; border-bottom: 1px solid rgba(100,255,218,0.05); color: #CCD6F6; }
+        table.ref-table tr:hover td { background: rgba(100,255,218,0.03); }
+        .search-filter { background: rgba(10,25,47,0.5); border: 1px solid rgba(100,255,218,0.1); color: #CCD6F6; padding: 0.4rem 0.6rem; border-radius: 0.25rem; font-size: 0.75rem; width: 100%; margin-bottom: 0.5rem; }
+        .search-filter:focus { outline: none; border-color: rgba(100,255,218,0.3); }
+        .wire-pin { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin: 2px; }
+        .copy-btn { cursor: pointer; font-size: 0.7rem; color: rgba(100,255,218,0.5); }
+        .copy-btn:hover { color: #64FFDA; }
+    </style>
+</head>
+<body class="bg-primary text-light-slate min-h-screen">
+    <canvas id="starfield"></canvas>
+
+    <!-- Header -->
+    <header class="relative z-10 py-6 px-4 sm:px-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition">
+                <span class="text-accent text-2xl">◈</span>
+                <div>
+                    <h1 class="text-xl font-heading text-lightest-slate font-bold tracking-wide">FIELD TECH TOOLKIT</h1>
+                    <p class="text-[10px] text-dark-slate tracking-widest">BY CLEARMOON MSP</p>
+                </div>
+            </a>
+            <a href="index.html" class="text-xs text-dark-slate hover:text-accent transition tracking-wider font-heading">← MAIN SITE</a>
+        </div>
+    </header>
+
+    <!-- Tools Grid -->
+    <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 pb-16">
+        <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+            <!-- 1. My Public IP -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="ip">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">🌐</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">MY PUBLIC IP</h3>
+                        <p class="text-[10px] text-dark-slate">Your external IP address</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="result-box text-center">
+                        <div id="ip-address" class="text-lg text-accent">Loading...</div>
+                        <div id="ip-info" class="text-[10px] text-dark-slate mt-1"></div>
+                    </div>
+                    <button class="copy-btn mt-2 block mx-auto" onclick="navigator.clipboard.writeText(document.getElementById('ip-address').textContent)">📋 Copy</button>
+                </div>
+            </div>
+
+            <!-- 2. Subnet Calculator -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="subnet">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">🧮</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">SUBNET CALCULATOR</h3>
+                        <p class="text-[10px] text-dark-slate">IP + CIDR → full breakdown</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="flex gap-2 mb-3">
+                        <input type="text" id="subnet-ip" class="tool-input flex-1" placeholder="192.168.1.0" value="192.168.1.0">
+                        <input type="text" id="subnet-cidr" class="tool-input w-16 text-center" placeholder="/24" value="/24">
+                    </div>
+                    <button class="tool-btn w-full" onclick="calcSubnet()">Calculate</button>
+                    <div id="subnet-result" class="result-box mt-3 hidden"></div>
+                </div>
+            </div>
+
+            <!-- 3. Latency Test -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="latency">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">📡</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">LATENCY TEST</h3>
+                        <p class="text-[10px] text-dark-slate">Measure connection speed</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <button class="tool-btn w-full" id="latency-btn" onclick="runLatency()">Run Test</button>
+                    <div id="latency-result" class="result-box mt-3 hidden"></div>
+                </div>
+            </div>
+
+            <!-- 4. CIDR / Mask Reference -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="cidr">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">📊</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">CIDR REFERENCE</h3>
+                        <p class="text-[10px] text-dark-slate">Masks, wildcards, hosts</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <input type="text" class="search-filter" placeholder="Search (/24, 255.255...)" oninput="filterCIDR(this.value)">
+                    <div class="max-h-64 overflow-y-auto">
+                        <table class="ref-table" id="cidr-table">
+                            <thead><tr><th>CIDR</th><th>MASK</th><th>HOSTS</th></tr></thead>
+                            <tbody id="cidr-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. RJ45 Punch-Down -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="rj45">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">🔌</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">RJ45 WIRING GUIDE</h3>
+                        <p class="text-[10px] text-dark-slate">T-568A / T-568B pinouts</p>
+                    </div>
+                </div>
+                <div class="tool-body" id="rj45-body"></div>
+            </div>
+
+            <!-- 6. Fiber & OTDR -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="fiber">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">💎</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">FIBER & OTDR</h3>
+                        <p class="text-[10px] text-dark-slate">Connectors, cables, loss budgets</p>
+                    </div>
+                </div>
+                <div class="tool-body" id="fiber-body"></div>
+            </div>
+
+            <!-- 7. DNS Lookup -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="dns">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">🔍</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">DNS LOOKUP</h3>
+                        <p class="text-[10px] text-dark-slate">A, AAAA, MX, NS records</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="flex gap-2 mb-3">
+                        <input type="text" id="dns-domain" class="tool-input flex-1" placeholder="example.com" value="clearmoon.llc">
+                        <select id="dns-type" class="tool-input w-20">
+                            <option>A</option><option>AAAA</option><option>MX</option><option>NS</option><option>TXT</option><option>CNAME</option>
+                        </select>
+                    </div>
+                    <button class="tool-btn w-full" onclick="dnsLookup()">Resolve</button>
+                    <div id="dns-result" class="result-box mt-3 hidden"></div>
+                </div>
+            </div>
+
+            <!-- 8. Port Reference -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="ports">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">🚪</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">PORT REFERENCE</h3>
+                        <p class="text-[10px] text-dark-slate">Common ports & services</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <input type="text" class="search-filter" placeholder="Search port or service..." oninput="filterPorts(this.value)">
+                    <div class="max-h-64 overflow-y-auto">
+                        <table class="ref-table" id="port-table">
+                            <thead><tr><th>PORT</th><th>SERVICE</th><th>PROTO</th></tr></thead>
+                            <tbody id="port-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. WiFi Channel Planner -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="wifi">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">📶</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">WIFI CHANNEL MAP</h3>
+                        <p class="text-[10px] text-dark-slate">2.4 GHz & 5 GHz channels</p>
+                    </div>
+                </div>
+                <div class="tool-body" id="wifi-body"></div>
+            </div>
+
+            <!-- 10. Password / Key Generator -->
+            <div class="tool-card glass rounded-xl p-5" data-tool="keygen">
+                <div class="tool-header flex items-center gap-3 mb-1">
+                    <span class="text-2xl">🔑</span>
+                    <div>
+                        <h3 class="text-sm font-heading text-lightest-slate font-bold">SECURE KEY GEN</h3>
+                        <p class="text-[10px] text-dark-slate">Passwords, PSKs, WPA keys</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="flex gap-2 mb-3 items-center">
+                        <label class="text-[10px] text-dark-slate">Length:</label>
+                        <input type="range" id="key-len" min="8" max="64" value="24" class="flex-1" oninput="document.getElementById('key-len-val').textContent=this.value">
+                        <span id="key-len-val" class="text-xs text-accent w-6 text-right">24</span>
+                    </div>
+                    <div class="flex gap-2 text-[10px] text-dark-slate mb-3 flex-wrap">
+                        <label><input type="checkbox" id="key-upper" checked> A-Z</label>
+                        <label><input type="checkbox" id="key-lower" checked> a-z</label>
+                        <label><input type="checkbox" id="key-nums" checked> 0-9</label>
+                        <label><input type="checkbox" id="key-syms" checked> !@#$</label>
+                    </div>
+                    <button class="tool-btn w-full" onclick="generateKey()">Generate</button>
+                    <div id="key-result" class="result-box mt-3 text-center text-sm break-all hidden"></div>
+                    <button class="copy-btn mt-1 block mx-auto hidden" id="key-copy" onclick="navigator.clipboard.writeText(document.getElementById('key-result').textContent)">📋 Copy</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-8 text-xs text-dark-slate">
+        <p>&copy; 2026 <a href="index.html" class="hover:text-accent transition">Clear Moon MSP</a> · All Rights Reserved</p>
+    </footer>
+
+    <script src="dist/js/shared.js" defer></script>
+    <script>
+    // ===================== TOOL EXPAND/COLLAPSE =====================
+    document.querySelectorAll('.tool-card').forEach(card => {
+        card.querySelector('.tool-header').addEventListener('click', () => {
+            const wasExpanded = card.classList.contains('expanded');
+            // Collapse all
+            document.querySelectorAll('.tool-card.expanded').forEach(c => c.classList.remove('expanded'));
+            if (!wasExpanded) {
+                card.classList.add('expanded');
+                // Auto-load data for specific tools
+                const tool = card.dataset.tool;
+                if (tool === 'ip') fetchIP();
+                if (tool === 'cidr') populateCIDR();
+                if (tool === 'ports') populatePorts();
+                if (tool === 'rj45') populateRJ45();
+                if (tool === 'fiber') populateFiber();
+                if (tool === 'wifi') populateWifi();
+            }
+        });
+    });
+
+    // ===================== 1. PUBLIC IP =====================
+    let ipFetched = false;
+    function fetchIP() {
+        if (ipFetched) return;
+        ipFetched = true;
+        fetch('https://api.ipify.org?format=json')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('ip-address').textContent = d.ip;
+                return fetch('https://ip-api.com/json/' + d.ip);
+            })
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('ip-info').textContent = (d.isp || '') + ' · ' + (d.city||'') + ', ' + (d.regionName||'') + ', ' + (d.country||'');
+            })
+            .catch(() => { document.getElementById('ip-address').textContent = 'Error'; });
+    }
+
+    // ===================== 2. SUBNET CALCULATOR =====================
+    function calcSubnet() {
+        const ipStr = document.getElementById('subnet-ip').value.trim();
+        let cidrStr = document.getElementById('subnet-cidr').value.trim().replace('/','');
+        const cidr = parseInt(cidrStr);
+        if (isNaN(cidr) || cidr < 0 || cidr > 32) { alert('Invalid CIDR (0-32)'); return; }
+        const parts = ipStr.split('.').map(Number);
+        if (parts.length !== 4 || parts.some(p => isNaN(p) || p < 0 || p > 255)) { alert('Invalid IP'); return; }
+
+        const ipNum = (parts[0]<<24 | parts[1]<<16 | parts[2]<<8 | parts[3]) >>> 0;
+        const mask = cidr === 0 ? 0 : (~0 << (32 - cidr)) >>> 0;
+        const network = (ipNum & mask) >>> 0;
+        const broadcast = (network | ~mask) >>> 0;
+        const hosts = cidr >= 31 ? (cidr === 32 ? 1 : 2) : Math.pow(2, 32 - cidr) - 2;
+        const firstHost = cidr >= 31 ? network : (network + 1) >>> 0;
+        const lastHost = cidr >= 31 ? broadcast : (broadcast - 1) >>> 0;
+        const wildcard = (~mask) >>> 0;
+
+        const toIP = n => [(n>>>24)&255, (n>>>16)&255, (n>>>8)&255, n&255].join('.');
+        const el = document.getElementById('subnet-result');
+        el.classList.remove('hidden');
+        el.innerHTML = [
+            '<b>Network:</b> ' + toIP(network) + '/' + cidr,
+            '<b>Mask:</b> ' + toIP(mask),
+            '<b>Wildcard:</b> ' + toIP(wildcard),
+            '<b>Broadcast:</b> ' + toIP(broadcast),
+            '<b>Host Range:</b> ' + toIP(firstHost) + ' – ' + toIP(lastHost),
+            '<b>Usable Hosts:</b> ' + hosts.toLocaleString()
+        ].join('<br>');
+    }
+
+    // ===================== 3. LATENCY TEST =====================
+    async function runLatency() {
+        const btn = document.getElementById('latency-btn');
+        const el = document.getElementById('latency-result');
+        btn.textContent = 'Testing...'; btn.disabled = true;
+        el.classList.remove('hidden');
+        el.innerHTML = '';
+
+        const targets = [
+            { name: 'Google DNS', url: 'https://dns.google/resolve?name=example.com&type=A' },
+            { name: 'Cloudflare', url: 'https://1.1.1.1/dns-query?name=example.com&type=A' },
+            { name: 'ClearMoon', url: window.location.origin + '/robots.txt' }
+        ];
+        let html = '';
+        for (const t of targets) {
+            const results = [];
+            for (let i = 0; i < 3; i++) {
+                const start = performance.now();
+                try {
+                    await fetch(t.url, { mode: 'no-cors', cache: 'no-store' });
+                    results.push(Math.round(performance.now() - start));
+                } catch { results.push(-1); }
+            }
+            const avg = results.filter(r=>r>0).length ? Math.round(results.filter(r=>r>0).reduce((a,b)=>a+b,0)/results.filter(r=>r>0).length) : '—';
+            const color = avg === '—' ? '#FF6B6B' : avg < 100 ? '#64FFDA' : avg < 300 ? '#F28F3F' : '#FF6B6B';
+            html += '<div class="flex justify-between py-1"><span>' + t.name + '</span><span style="color:'+color+'">' + avg + (avg!=='—'?'ms':'') + '</span></div>';
+        }
+        el.innerHTML = html;
+        btn.textContent = 'Run Again'; btn.disabled = false;
+    }
+
+    // ===================== 4. CIDR REFERENCE =====================
+    let cidrPopulated = false;
+    const cidrData = [];
+    function populateCIDR() {
+        if (cidrPopulated) return;
+        cidrPopulated = true;
+        const tbody = document.getElementById('cidr-body');
+        for (let i = 8; i <= 32; i++) {
+            const mask = i === 0 ? 0 : (~0 << (32-i)) >>> 0;
+            const toIP = n => [(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.');
+            const hosts = i >= 31 ? (i===32?1:2) : Math.pow(2,32-i)-2;
+            const row = { cidr: '/'+i, mask: toIP(mask), hosts: hosts };
+            cidrData.push(row);
+            const tr = document.createElement('tr');
+            tr.innerHTML = '<td>/'+i+'</td><td>'+toIP(mask)+'</td><td>'+hosts.toLocaleString()+'</td>';
+            tbody.appendChild(tr);
+        }
+    }
+    function filterCIDR(q) {
+        q = q.toLowerCase();
+        document.querySelectorAll('#cidr-body tr').forEach((tr,i) => {
+            const d = cidrData[i];
+            tr.style.display = (d.cidr.includes(q) || d.mask.includes(q) || String(d.hosts).includes(q)) ? '' : 'none';
+        });
+    }
+
+    // ===================== 5. RJ45 WIRING =====================
+    function populateRJ45() {
+        const el = document.getElementById('rj45-body');
+        if (el.innerHTML) return;
+        const colors568B = ['#F28F3F','#FFF','##4CAF50','#2196F3','#FFF','#F28F3F','#FFF','#795548'];
+        const labels568B = ['WH/ORG','ORG','WH/GRN','BLU','WH/BLU','GRN','WH/BRN','BRN'];
+        const labels568A = ['WH/GRN','GRN','WH/ORG','BLU','WH/BLU','ORG','WH/BRN','BRN'];
+        const pinColors568B = ['#F28F3F','#E65100','#4CAF50','#1565C0','#1565C0','#4CAF50','#795548','#4E342E'];
+        const pinColors568A = ['#4CAF50','#2E7D32','#F28F3F','#1565C0','#1565C0','#E65100','#795548','#4E342E'];
+
+        let html = '<div class="grid grid-cols-2 gap-4">';
+        html += '<div><h4 class="text-xs font-heading text-accent mb-2">T-568B (STANDARD)</h4>';
+        html += '<div class="flex gap-1 mb-1">';
+        for (let i = 0; i < 8; i++) html += '<div class="wire-pin" style="background:'+pinColors568B[i]+'" title="Pin '+(i+1)+': '+labels568B[i]+'"></div>';
+        html += '</div>';
+        for (let i = 0; i < 8; i++) html += '<div class="text-[9px] text-dark-slate">Pin '+(i+1)+': '+labels568B[i]+'</div>';
+        html += '</div>';
+
+        html += '<div><h4 class="text-xs font-heading text-accent mb-2">T-568A</h4>';
+        html += '<div class="flex gap-1 mb-1">';
+        for (let i = 0; i < 8; i++) html += '<div class="wire-pin" style="background:'+pinColors568A[i]+'" title="Pin '+(i+1)+': '+labels568A[i]+'"></div>';
+        html += '</div>';
+        for (let i = 0; i < 8; i++) html += '<div class="text-[9px] text-dark-slate">Pin '+(i+1)+': '+labels568A[i]+'</div>';
+        html += '</div></div>';
+
+        html += '<div class="mt-3 text-[10px] text-dark-slate"><b class="text-accent">Straight-Through:</b> Both ends same (568B–568B)<br><b class="text-accent">Crossover:</b> 568A on one end, 568B on other</div>';
+        el.innerHTML = html;
+    }
+
+    // ===================== 6. FIBER & OTDR =====================
+    function populateFiber() {
+        const el = document.getElementById('fiber-body');
+        if (el.innerHTML) return;
+        el.innerHTML = `
+        <div class="space-y-3">
+            <div>
+                <h4 class="text-xs font-heading text-accent mb-1">CONNECTOR TYPES</h4>
+                <table class="ref-table"><thead><tr><th>TYPE</th><th>USE</th><th>NOTES</th></tr></thead><tbody>
+                    <tr><td>SC</td><td>Enterprise</td><td>Push-pull, square</td></tr>
+                    <tr><td>LC</td><td>Most common</td><td>Small form, latch</td></tr>
+                    <tr><td>ST</td><td>Legacy</td><td>Twist-lock, round</td></tr>
+                    <tr><td>MTP/MPO</td><td>Data center</td><td>Multi-fiber, 12/24f</td></tr>
+                </tbody></table>
+            </div>
+            <div>
+                <h4 class="text-xs font-heading text-accent mb-1">CABLE TYPES</h4>
+                <table class="ref-table"><thead><tr><th>TYPE</th><th>MODE</th><th>MAX DIST</th></tr></thead><tbody>
+                    <tr><td>OS2</td><td>Single-mode</td><td>10+ km</td></tr>
+                    <tr><td>OM3</td><td>Multi-mode</td><td>300m @10G</td></tr>
+                    <tr><td>OM4</td><td>Multi-mode</td><td>400m @10G</td></tr>
+                    <tr><td>OM5</td><td>Multi-mode</td><td>150m @100G</td></tr>
+                </tbody></table>
+            </div>
+            <div>
+                <h4 class="text-xs font-heading text-accent mb-1">OTDR QUICK REF</h4>
+                <div class="text-[10px] text-dark-slate space-y-1">
+                    <div><b class="text-accent">Splice Loss:</b> &lt; 0.1 dB (fusion), &lt; 0.5 dB (mechanical)</div>
+                    <div><b class="text-accent">Connector Loss:</b> &lt; 0.3 dB typical</div>
+                    <div><b class="text-accent">Fiber Attenuation:</b> SM: 0.35 dB/km @1310nm, 0.25 dB/km @1550nm</div>
+                    <div><b class="text-accent">Clean!</b> Always clean connectors before testing (IPA + lint-free)</div>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    // ===================== 7. DNS LOOKUP =====================
+    async function dnsLookup() {
+        const domain = document.getElementById('dns-domain').value.trim();
+        const type = document.getElementById('dns-type').value;
+        const el = document.getElementById('dns-result');
+        el.classList.remove('hidden');
+        el.innerHTML = 'Resolving...';
+        try {
+            const r = await fetch('https://dns.google/resolve?name=' + encodeURIComponent(domain) + '&type=' + type);
+            const d = await r.json();
+            if (d.Answer && d.Answer.length) {
+                el.innerHTML = d.Answer.map(a => '<div class="py-0.5">' + a.name + ' → <span class="text-accent">' + a.data + '</span> <span class="text-dark-slate">(TTL: ' + a.TTL + ')</span></div>').join('');
+            } else {
+                el.innerHTML = '<span class="text-dark-slate">No ' + type + ' records found</span>';
+            }
+        } catch { el.innerHTML = '<span style="color:#FF6B6B">Lookup failed</span>'; }
+    }
+
+    // ===================== 8. PORT REFERENCE =====================
+    const portData = [
+        [20,'FTP Data','TCP'],[21,'FTP Control','TCP'],[22,'SSH','TCP'],[23,'Telnet','TCP'],
+        [25,'SMTP','TCP'],[53,'DNS','TCP/UDP'],[67,'DHCP Server','UDP'],[68,'DHCP Client','UDP'],
+        [80,'HTTP','TCP'],[110,'POP3','TCP'],[123,'NTP','UDP'],[143,'IMAP','TCP'],
+        [161,'SNMP','UDP'],[162,'SNMP Trap','UDP'],[389,'LDAP','TCP'],[443,'HTTPS','TCP'],
+        [445,'SMB','TCP'],[465,'SMTPS','TCP'],[514,'Syslog','UDP'],[587,'SMTP Submission','TCP'],
+        [636,'LDAPS','TCP'],[993,'IMAPS','TCP'],[995,'POP3S','TCP'],[1433,'MSSQL','TCP'],
+        [1723,'PPTP','TCP'],[3306,'MySQL','TCP'],[3389,'RDP','TCP'],[5060,'SIP','TCP/UDP'],
+        [5432,'PostgreSQL','TCP'],[5900,'VNC','TCP'],[8080,'HTTP Alt','TCP'],[8443,'HTTPS Alt','TCP']
+    ];
+    let portsPopulated = false;
+    function populatePorts() {
+        if (portsPopulated) return;
+        portsPopulated = true;
+        const tbody = document.getElementById('port-body');
+        portData.forEach(p => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + p[0] + '</td><td>' + p[1] + '</td><td>' + p[2] + '</td>';
+            tbody.appendChild(tr);
+        });
+    }
+    function filterPorts(q) {
+        q = q.toLowerCase();
+        document.querySelectorAll('#port-body tr').forEach((tr,i) => {
+            const p = portData[i];
+            tr.style.display = (String(p[0]).includes(q) || p[1].toLowerCase().includes(q) || p[2].toLowerCase().includes(q)) ? '' : 'none';
+        });
+    }
+
+    // ===================== 9. WIFI CHANNEL MAP =====================
+    function populateWifi() {
+        const el = document.getElementById('wifi-body');
+        if (el.innerHTML) return;
+        el.innerHTML = `
+        <div class="space-y-3">
+            <div>
+                <h4 class="text-xs font-heading text-accent mb-1">2.4 GHz NON-OVERLAPPING</h4>
+                <div class="flex gap-2 text-[10px]">
+                    <div class="result-box text-center flex-1"><b>Ch 1</b><br>2412 MHz</div>
+                    <div class="result-box text-center flex-1"><b>Ch 6</b><br>2437 MHz</div>
+                    <div class="result-box text-center flex-1"><b>Ch 11</b><br>2462 MHz</div>
+                </div>
+                <p class="text-[9px] text-dark-slate mt-1">Only use 1, 6, 11 to avoid co-channel interference</p>
+            </div>
+            <div>
+                <h4 class="text-xs font-heading text-accent mb-1">5 GHz UNII BANDS</h4>
+                <table class="ref-table"><thead><tr><th>BAND</th><th>CHANNELS</th><th>DFS</th></tr></thead><tbody>
+                    <tr><td>UNII-1</td><td>36, 40, 44, 48</td><td>No</td></tr>
+                    <tr><td>UNII-2</td><td>52, 56, 60, 64</td><td>Yes</td></tr>
+                    <tr><td>UNII-2e</td><td>100–144</td><td>Yes</td></tr>
+                    <tr><td>UNII-3</td><td>149, 153, 157, 161, 165</td><td>No</td></tr>
+                </tbody></table>
+                <p class="text-[9px] text-dark-slate mt-1">Prefer non-DFS channels for critical infrastructure</p>
+            </div>
+        </div>`;
+    }
+
+    // ===================== 10. KEY GENERATOR =====================
+    function generateKey() {
+        const len = parseInt(document.getElementById('key-len').value);
+        let chars = '';
+        if (document.getElementById('key-upper').checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (document.getElementById('key-lower').checked) chars += 'abcdefghijklmnopqrstuvwxyz';
+        if (document.getElementById('key-nums').checked) chars += '0123456789';
+        if (document.getElementById('key-syms').checked) chars += '!@#$%^&*()-_=+[]{}|;:,.<>?';
+        if (!chars) { alert('Select at least one character set'); return; }
+        const arr = new Uint32Array(len);
+        crypto.getRandomValues(arr);
+        let result = '';
+        for (let i = 0; i < len; i++) result += chars[arr[i] % chars.length];
+        const el = document.getElementById('key-result');
+        el.textContent = result;
+        el.classList.remove('hidden');
+        document.getElementById('key-copy').classList.remove('hidden');
+    }
+    </script>
+</body>
+</html>

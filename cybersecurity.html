@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity & NOC/SOC | Clear Moon Technology Partner</title>
+
+    <meta name="description"
+        content="Mission-critical cybersecurity operations. Clear Moon offers 24/7 SOC monitoring, endpoint protection, zero-trust architecture, and compliance auditing.">
+
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='625 305 140 165'%3E...%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="dist/css/theme.css">
+</head>
+
+<body class="bg-primary text-light-slate">
+    <canvas id="starfield"></canvas>
+
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="logoGradient" gradientUnits="userSpaceOnUse" x1="697.8817" y1="309.6764" x2="671.3631"
+                y2="460.0707">
+                <stop offset="0" style="stop-color:#FFF57E" />
+                <stop offset="0.2" style="stop-color:#FDC60B" />
+                <stop offset="0.5" style="stop-color:#F28F3F" />
+                <stop offset="0.8" style="stop-color:#EE7139" />
+                <stop offset="1" style="stop-color:#AB576A" />
+            </linearGradient>
+            <path id="logo-path"
+                d="M758.843,384.489c0,42.169-34.184,76.353-76.353,76.353c-37.939,0-69.399-27.675-75.332-63.936 c10.563,19.791,31.409,33.264,55.41,33.264c34.67,0,62.776-28.106,62.776-62.776c0-27.382-17.537-50.655-41.987-59.236 C725.124,308.624,758.843,342.611,758.843,384.489z M659.118,339.589l11.013,4.535l-1.4-11.828l4.535-11.013l-11.828,1.4 l-11.013-4.535l1.4,11.828l-4.535,11.013L659.118,339.589z M648.254,416.001l4.27-4.966l6.148-2.259l-4.966-4.27l-2.259-6.147 l-4.27,4.966l-6.147,2.259l4.966,4.27L648.254,416.001z M692.164,364.475l3.005-1.104l-2.427-2.087l-1.104-3.005l-2.087,2.427 l-3.005,1.104l2.427,2.087l1.104,3.005L692.164,364.475z M630.041,367.013l2.92-1.312l3.189,0.276l-1.312-2.92l0.276-3.189 l-2.92,1.312l-3.189-0.276l1.312,2.92L630.041,367.013z" />
+        </defs>
+    </svg>
+
+    <header id="header" class="bg-primary/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Main Navigation">
+            <a href="index.html" class="flex items-center space-x-3" aria-label="Clear Moon Home">
+                <svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <g fill="url(#logoGradient)">
+                        <use href="#logo-path" />
+                    </g>
+                </svg>
+                <span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#services" class="hover:text-accent transition-colors">Services</a>
+                <a href="cybersecurity.html" class="text-accent transition-colors">Cybersecurity</a>
+                <a href="ai-services.html" class="hover:text-accent transition-colors">AI Solutions</a>
+                <div class="relative group">
+                    <button class="hover:text-accent transition-colors flex items-center" aria-haspopup="true">
+                        Case Studies
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-secondary border border-white/10 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity invisible group-hover:visible z-50">
+                        <a href="case-study-cameras.html"
+                            class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Distribution
+                            Hub Cameras</a>
+                        <a href="case-study-hospitality.html"
+                            class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Hospitality
+                            Network & A/V</a>
+                        <a href="case-study-ai.html"
+                            class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Enterprise
+                            AI Integration</a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <button class="hover:text-accent transition-colors flex items-center" aria-haspopup="true">
+                        Tools
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-secondary border border-white/10 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity invisible group-hover:visible z-50">
+                        <a href="hotel-wifi-estimator.html"
+                            class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Hotel
+                            WiFi Cost Estimator</a>
+                        <a href="downtime-cost-calculator.html"
+                            class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Downtime
+                            Cost Calculator</a>
+                        <a href="cybersecurity-calculator.html"
+                            class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Cybersecurity
+                            Risk Assessor</a>
+                        <a href="cloud-roi-estimator.html"
+                            class="block px-4 py-2 text-light-slate hover:bg-accent/10 hover:text-accent rounded-md">Cloud
+                            Migration ROI Estimator</a>
+                    </div>
+                </div>
+                <a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a>
+            </div>
+            <a href="index.html#contact"
+                class="hidden md:inline-block bg-transparent border border-accent text-accent py-2 px-4 rounded-md hover:bg-accent/10 transition-colors">
+                Security Audit
+            </a>
+            <button id="mobile-menu-btn" class="md:hidden text-lightest-slate z-50" aria-label="Toggle Mobile Menu"
+                aria-expanded="false">
+                <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+                <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-secondary">
+            <div class="flex flex-col items-center space-y-4 py-8">
+                <a href="index.html#services" class="hover:text-accent transition-colors mobile-nav-link">Services</a>
+                <a href="cybersecurity.html" class="text-accent transition-colors mobile-nav-link">Cybersecurity</a>
+                <a href="ai-services.html" class="hover:text-accent transition-colors mobile-nav-link">AI Solutions</a>
+                <a href="toolkit.html" class="hover:text-accent transition-colors mobile-nav-link">Toolkit</a>
+                <div class="w-full text-center">
+                    <button id="mobile-cases-btn"
+                        class="hover:text-accent transition-colors flex items-center justify-center w-full py-2">
+                        Case Studies
+                        <svg class="w-4 h-4 ml-1 transform transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div id="mobile-cases-dropdown" class="hidden mt-2 space-y-2">
+                        <a href="case-study-cameras.html"
+                            class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Security
+                            Cameras</a>
+                        <a href="case-study-hospitality.html"
+                            class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Hospitality
+                            A/V</a>
+                        <a href="case-study-ai.html"
+                            class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Enterprise
+                            AI</a>
+                    </div>
+                </div>
+                <div class="w-full text-center">
+                    <button id="mobile-tools-btn"
+                        class="hover:text-accent transition-colors flex items-center justify-center w-full py-2">
+                        Tools
+                        <svg class="w-4 h-4 ml-1 transform transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div id="mobile-tools-dropdown" class="hidden mt-2 space-y-2">
+                        <a href="hotel-wifi-estimator.html"
+                            class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Hotel WiFi
+                            Estimator</a>
+                        <a href="downtime-cost-calculator.html"
+                            class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Downtime
+                            Calculator</a>
+                        <a href="cybersecurity-calculator.html"
+                            class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Cyber
+                            Risk Assessor</a>
+                        <a href="cloud-roi-estimator.html"
+                            class="block text-gray-400 hover:text-accent transition-colors mobile-nav-link">Cloud
+                            Migration ROI</a>
+                    </div>
+                </div>
+                <a href="index.html#contact" class="hover:text-accent transition-colors mobile-nav-link">Contact</a>
+                <a href="index.html#contact"
+                    class="mt-4 bg-accent text-primary py-2 px-6 rounded-md hover:bg-accent/80 transition-colors mobile-nav-link">
+                    Security Audit
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="pt-24 pb-16 md:pt-32 md:pb-24 container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 fade-in-up">
+                    <p class="text-accent font-brand text-sm mb-4 tracking-widest">DEFENSE IN DEPTH</p>
+                    <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight mb-6">
+                        Unrelenting Cyber Defense.</h1>
+                    <p class="text-lg mb-4">Hope is not a security strategy. Bad actors operate 24/7, and so must your
+                        defense. We provide enterprise-grade Security Operations Center (SOC) monitoring, active threat
+                        hunting, and Zero-Trust architecture deployment to keep your data safe, always.</p>
+                    <p class="text-sm mb-8 text-dark-slate">From vulnerability assessments to full incident response — we cover the entire kill chain so you don't have to.</p>
+                    <a href="index.html#contact" class="btn-outline">Request Penetration Test</a>
+                </div>
+                <div class="md:w-1/2 flex justify-center fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="radar">
+                        <div class="radar-grid"></div>
+                        <div class="radar-blip"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Threat Landscape Stats -->
+        <section class="py-10 border-t border-b border-white/10 fade-in-up">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="stat-number" data-count-to="4" data-count-prefix="$" data-count-suffix=".88M">0</div>
+                        <p class="text-sm mt-1">Avg. Data Breach Cost</p>
+                    </div>
+                    <div>
+                        <div class="stat-number" data-count-to="277" data-count-suffix=" days">0</div>
+                        <p class="text-sm mt-1">Avg. Breach Detection</p>
+                    </div>
+                    <div>
+                        <div class="stat-number" data-count-to="68" data-count-suffix="%">0</div>
+                        <p class="text-sm mt-1">SMBs Attacked Yearly</p>
+                    </div>
+                    <div>
+                        <div class="stat-number" data-count-to="3" data-count-suffix=" sec">0</div>
+                        <p class="text-sm mt-1">Our Avg. Response Time</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Operations Cards -->
+        <section class="py-20 bg-secondary/30">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                    <h2 class="font-heading text-3xl font-bold text-lightest-slate">Comprehensive Security Operations</h2>
+                    <p class="mt-4 text-lg">Multi-layered defense that adapts in real-time to emerging threats across your entire digital estate.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass p-6 rounded-xl fade-in-up glow-border-hover">
+                        <div class="text-3xl mb-4 text-accent">🛡️</div>
+                        <h3 class="font-heading text-xl text-lightest-slate mb-3">24/7 Managed SOC</h3>
+                        <p class="text-sm">Continuous monitoring, threat detection, and active incident response. We
+                            identify anomalies and isolate compromised endpoints in milliseconds, halting ransomware
+                            before encryption begins.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl fade-in-up glow-border-hover" style="animation-delay: 0.1s;">
+                        <div class="text-3xl mb-4 text-accent">🔒</div>
+                        <h3 class="font-heading text-xl text-lightest-slate mb-3">Zero-Trust Architecture</h3>
+                        <p class="text-sm">Context-aware access controls verify every user, device, and session. No implicit trust — inside or outside the network perimeter.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl fade-in-up glow-border-hover" style="animation-delay: 0.2s;">
+                        <div class="text-3xl mb-4 text-accent">📧</div>
+                        <h3 class="font-heading text-xl text-lightest-slate mb-3">Advanced Email Security</h3>
+                        <p class="text-sm">AI-driven inbox defense stops spear-phishing, business email compromise (BEC), and malicious attachments before they reach your team.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl fade-in-up glow-border-hover" style="animation-delay: 0.3s;">
+                        <div class="text-3xl mb-4 text-accent">📋</div>
+                        <h3 class="font-heading text-xl text-lightest-slate mb-3">Compliance & Risk</h3>
+                        <p class="text-sm">Aligning IT posture with NIST, HIPAA, SOC2, and PCI-DSS. We handle auditing, gap analysis, and ongoing evidence collection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Zero Trust Section -->
+        <section class="py-20 container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12 fade-in-up">
+                    <h2 class="font-heading text-3xl font-bold text-lightest-slate">Why Zero Trust?</h2>
+                    <p class="mt-4 text-lg max-w-2xl mx-auto">Traditional perimeter defense assumes everything inside is safe. Zero Trust assumes nothing is — and verifies continuously.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 fade-in-up">
+                    <div class="glass p-6 rounded-lg text-center">
+                        <div class="text-4xl mb-4">🔍</div>
+                        <h3 class="font-heading text-lg text-lightest-slate mb-2">Verify Explicitly</h3>
+                        <p class="text-sm">Every access request is fully authenticated, authorized, and encrypted based on all available data points — user identity, location, device health, workload.</p>
+                    </div>
+                    <div class="glass p-6 rounded-lg text-center">
+                        <div class="text-4xl mb-4">🚫</div>
+                        <h3 class="font-heading text-lg text-lightest-slate mb-2">Least Privilege</h3>
+                        <p class="text-sm">Users and applications only get the minimum access they need. Just-in-time and just-enough-access policies reduce blast radius of any breach.</p>
+                    </div>
+                    <div class="glass p-6 rounded-lg text-center">
+                        <div class="text-4xl mb-4">💥</div>
+                        <h3 class="font-heading text-lg text-lightest-slate mb-2">Assume Breach</h3>
+                        <p class="text-sm">We design systems with the assumption that your network is already compromised. Micro-segmentation, anomaly detection, and continuous monitoring limit lateral movement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Framework Comparison -->
+        <section class="py-16 bg-secondary/30">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 fade-in-up">
+                    <h2 class="font-heading text-3xl font-bold text-lightest-slate">Compliance Framework Comparison</h2>
+                    <p class="mt-4 text-lg">We help you align to the right framework for your industry and risk profile.</p>
+                </div>
+                <div class="overflow-x-auto fade-in-up">
+                    <table class="w-full text-sm text-left">
+                        <thead>
+                            <tr class="border-b border-accent/20">
+                                <th class="py-3 px-4 font-heading text-accent">Framework</th>
+                                <th class="py-3 px-4 font-heading text-accent">Best For</th>
+                                <th class="py-3 px-4 font-heading text-accent">Key Focus</th>
+                                <th class="py-3 px-4 font-heading text-accent">Audit Cycle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-3 px-4 font-bold text-lightest-slate">NIST CSF</td>
+                                <td class="py-3 px-4">All industries, US government</td>
+                                <td class="py-3 px-4">Risk management, incident response</td>
+                                <td class="py-3 px-4">Continuous</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-3 px-4 font-bold text-lightest-slate">SOC 2 Type II</td>
+                                <td class="py-3 px-4">SaaS, tech companies, service providers</td>
+                                <td class="py-3 px-4">Trust principles: security, availability, confidentiality</td>
+                                <td class="py-3 px-4">Annual</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-3 px-4 font-bold text-lightest-slate">HIPAA</td>
+                                <td class="py-3 px-4">Healthcare, insurance, medical devices</td>
+                                <td class="py-3 px-4">Protected health information (PHI)</td>
+                                <td class="py-3 px-4">Annual</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-3 px-4 font-bold text-lightest-slate">PCI-DSS</td>
+                                <td class="py-3 px-4">Retail, hospitality, e-commerce</td>
+                                <td class="py-3 px-4">Payment card data protection</td>
+                                <td class="py-3 px-4">Annual + quarterly scans</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 container mx-auto px-6 text-center max-w-4xl fade-in-up">
+            <h2 class="font-heading text-3xl font-bold text-lightest-slate mb-4">The Cost of Downtime is Too High</h2>
+            <p class="text-lg mb-4">Whether you are a hospitality group with 5,000 keys or a high-volume financial firm,
+                network breaches paralyze operations and destroy trust.</p>
+            <p class="text-base mb-8 text-dark-slate">Partner with Clear Moon to shift from reactive IT repair to proactive, hardened defense. Our team brings NIST-aligned methodologies and real-world incident response experience.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html#contact" class="btn-solid">Speak With Our Security Architects</a>
+                <a href="cybersecurity-calculator.html" class="btn-outline">Take the Risk Assessment →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary mt-16">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                <div class="col-span-2 md:col-span-1">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <g fill="url(#logoGradient)">
+                                <use href="#logo-path" />
+                            </g>
+                        </svg>
+                        <span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span>
+                    </a>
+                    <p class="mt-4 text-sm">Your full-spectrum technology partner, delivering mission-critical IT
+                        solutions from Miami, FL to clients nationwide.</p>
+                </div>
+                <div>
+                    <h4 class="font-heading text-lg text-lightest-slate">Quick Links</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
+                        <li><a href="index.html#services" class="hover:text-accent transition-colors">Services</a></li>
+                        <li><a href="cybersecurity.html" class="text-accent transition-colors">Cybersecurity</a></li>
+                        <li><a href="ai-services.html" class="hover:text-accent transition-colors">AI Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading text-lg text-lightest-slate">Tools</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="hotel-wifi-estimator.html" class="hover:text-accent transition-colors">Hotel WiFi
+                                Cost Estimator</a></li>
+                        <li><a href="downtime-cost-calculator.html" class="hover:text-accent transition-colors">Downtime
+                                Cost Calculator</a></li>
+                        <li><a href="cybersecurity-calculator.html" class="hover:text-accent transition-colors">Cyber
+                                Risk Assessor</a></li>
+                        <li><a href="cloud-roi-estimator.html" class="hover:text-accent transition-colors">Cloud
+                                Migration ROI</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading text-lg text-lightest-slate">Contact Info</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-center space-x-2"><span>📍</span><span>Miami, Florida</span></li>
+                        <li class="flex items-center space-x-2"><span>📞</span><span>(424) 444-4472</span></li>
+                        <li class="flex items-center space-x-2"><span>✉️</span><span>sales@clearmoon.llc</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading text-lg text-lightest-slate">Connect With Us</h4>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://www.linkedin.com/company/clear-moon" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-accent transition-colors">LinkedIn</a>
+                        <a href="https://twitter.com/clearmoonllc" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-accent transition-colors">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center text-sm">
+                <p>&copy; 2026 Clear Moon MSP. All Rights Reserved. |
+                    <a href="privacypolicy.html" class="hover:text-accent transition-colors">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="dist/js/shared.js" defer></script>
+</body>
+
+</html>

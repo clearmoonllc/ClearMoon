@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Clear Moon Technology Partner</title>
+    <meta name="description" content="Discover the story and leadership behind Clear Moon, Miami's premier enterprise IT and cybersecurity partner.">
+    <meta property="og:title" content="About Us | Clear Moon Technology Partner">
+    <meta property="og:description" content="Discover the story and leadership behind Clear Moon, Miami's premier enterprise IT and cybersecurity partner.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="dist/css/theme.css">
+</head>
+<body class="bg-primary text-light-slate">
+    <canvas id="starfield"></canvas>
+    
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="logoGradient" gradientUnits="userSpaceOnUse" x1="697.8817" y1="309.6764" x2="671.3631" y2="460.0707">
+                <stop offset="0" style="stop-color:#FFF57E" />
+                <stop offset="0.2" style="stop-color:#FDC60B" />
+                <stop offset="0.5" style="stop-color:#F28F3F" />
+                <stop offset="0.8" style="stop-color:#EE7139" />
+                <stop offset="1" style="stop-color:#AB576A" />
+            </linearGradient>
+            <path id="logo-path"
+                d="M758.843,384.489c0,42.169-34.184,76.353-76.353,76.353c-37.939,0-69.399-27.675-75.332-63.936 c10.563,19.791,31.409,33.264,55.41,33.264c34.67,0,62.776-28.106,62.776-62.776c0-27.382-17.537-50.655-41.987-59.236 C725.124,308.624,758.843,342.611,758.843,384.489z M659.118,339.589l11.013,4.535l-1.4-11.828l4.535-11.013l-11.828,1.4 l-11.013-4.535l1.4,11.828l-4.535,11.013L659.118,339.589z M648.254,416.001l4.27-4.966l6.148-2.259l-4.966-4.27l-2.259-6.147 l-4.27,4.966l-6.147,2.259l4.966,4.27L648.254,416.001z M692.164,364.475l3.005-1.104l-2.427-2.087l-1.104-3.005l-2.087,2.427 l-3.005,1.104l2.427,2.087l1.104,3.005L692.164,364.475z M630.041,367.013l2.92-1.312l3.189,0.276l-1.312-2.92l0.276-3.189 l-2.92,1.312l-3.189-0.276l1.312,2.92L630.041,367.013z" />
+        </defs>
+    </svg>
+
+    <header id="header" class="bg-primary/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Main Navigation">
+            <a href="index.html" class="flex items-center space-x-3" aria-label="Clear Moon Home">
+                <svg width="40" height="40" viewBox="625 305 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <g fill="url(#logoGradient)"><use href="#logo-path" /></g>
+                </svg>
+                <span class="font-heading text-xl font-bold text-lightest-slate">Clear Moon</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#services" class="hover:text-accent transition-colors">Services</a>
+                <a href="cybersecurity.html" class="hover:text-accent transition-colors">Cybersecurity</a>
+                <a href="ai-services.html" class="hover:text-accent transition-colors">AI Solutions</a>
+                <a href="toolkit.html" class="hover:text-accent transition-colors">Toolkit</a>
+                <a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a>
+            </div>
+            <a href="index.html#contact"
+                class="hidden md:inline-block bg-transparent border border-accent text-accent py-2 px-4 rounded-md hover:bg-accent/10 transition-colors">
+                Get Started
+            </a>
+            <button id="mobile-menu-btn" class="md:hidden text-lightest-slate z-50" aria-label="Toggle Mobile Menu" aria-expanded="false">
+                <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-secondary">
+            <div class="flex flex-col items-center space-y-4 py-8">
+                <a href="index.html#services" class="hover:text-accent transition-colors mobile-nav-link">Services</a>
+                <a href="cybersecurity.html" class="hover:text-accent transition-colors mobile-nav-link">Cybersecurity</a>
+                <a href="ai-services.html" class="hover:text-accent transition-colors mobile-nav-link">AI Solutions</a>
+                <a href="toolkit.html" class="hover:text-accent transition-colors mobile-nav-link">Toolkit</a>
+                <a href="index.html#contact" class="hover:text-accent transition-colors mobile-nav-link">Contact</a>
+                <a href="index.html#contact" class="mt-4 bg-accent text-primary py-2 px-6 rounded-md hover:bg-accent/80 transition-colors mobile-nav-link">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-24 pb-16 md:pt-32 md:pb-24 container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center fade-in-up">
+                <p class="text-accent font-brand text-sm mb-4 tracking-widest">ABOUT CLEAR MOON</p>
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-lightest-slate leading-tight mb-6">Engineered for Excellence.</h1>
+                <p class="text-lg mb-4">Founded in Miami, FL, Clear Moon was built on a simple premise: enterprise IT should be a force multiplier, not a liability. We bring military-grade precision to commercial networks.</p>
+            </div>
+        </section>
+
+        <section class="py-20 bg-secondary/30">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="grid md:grid-cols-2 gap-12 items-center fade-in-up">
+                    <div>
+                        <h2 class="font-heading text-3xl font-bold text-lightest-slate mb-6">Our Mission</h2>
+                        <p class="text-lg mb-4">Too many MSPs act merely as break-fix mechanics for your technology. We operate as your dedicated vCIO and Security Operations Center.</p>
+                        <p class="text-lg">Our mission is to proactively eliminate downtime, secure your proprietary data, and architect scalable networks that support your growth without friction.</p>
+                    </div>
+                    <div class="glass p-8 rounded-xl border border-accent/20">
+                        <h3 class="font-heading text-xl text-accent mb-4">Core Values</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="mr-3 text-accent text-xl">✓</span>
+                                <div><strong>Proactive, Not Reactive:</strong> We neutralize threats before they impact your operations.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-3 text-accent text-xl">✓</span>
+                                <div><strong>Radical Transparency:</strong> Clear communication, honest assessments, and no hidden fees.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-3 text-accent text-xl">✓</span>
+                                <div><strong>Uncompromising Security:</strong> Zero-trust architecture is embedded in everything we build.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="py-20 container mx-auto px-6 text-center fade-in-up">
+            <h2 class="font-heading text-3xl font-bold text-lightest-slate mb-4">Join Our Journey</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-8">Ready to upgrade your IT infrastructure? Partner with the team that refuses to settle for "good enough."</p>
+            <a href="index.html#contact" class="btn-solid">Contact Us Today</a>
+        </section>
+    </main>
+
+    <script src="dist/js/shared.js" defer></script>
+</body>
+</html>
