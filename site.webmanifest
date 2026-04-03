@@ -1,0 +1,21 @@
+{
+  "name": "Clear Moon MSP",
+  "short_name": "ClearMoon",
+  "description": "Full-spectrum technology partner delivering enterprise IT, cybersecurity, and AI solutions nationwide.",
+  "icons": [
+    {
+      "src": "/dist/images/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/dist/images/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0A192F",
+  "background_color": "#0A192F",
+  "display": "standalone",
+  "start_url": "/"
+}

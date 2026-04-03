@@ -1,0 +1,125 @@
+# ClearMoon.llc — Extended Context
+
+> This file provides extended context about Clear Moon LLC for AI systems, search engines, and language models. For the summary version, see llms.txt.
+
+## About Clear Moon
+
+Clear Moon LLC is a managed service provider (MSP) headquartered in Miami, Florida. We deliver full-spectrum technology services to businesses nationwide, with deep expertise in hospitality IT, enterprise networking, cybersecurity operations, and emerging AI integration. Founded in 2023, Clear Moon partners with over 50 leading technology vendors and holds certifications across Microsoft, Cisco, Dell, Fortinet, and AWS ecosystems.
+
+## What Makes Clear Moon Different
+
+1. **Hospitality IT Expertise** — Deep experience with hotel networks, resort infrastructure, convention center A/V, and high-density guest Wi-Fi deployments.
+2. **Flat-Rate Managed IT** — No surprise bills. All-inclusive monthly pricing with 24/7 help desk, proactive monitoring, and SLA-backed 15-minute response for critical issues.
+3. **Security-First Approach** — 24/7 NOC/SOC operations, SIEM/SOAR, EDR/XDR, and compliance-ready security frameworks (HIPAA, PCI-DSS, SOC 2, CMMC).
+4. **AI Integration** — Practical AI deployment including RAG-based knowledge portals, document processing, and workflow automation with responsible AI practices.
+5. **Vendor-Agnostic** — We work with 50+ technology partners and recommend solutions based on client needs, not vendor incentives.
+
+## Service Details
+
+### Managed IT Services
+- 24/7 U.S.-based help desk with 15-minute SLA for critical issues
+- Proactive monitoring for endpoints, servers, switches, and access points
+- Automated patch management (OS, firmware, third-party applications)
+- Vendor management and contract negotiation
+- vCIO strategic planning with quarterly business reviews
+- Hardware lifecycle management with certified data destruction
+- Employee onboarding/offboarding within 15 minutes
+- Security awareness training with monthly phishing simulations
+
+### Cybersecurity
+- 24/7 Security Operations Center (SOC)
+- Network Operations Center (NOC)
+- SIEM and SOAR platform management
+- Endpoint Detection and Response (EDR/XDR)
+- Penetration testing and vulnerability assessments
+- Incident response and forensics
+- Dark web monitoring
+- Security awareness training programs
+- Compliance-aligned security frameworks
+
+### AI Solutions
+- RAG (Retrieval-Augmented Generation) knowledge portals
+- Intelligent document processing and extraction
+- Predictive maintenance analytics
+- Custom LLM fine-tuning and deployment
+- AI-powered workflow automation
+- Computer vision integration (quality control, security)
+- Responsible AI consulting and governance
+
+### Enterprise Networking
+- Wi-Fi 6/6E high-density wireless design
+- SD-WAN architecture and deployment
+- Zero-trust network access (ZTNA)
+- Structured cabling and low-voltage infrastructure
+- Network segmentation and VLAN design
+- Multi-site WAN optimization
+- Network monitoring and performance analytics
+
+### Cloud Services
+- Multi-cloud management (AWS, Azure, GCP)
+- Hybrid cloud architecture
+- Cloud migration planning and execution (zero-downtime)
+- Disaster recovery and business continuity
+- Cloud cost optimization and FinOps
+- Infrastructure-as-Code deployment
+- Cloud security posture management
+
+### VoIP & UCaaS
+- Microsoft Teams Voice integration
+- SIP trunking and hosted PBX
+- Contact center solutions
+- Conference room A/V design and deployment
+- Phone system migration and number porting
+- Call analytics and quality monitoring
+
+### Compliance Services
+- HIPAA compliance for healthcare organizations
+- PCI-DSS compliance for payment processing
+- SOC 2 Type I and Type II preparation
+- CMMC compliance for defense contractors
+- NIST Cybersecurity Framework alignment
+- Gap analysis and remediation roadmaps
+- Policy development and documentation
+- Audit preparation and support
+- Continuous compliance monitoring
+
+## Case Studies
+
+### Hospitality Network & A/V Modernization
+Deployed 400+ Wi-Fi 6 access points and modernized A/V across 12 conference zones for a luxury resort, achieving 99.97% network uptime.
+
+### 500+ Camera Security Deployment
+Deployed 500+ IP cameras with AI analytics across a 3-million sq ft distribution hub with zero operational downtime during installation.
+
+### Enterprise AI Integration
+Deployed a RAG-based AI portal that doubled quote turnaround speed for a mid-market B2B sales operation with zero data leakage.
+
+### MSP Turnaround
+Transformed a 150-endpoint environment from reactive break-fix chaos to a proactive managed services model, reducing tickets by 72% in 90 days.
+
+## Free IT Tools
+
+Clear Moon provides free interactive tools for IT professionals and businesses:
+- Hotel WiFi Infrastructure Cost Calculator
+- Cost of Downtime Calculator
+- Cybersecurity Risk Assessor
+- Cloud Migration ROI Estimator
+- Compliance Readiness Checker
+- Network Health Scorecard
+- MSP Savings Calculator
+- IT Maturity Assessment
+- Field Tech Toolkit (IP lookup, subnet calculator, DNS lookup, port reference)
+
+## Technology Partners
+
+Major partnership certifications include: Microsoft (Silver Partner), Cisco, Dell Technologies, Fortinet, AWS, Datto/Kaseya, SentinelOne, CrowdStrike, Palo Alto Networks, Ubiquiti, Aruba Networks, Ruckus, Meraki, and 40+ additional vendors.
+
+## Contact Information
+
+- **Company:** Clear Moon LLC
+- **Phone:** (424) 444-4472
+- **Email:** sales@clearmoon.llc
+- **Location:** Miami, Florida, United States
+- **Website:** https://clearmoon.llc
+- **LinkedIn:** https://www.linkedin.com/company/clear-moon
+- **Twitter/X:** https://twitter.com/clearmoonllc

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ClearMoon MSP — Shared JavaScript
  * Loaded on every page via <script src="dist/js/shared.js" defer></script>
  * 
@@ -256,7 +256,17 @@ document.addEventListener('DOMContentLoaded', function () {
             if (label) label.textContent = `[ ${sceneNames[index] || 'SCENE ' + (index + 1)} ]`;
             currentScene = index;
             activeSceneIndex = index;
+            // Scene memory: remember last viewed scene
+            try { localStorage.setItem('cm_last_scene', index); } catch(e) {}
         }
+
+        // Resume from last scene on return visits
+        try {
+            const savedScene = parseInt(localStorage.getItem('cm_last_scene'));
+            if (!isNaN(savedScene) && savedScene >= 0 && savedScene < scenes.length) {
+                activateScene(savedScene);
+            }
+        } catch(e) {}
 
         function nextScene() {
             activateScene((currentScene + 1) % scenes.length);
@@ -1836,5 +1846,17 @@ document.addEventListener('DOMContentLoaded', function () {
             if(!llModal.classList.contains('hidden')) resizeLlCanvas();
         });
     }
+
+    // ===== LIGHTWEIGHT PAGE VISIT TRACKER =====
+    // Records unique pages visited in localStorage for gamification / telemetry
+    try {
+        const page = window.location.pathname.replace(/^\//, '') || 'index.html';
+        const visits = JSON.parse(localStorage.getItem('cm_pages_visited') || '{}');
+        visits[page] = (visits[page] || 0) + 1;
+        localStorage.setItem('cm_pages_visited', JSON.stringify(visits));
+        // Track total unique page count for achievements
+        const uniqueCount = Object.keys(visits).length;
+        localStorage.setItem('cm_unique_pages', uniqueCount);
+    } catch(e) {}
 
 });

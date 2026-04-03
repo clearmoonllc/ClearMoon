@@ -1,0 +1,47 @@
+# ClearMoon.llc
+
+> Clear Moon is a full-spectrum managed service provider (MSP) delivering enterprise IT, cybersecurity, AI solutions, networking, cloud services, VoIP & unified communications, and compliance services nationwide from Miami, Florida.
+
+## Services
+
+- **Managed IT Services & 24/7 Help Desk** — Flat-rate managed IT with SLA-backed 15-minute response times, proactive monitoring, patch management, vendor coordination, vCIO strategy, and hardware lifecycle management.
+- **Cybersecurity & NOC/SOC** — 24/7 security operations center, threat detection and response, SIEM/SOAR, endpoint protection (EDR/XDR), penetration testing, vulnerability management, and security awareness training.
+- **AI Solutions & Integration** — RAG-based AI portals, intelligent document processing, predictive analytics, custom LLM deployments, AI-powered workflow automation, and responsible AI consulting.
+- **Enterprise Networking & Wi-Fi** — High-density wireless (Wi-Fi 6/6E), SD-WAN, zero-trust network access, structured cabling, network design, and multi-site deployments for hospitality and enterprise.
+- **Cloud Services & Migration** — Multi-cloud management (AWS, Azure, GCP), hybrid infrastructure, disaster recovery, cloud cost optimization, and zero-downtime migration planning.
+- **VoIP & Unified Communications (UCaaS)** — Microsoft Teams Voice, SIP trunking, hosted PBX, contact center solutions, conference room A/V, and phone system deployment.
+- **Compliance Services** — Assessment and remediation for HIPAA, PCI-DSS, SOC 2, CMMC, and NIST frameworks. Gap analysis, policy development, audit preparation, and continuous compliance monitoring.
+
+## Industries Served
+
+- Hospitality (Hotels, Resorts, Convention Centers)
+- Healthcare (Clinics, Medical Offices, Telehealth)
+- Logistics & Distribution
+- Professional Services (Law Firms, Accounting, Consulting)
+- Multi-Site Retail
+- Education (K-12, Higher Education)
+- Government & Public Sector
+
+## Contact
+
+- **Phone:** (424) 444-4472
+- **Email:** sales@clearmoon.llc
+- **Location:** Miami, Florida, United States
+- **Website:** https://clearmoon.llc
+
+## Key Pages
+
+- Home: https://clearmoon.llc/
+- Managed IT: https://clearmoon.llc/managed-it.html
+- Cybersecurity: https://clearmoon.llc/cybersecurity.html
+- AI Solutions: https://clearmoon.llc/ai-services.html
+- Networking: https://clearmoon.llc/networking.html
+- Cloud Services: https://clearmoon.llc/cloud-services.html
+- VoIP & UCaaS: https://clearmoon.llc/voip-ucaas.html
+- Compliance: https://clearmoon.llc/compliance-services.html
+- Industries: https://clearmoon.llc/industries.html
+- Partners: https://clearmoon.llc/partners.html
+- Case Studies: https://clearmoon.llc/case-study-hospitality.html
+- Trust Center: https://clearmoon.llc/trust.html
+- FAQ: https://clearmoon.llc/faq.html
+- Free IT Tools: https://clearmoon.llc/toolkit.html
