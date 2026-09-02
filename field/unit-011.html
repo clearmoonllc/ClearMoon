@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="Clear Moon on-site task card for network appliance enrollment.">
+<title>Unit 011 Enrollment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+  :root{
+    --ground:#EDEFF0; --panel:#FFFFFF; --panel-2:#F5F7F7;
+    --ink:#151A1D; --ink-2:#3D474B; --muted:#6B7578;
+    --rule:#D4D9DA; --rule-2:#E3E7E8;
+    --amber:#B8651A; --amber-soft:#F6EADC;
+    --teal:#0E6F63; --teal-soft:#DFEEEB;
+    --alert:#A32F2F; --alert-soft:#F7E4E2;
+    --code-bg:#151A1D; --code-ink:#E8ECEC; --code-accent:#E0913F;
+    --shadow:0 1px 2px rgba(21,26,29,.06), 0 8px 28px rgba(21,26,29,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0F1315; --panel:#171D20; --panel-2:#1D2427;
+      --ink:#E4E9EA; --ink-2:#B4BEC1; --muted:#879498;
+      --rule:#2B3336; --rule-2:#232A2D;
+      --amber:#E0913F; --amber-soft:#2E2317;
+      --teal:#48B8A6; --teal-soft:#142A28;
+      --alert:#E0736B; --alert-soft:#301C1B;
+      --code-bg:#0A0D0E; --code-ink:#E8ECEC; --code-accent:#E0913F;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0F1315; --panel:#171D20; --panel-2:#1D2427;
+    --ink:#E4E9EA; --ink-2:#B4BEC1; --muted:#879498;
+    --rule:#2B3336; --rule-2:#232A2D;
+    --amber:#E0913F; --amber-soft:#2E2317;
+    --teal:#48B8A6; --teal-soft:#142A28;
+    --alert:#E0736B; --alert-soft:#301C1B;
+    --code-bg:#0A0D0E; --code-ink:#E8ECEC; --code-accent:#E0913F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size:17px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:47rem; margin:0 auto;
+    padding:clamp(1rem,3vw,2.75rem) clamp(.85rem,3vw,1.5rem) 4rem;
+    display:flex; flex-direction:column; gap:1.25rem;
+  }
+  .card{
+    background:var(--panel); border:1px solid var(--rule);
+    border-radius:3px; box-shadow:var(--shadow); overflow:hidden;
+  }
+
+  .masthead{padding:clamp(1.25rem,3vw,2rem) clamp(1.1rem,3vw,2rem);border-bottom:1px solid var(--rule)}
+  .eyebrow{
+    font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted); display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline;
+  }
+  .eyebrow .org{color:var(--amber)}
+  h1{
+    font-family:"Archivo", ui-sans-serif, system-ui, sans-serif; font-weight:800;
+    font-size:clamp(1.9rem,6vw,2.9rem); line-height:1.02; letter-spacing:-.022em;
+    text-wrap:balance; margin:.7rem 0 .55rem;
+  }
+  .standfirst{font-size:1.05rem;color:var(--ink-2);max-width:38rem;margin:0}
+
+  .unitstrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));border-top:1px solid var(--rule-2)}
+  .unitstrip div{padding:.8rem clamp(1.1rem,3vw,2rem);border-right:1px solid var(--rule-2);background:var(--panel-2)}
+  .unitstrip div:last-child{border-right:0}
+  .unitstrip dt{
+    font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:.63rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 .2rem;
+  }
+  .unitstrip dd{
+    margin:0;font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.95rem;font-weight:600;font-variant-numeric:tabular-nums;
+  }
+  .fill{color:var(--amber);border-bottom:1.5px dashed var(--amber);padding-bottom:1px}
+
+  .contract{
+    background:var(--amber-soft);border:1px solid var(--amber);border-radius:3px;
+    padding:1rem 1.15rem;display:flex;gap:.9rem;align-items:flex-start;
+  }
+  .contract .bar{width:4px;align-self:stretch;background:var(--amber);border-radius:2px;flex:none}
+  .contract p{margin:0;font-size:1.02rem}
+  .contract strong{font-family:"Archivo",sans-serif;font-weight:700}
+
+  section{padding:clamp(1.3rem,3vw,2rem) clamp(1.1rem,3vw,2rem)}
+  section + section{border-top:1px solid var(--rule)}
+  h2{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.28rem;letter-spacing:-.012em;margin:0 0 .2rem}
+  .sublede{color:var(--muted);font-size:.95rem;margin:0 0 1.3rem}
+
+  ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.5rem}
+  ol.steps > li{display:grid;grid-template-columns:2.6rem 1fr;gap:1rem;position:relative}
+  ol.steps > li::before{
+    content:attr(data-n);
+    font-family:"IBM Plex Mono", ui-monospace, monospace;font-weight:600;font-size:.85rem;
+    color:var(--panel);background:var(--ink);
+    width:2.1rem;height:2.1rem;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  ol.steps > li:not(:last-child)::after{
+    content:"";position:absolute;left:1.05rem;top:2.4rem;bottom:-1.5rem;width:1px;background:var(--rule);
+  }
+  ol.steps h3{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.06rem;margin:.25rem 0 .35rem;letter-spacing:-.008em}
+  ol.steps p{margin:0 0 .5rem}
+  ol.steps p:last-child{margin-bottom:0}
+  .aside{
+    font-size:.93rem;color:var(--ink-2);background:var(--panel-2);
+    border-left:2px solid var(--rule);padding:.55rem .8rem;border-radius:0 3px 3px 0;margin-top:.6rem;
+  }
+  .aside b{color:var(--ink)}
+
+  kbd{
+    font-family:"IBM Plex Mono",monospace;font-size:.88em;font-weight:600;
+    background:var(--panel-2);border:1px solid var(--rule);border-bottom-width:2px;
+    border-radius:3px;padding:.1em .4em;white-space:nowrap;
+  }
+
+  /* ---------- the paste block ---------- */
+  .paste{margin-top:.75rem;border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+  .paste header{
+    display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+    background:var(--panel-2);border-bottom:1px solid var(--rule);padding:.45rem .7rem;
+  }
+  .paste header span{
+    font-family:"IBM Plex Mono",monospace;font-size:.65rem;font-weight:600;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
+  }
+  .paste button{
+    font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.06em;
+    background:var(--ink);color:var(--panel);border:0;border-radius:3px;
+    padding:.32rem .7rem;cursor:pointer;
+  }
+  .paste button:hover{background:var(--amber)}
+  .paste pre{
+    margin:0;background:var(--code-bg);color:var(--code-ink);
+    padding:.9rem .8rem;overflow-x:auto;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.82rem;line-height:1.75;
+  }
+  .paste .tok{color:var(--code-accent)}
+
+  .stop{background:var(--alert-soft);border:1px solid var(--alert);border-radius:3px;padding:1.1rem 1.25rem}
+  .stop .tag,.confirm .tag{
+    font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:.4rem;
+  }
+  .stop .tag{color:var(--alert)}
+  .stop p{margin:0;font-size:1.05rem}
+  .stop strong{font-family:"Archivo",sans-serif;font-weight:700}
+  .confirm{background:var(--teal-soft);border:1px solid var(--teal);border-radius:3px;padding:1rem 1.15rem}
+  .confirm .tag{color:var(--teal)}
+  .confirm p{margin:0}
+  .confirm strong{font-family:"Archivo",sans-serif;font-weight:700}
+
+  .tablewrap{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;min-width:32rem;font-size:.96rem}
+  th,td{text-align:left;padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  th{
+    font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--rule);
+  }
+  td:first-child{font-weight:600;width:34%}
+  tr:last-child td{border-bottom:0}
+  code{font-family:"IBM Plex Mono",monospace;font-size:.9em;background:var(--panel-2);padding:.08em .35em;border-radius:3px}
+
+  .foot{
+    font-size:.86rem;color:var(--muted);display:flex;flex-wrap:wrap;
+    gap:.4rem 1.2rem;justify-content:space-between;padding:0 .3rem;
+  }
+  .foot span{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em}
+  a{color:var(--amber)}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+  @media print{
+    body{background:#fff;font-size:11.5pt}
+    .wrap{max-width:none;padding:0;gap:.6rem}
+    .card{box-shadow:none;border-color:#999;break-inside:avoid}
+    section{padding:.8rem 1rem}
+    ol.steps{gap:.85rem}
+    .paste pre{background:#fff;color:#000;border:1px solid #999}
+    .paste button,.foot{display:none}
+  }
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card">
+    <div class="masthead">
+      <div class="eyebrow">
+        <span class="org">Clear Moon LLC</span>
+        <span>On-site task card</span>
+        <span>2026-09-02 · 16:00 ET</span>
+      </div>
+      <h1>Bring the network box online</h1>
+      <p class="standfirst">The box is already at the site. You'll plug it into a network jack, join its own WiFi from your phone, and paste two lines we text you. About ten minutes of work, then please stay while we check.</p>
+    </div>
+    <dl class="unitstrip">
+      <div><dt>Unit ID</dt><dd>CM-UNIT-011</dd></div>
+      <div><dt>Call / text</dt><dd>see our text</dd></div>
+      <div><dt>Window</dt><dd>16:00 ET</dd></div>
+      <div><dt>Please allow</dt><dd>60 min</dd></div>
+    </dl>
+  </div>
+
+  <div class="contract">
+    <div class="bar" aria-hidden="true"></div>
+    <p><strong>The one rule:</strong> don't leave until we call or text to say the box is online. The plug-in takes ten minutes; the rest is us testing while you're still there. Almost anything can be fixed while you're on site, and almost nothing can be fixed after you've driven away.</p>
+  </div>
+
+  <div class="card">
+    <section>
+      <h2>Before you start</h2>
+      <p class="sublede">You need a phone that can join a WiFi network and open a web page. No laptop, no tools, no passwords from us.</p>
+      <div class="aside">We'll text you <b>two lines of text</b> just before 16:00. Keep that message handy, you'll copy and paste from it, so you never have to type anything long.</div>
+    </section>
+
+    <section>
+      <h2>Steps</h2>
+      <p class="sublede">Do these in order. Call us at any point, you will not be interrupting anything.</p>
+
+      <ol class="steps">
+        <li data-n="1">
+          <div>
+            <h3>Plug it into a network jack</h3>
+            <p>Find the network rack or closet. Look for a wide device with a row of many network jacks, that's the switch. Pick an empty jack near the middle and run the short cable from it to the jack on the small white box.</p>
+            <p class="aside">The box has no power cord. It's powered through the network cable, so some jacks will work and some won't. <b>Don't unplug anything that's already connected.</b></p>
+          </div>
+        </li>
+
+        <li data-n="2">
+          <div>
+            <h3>Check the lights</h3>
+            <p>Within about 30 seconds a light on the box should come on, and so should the light on the switch jack you used.</p>
+            <p class="aside"><b>No lights after a minute?</b> That jack doesn't supply power. Try a different empty jack and wait again. If two or three jacks all do nothing, call us.</p>
+          </div>
+        </li>
+
+        <li data-n="3">
+          <div>
+            <h3>Join the box's own WiFi</h3>
+            <p>On your phone, open WiFi settings. Within a couple of minutes of the box powering up you should see a network called <kbd>MikroTik</kbd>. Join it, there's no password.</p>
+            <p class="aside">Your phone may warn that this network has no internet. That's expected. <b>Stay connected to it anyway</b> and turn off "auto-switch to mobile data" if your phone offers that.</p>
+          </div>
+        </li>
+
+        <li data-n="4">
+          <div>
+            <h3>Open the box's page and sign in</h3>
+            <p>In your phone's browser go to <kbd>192.168.88.1</kbd>. Sign in with the username <kbd>admin</kbd> and <b>leave the password blank</b>.</p>
+            <p class="aside">If a blank password is rejected, there's a small sticker on the box with a password printed on it. <b>Read that sticker to us</b> and we'll tell you what to do.</p>
+          </div>
+        </li>
+
+        <li data-n="5">
+          <div>
+            <h3>Paste the two lines</h3>
+            <p>On the page, find and tap <b>Terminal</b>. A black text window opens. Paste the <b>first</b> line from our text message, press Enter, wait for it to finish, then paste the <b>second</b> line and press Enter.</p>
+
+            <div class="paste">
+              <header>
+                <span>What we'll text you</span>
+                <button type="button" id="copybtn">Copy</button>
+              </header>
+              <pre id="snippet">/tool fetch url="http://hub1.meshroute.clearmoon.llc/e/<span class="tok">TOKEN</span>" dst-path=b.rsc
+/import b.rsc</pre>
+            </div>
+
+            <p class="aside" style="margin-top:.85rem">The WiFi network <kbd>MikroTik</kbd> will disappear a little later, that's the box finishing its setup and it means things went right. <b>Don't worry when your phone drops off.</b></p>
+          </div>
+        </li>
+
+        <li data-n="6">
+          <div>
+            <h3>Tell us, and wait</h3>
+            <p>Text us on the number in our message that both lines ran, plus the number of the switch jack you used and a photo of the rack with the box in place. We'll check from our side within a few minutes.</p>
+            <div class="confirm" style="margin-top:.7rem">
+              <span class="tag">You're done when we say</span>
+              <p>"<strong>Unit 011 is online, you're clear to go.</strong>" Until then, please stay on site.</p>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="stop">
+        <span class="tag">Do not</span>
+        <p><strong>Don't change any settings on the page</strong> beyond pasting our two lines, don't touch the switch or any other equipment, and don't press the small recessed button on the box unless we ask you to. If something looks wrong, leave everything plugged in and call us.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>If something doesn't work</h2>
+      <p class="sublede">Work down this list, or just call, we'd rather talk you through it.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th scope="col">What you see</th><th scope="col">What to do</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>No <code>MikroTik</code> WiFi appears</td>
+              <td>Wait a full two minutes first. Then, with our OK: unplug the cable, hold the small recessed button in, plug the cable back in, and keep holding for about five seconds until the lights change. Release, wait a minute, and look again.</td>
+            </tr>
+            <tr>
+              <td>Blank password rejected</td>
+              <td>Read us the password printed on the sticker on the box.</td>
+            </tr>
+            <tr>
+              <td>The first line shows an error</td>
+              <td>Tell us the exact wording. We'll text you a replacement line that uses a numeric address instead of a name.</td>
+            </tr>
+            <tr>
+              <td>Both lines ran but we say it's not reaching us</td>
+              <td>Stay put. We'll text you one more short line to paste, which tries a different network path. This is common and usually works.</td>
+            </tr>
+            <tr>
+              <td>Someone asks what the box is</td>
+              <td>It's a Clear Moon network appliance for remote support, installed with the client's written authorization. Give them the number in our message, and don't remove the box on a verbal request.</td>
+            </tr>
+            <tr>
+              <td>You can't reach us</td>
+              <td>Text the Unit ID and a photo to the number in our message, wait fifteen minutes, then call. <b>Leave the box plugged in</b> whatever happens.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <p class="foot">
+    <span>Clear Moon LLC · Unit CM-UNIT-011 · enrollment card</span>
+    <span>Questions during the visit? Call. Always call.</span>
+  </p>
+
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copybtn');
+    var pre = document.getElementById('snippet');
+    if (!btn || !pre) return;
+    btn.addEventListener('click', function () {
+      var text = pre.innerText;
+      var done = function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, select);
+      } else {
+        select();
+      }
+      function select() {
+        try {
+          var r = document.createRange();
+          r.selectNodeContents(pre);
+          var s = window.getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          btn.textContent = 'Selected, copy it';
+          setTimeout(function () { btn.textContent = 'Copy'; }, 2600);
+        } catch (e) { /* nothing useful to do */ }
+      }
+    });
+  })();
+</script>
+</body>
+</html>
